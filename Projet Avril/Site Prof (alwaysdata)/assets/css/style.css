@@ -1,0 +1,826 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap%27');
+@font-face {     font-family: "Reef";     src: url('Reef.otf'); }
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
+
+html {
+	word-break: normal;
+}
+
+h2 {
+	hyphens: manual;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+/*------------------Intro Accueil------------------*/
+.imgtop img {
+	height: 30px;
+}
+
+#header {
+	width: auto;
+	display: flex;
+	justify-content: space-between;
+	vertical-align: middle;
+	height: auto;
+	background-color: white;
+	padding: 20px;
+}
+
+#header ul {
+	display: flex;
+	align-self: center;
+	flex-wrap: wrap;
+}
+
+#header a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	background-color: #f1f1f1;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#header a:hover {
+	background-color: #C4C4C4;
+}
+
+.navbtn {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	padding: 20px;
+	text-decoration: none;
+	color: black;
+	border: none;
+	background-color: white;
+}
+
+.btndirect:hover {
+	cursor: pointer;
+}
+
+.menunav {
+  	position: relative;
+  	display: inline-block;
+}
+
+.contentnav {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	z-index: 1;
+	height: 50px;
+}
+
+.menunav:hover .contentnav {
+	display: block;
+}
+
+.menunav:hover .navbtn {
+	text-decoration: underline;
+	background-color: #f1f1f1;
+}
+
+.logo img {
+	width: 50px;
+}
+
+.bg_commodi {
+	background: linear-gradient(45deg,rgba(204, 21, 250, 0.5),rgba(48, 36, 174, 0.5)), url("../img/img_intro.jpg");
+	background-size: cover;
+}
+
+.commodi {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	padding-top: 200px;
+	padding-left: 5%;
+	padding-bottom: 150px;
+}
+
+.commodi h2 {
+	color: white;
+	font-size: 16px;
+	margin-bottom: 20px;
+	font-family: 'Poppins', sans-serif;
+	word-break: normal;
+}
+
+.commodi h1 {
+	color: white;
+	font-size: 60px;
+	margin-bottom: 20px;
+	font-family: 'Poppins', sans-serif;
+	word-break: break-all;
+}
+
+.commodi p {
+	color: white;
+	font-size: 16px;
+	width: 45%;
+	margin-bottom: 20px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.bouton_orange {
+	width: 200px;
+	background-color: #FFC501;
+	border: none;
+	padding: 10px;
+	border-radius: 1000px; 
+	padding-left: 20px; 
+	padding-right: 20px;
+	margin-right: 20px;
+	color: white;
+	font-family: 'Poppins', sans-serif;
+}
+
+.bouton_transp {
+	background-color: transparent;
+	border: solid white 2px;
+	padding: 10px;
+	border-radius: 1000px; 
+	padding-left: 20px; 
+	padding-right: 20px; 
+	color: white;
+	font-family: 'Poppins', sans-serif;
+}
+
+.bouton { 
+	margin-bottom: 20px; 
+}
+
+#arrow_left {
+	border: none;
+	color: #c56ed7;
+	background-color: white;
+	width: 35px;
+	height: 35px;
+	font-size: 25px;
+}
+
+#arrow_right {
+	border: none;
+	color: white;
+	background-color: #c56ed7;
+	width: 35px;
+	height: 35px;
+	font-size: 25px;
+}
+
+#introduction {
+	padding-bottom: 50px;
+}
+
+/*------------------Outils Disponibles------------------*/
+
+#quis_position {
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 1%;
+	margin-left: 20%;
+}
+
+#introduction p, #introduction h3 {
+	font-family: 'Poppins', sans-serif;
+}
+
+#introduction h1 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 33px;
+	margin-bottom: 50px;
+}
+
+#introduction h2 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	margin-top: 50px;
+	margin-bottom: 40px;
+}
+
+#introduction button {
+	border-radius: 1000px;
+	width: 35px;
+	height: 35px;
+	border: solid 2px #c56ed7 ;
+	color: #c56ed7;
+	font-size: 25px;
+	margin-top: 40px;
+	margin-right: 20px;
+}
+
+.autem {
+	width: 25%;
+	height: auto;
+	background-color: white;
+	box-shadow: 10px 5px 15px 2px rgba(112, 112, 112, 0.4);
+	margin-bottom: 30px;
+	margin-right: 30px;
+	border-radius: 5px;
+	padding-bottom: 15px;
+}
+
+.autem img {
+	border-radius: 5px 5px 0px 0px;
+	width: 100%;
+	min-height: 216px;
+	max-height: 217px;
+}
+
+.autem p {
+	font-size: 13px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.autem h3 {
+	max-width: 200px;
+	font-size: 22px;
+	margin-top: 25px;
+	margin-left: 20px;
+}
+
+.bas_autem {
+	display: flex;
+	justify-content: space-between;
+}
+
+#box_quis {
+	display: flex;
+}
+
+/*------------------MOLLITIA------------------*/
+#mollitia {
+	min-height: 700px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url("../img/fond.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#mollitia_droite, #mollitia_gauche {
+	color: white;
+	font-family: 'Poppins', sans-serif;
+	width: 50%;
+}
+
+.mollitia_title {
+	font-size: 18px;
+	word-break: normal;
+}
+
+.mollitia_title2 {
+	font-size: 36px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	word-break: normal;
+}
+
+.mollitia_text {
+	font-size: 14px;
+	max-width: 70%;
+	line-height: 30px;
+	word-break: normal;
+}
+
+#mollitia_button {
+	width: 15%;
+	border: none;
+	border-radius: 50px;
+	height: 45px;
+	color: white;
+	background-color: #c86cd7;
+	margin-top: 40px;
+	font-size: 14px;
+	font-family: 'Poppins', sans-serif;
+}
+
+#mollitia_gauche img {
+	width: 80%;
+	margin-left: 3%;
+}
+
+/*------------------FOOTER------------------*/
+footer {
+	min-height: 330px;
+	background-color: #3024ae;
+}
+
+#footer_haut {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-top: 30px;
+	padding-left: 5%;
+}
+
+.footer_case {
+	width: 20%;
+	display: flex;
+	flex-direction: column;
+}
+
+.footer_text, .footer_copyright {
+	max-width: 80%;
+	color: #6c61e1;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+	line-height: 25px;
+}
+
+.footer_title {
+	font-family: 'Poppins', sans-serif;
+	color: white;
+	font-size: 25px;
+	margin-bottom: 30px;
+}
+
+#temporibus_liste li {
+	color: white;
+	margin-bottom: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+}
+
+#sintet_liste img {
+	width: 30px;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+#sintet_liste {
+	display: flex;
+	flex-direction: column;
+}
+
+#sintet_liste li {
+	vertical-align: middle;
+	height: 50px;
+}
+
+#molestiae_liste {
+	list-style-type: disc;
+	color: white;
+	margin-left: 15px;
+}
+
+#molestiae_liste li {
+	height: 30px;
+}
+
+#molestiae_liste a {
+	text-decoration: none;
+	color: white;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#molestiae_liste a:hover {
+	text-decoration: underline;
+}
+
+#footer_bas {
+	border-top: solid 1px #6c61e1;
+	display: flex;
+	justify-content: space-around;
+	height: 90px;
+}
+
+.footer_copyright {
+	align-self: center;
+	width: auto;
+}
+
+/*------------------Visualisation------------------*/
+#DivIntroVisu {
+	min-height: 600px;
+	background-image: url("../img/ciel.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#IntroVisualisation {
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	padding-left: 5%;
+}
+
+#IntroVisualisation h2 {
+	margin-top: 100px;
+	color: #404040;
+	font-size: 16px;
+	margin-bottom: 20px;
+	font-family: 'Poppins', sans-serif;
+	word-break: normal;
+}
+
+#IntroVisualisation h1 {
+	color: #404040;
+	font-size: 60px;
+	margin-bottom: 20px;
+	font-family: 'Poppins', sans-serif;
+	word-break: break-all;
+}
+
+#IntroVisualisation p {
+	color: #404040;
+	font-size: 16px;
+	width: 45%;
+	margin-bottom: 20px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#Visualisation, #Documentation {
+	padding-left: 10%;
+	padding-top: 30px;
+	padding-bottom: 50px;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#Visualisation h3, #Documentation h3 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 30px;
+	border-bottom: solid 1px;
+	width: 80%;
+	margin-bottom: 50px;
+}
+
+pre {
+	display: block;
+	width: 79%;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #333;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+    overflow: auto;
+    height: 500px;
+}
+
+pre h1 {
+	color: red;
+}
+
+.link {
+	color: #FF9D03;
+}
+
+.link2 {
+	color: #8100B1;
+}
+
+.link3 {
+	color: #E30A0A;
+}
+
+.link4 {
+	color: #031BFF;
+}
+
+.link:hover, .link2:hover, .link3:hover, .link4:hover {
+	cursor: pointer;
+	background-color: #E0E0E0;
+}
+
+#InfosVisu h4, #Documentation h4 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 25px;
+	border-bottom: solid 1px;
+	width: 80%;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+#InfosVisu code, #Documentation code {
+	color: #B1002E;
+	background-color: #E6E6E6;
+	padding: 2px;
+	border-radius: 2px;
+	font-size: 20px;
+}
+
+#InfosVisu code:hover, #Documentation code:hover {
+	cursor: pointer;
+	background-color: #D9D9D9;
+}
+
+#InfosVisu ul, #Documentation ul {
+	display: flex;
+	width: 80%;
+	flex-wrap: wrap;
+}
+
+#InfosVisu li, #Documentation li {
+	margin-right: 30px;
+	margin-bottom: 20px;
+}
+
+/*------------------Documentation------------------*/
+#Documentation p {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#liste_infos {
+	margin-left: 5%;
+	font-family: "Reef";
+}
+
+#liste_infos code {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#liste_infos code:hover {
+	cursor: initial;
+	background-color: #E6E6E6;
+}
+
+.infos1 {
+	list-style-type: disc;
+	flex-direction: column;
+}
+
+.infos2 {
+	list-style-type: circle;
+	margin-left: 5%;
+	flex-direction: column;
+}
+
+.infos3 {
+	list-style-type: square;
+	margin-left: 10%;
+	flex-direction: column;
+}
+
+.expl_json {
+	margin-bottom: 20px;
+}
+
+#Documentation h5 {
+	font-family: 'Poppins', sans-serif;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#recup_donnees, #aff_donnees {
+	margin-left: 2%;
+	margin-bottom: 40px;
+}
+
+#recup_donnees p:first-child {
+	text-decoration: underline;
+	margin-bottom: 5px;
+}
+
+.list_fct {
+	margin-left: 40px;
+	list-style-type: decimal;
+}
+
+.lien, .aff_donnees_code {
+	font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+	color: #929292;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.chemin_json {
+	margin-top: 10px;
+}
+
+.aff_donnees_code {
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+/*------------------Documentation------------------*/
+#inscription {
+	width: 100%;
+	background-color: #379FB6;
+	padding-top: 30px;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+}
+
+#inscription-haut {
+	display: flex;
+	justify-content: space-around;
+	width: 80%;
+	margin-top: 50px;
+	align-self: center;
+	align-items: center;
+}
+
+#inscription h1 {
+	font-family: 'Rajdhani', sans-serif;
+	color: white;
+	text-align: center;
+	font-size: 80px;
+}
+
+.inscription-champs {
+	width: 30%;
+	margin-right: 2%;
+}
+
+.inscription-champs input, .inscription-champs select {
+	width: 100%;
+	height: 50px;
+	background-color: #EBEBEB;
+	color: #8B8B8B;
+	padding-left: 30px;
+	margin-bottom: 20px;
+	border-radius: 1000px;
+	border: none;
+	font-size: 20px;
+	font-family: 'Rajdhani', sans-serif;
+}
+
+.inscription-champs select {
+	border-radius: 1000px 0px 0px 1000px;
+	width: 108%;
+}
+
+.inscription-champs option {
+	background-color: #E2E2E2;
+}
+
+#inscription-image {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+	width: 30%;
+}
+
+#inscription-image img {
+	width: 75%;
+	border: solid 4px #545454;
+	border-radius: 20px;
+}
+
+#inscription-image button {
+	background-color: #C4C4C4;
+	width: 70%;
+	margin-top: 20px;
+	color: white;
+	height: 40px;
+	font-family: 'Rajdhani', sans-serif;
+	border: none;
+	border-radius: 10px;
+	font-size: 20px;
+}
+
+#inscription-bas {
+	display: flex;
+	flex-direction: column;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#inscription-mdp {
+	display: flex;
+	justify-content: space-between;
+	width: 40%;
+}
+
+#inscription-mdp input {
+	background-color: #EBEBEB;
+	color: #8B8B8B;
+	border-radius: 1000px;
+	border: none;
+	font-size: 20px;
+	font-family: 'Rajdhani', sans-serif;
+	padding-left: 30px;
+}
+
+#inscription-mdp img {
+	width: 50px;
+}
+
+#inscription-mdp button {
+	background-color: rgba(0,0,0,0);
+	border: none;
+	border-radius: 1000px;
+}
+
+#inscription-captcha {
+	width: 100%;
+	background-color: #E95656;
+	border: solid 4px #6D6D6D;
+	margin-top: 15px;
+	height: 45px;
+	border-radius: 10px;
+	display: flex;
+	align-self: center;
+	align-items: center;
+	font-family: 'Rajdhani', sans-serif;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+#button-inscrire {
+	height: 45px;
+	background-color: #C4C4C4;
+	color: white;
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 24px;
+	border: none;
+	border-radius: 1000px;
+}
+
+#inscription-captcha label {
+	cursor: pointer;
+	user-select: none;
+}
+
+/*------------------Media------------------*/
+@media screen and (max-width : 768px){
+	#header {
+		background-color: rgba(0,0,0,0);
+	}
+
+	#header ul {
+		display: none;
+	}
+
+	#box_quis {
+		flex-direction: column;
+		align-self: center;
+		width: auto;
+	}
+
+	#quis_position {
+		margin-right: auto;
+		margin-left: auto;
+		width: 80%;
+	}
+
+	.autem {
+		width: 100%;
+		height: auto;
+	}
+
+	.bouton_orange {
+		margin-bottom: 10px;
+	}
+
+	.commodi p {
+		width: 100%;
+	}
+
+	#mollitia {
+		flex-direction: column;
+	}
+
+	#mollitia_droite, #mollitia_gauche {
+		width: 90%;
+	}
+
+	#mollitia_gauche {
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	#mollitia_gauche img {
+		width: 100%;
+		margin-left: 0px;
+	}
+
+	#mollitia_button {
+		width: 50%;
+	}
+
+	.mollitia_text {
+		line-height: 18px;
+		max-width: 90%;
+	}
+
+	#footer_haut, #footer_bas {
+		flex-direction: column;
+		justify-content: flex-start;
+		padding-top: 30px;
+	}
+
+	.footer_case {
+		width: 90%;
+		flex-direction: column;
+		margin-bottom: 25px;
+	}
+}
