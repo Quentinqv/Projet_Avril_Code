@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	print_r($_SESSION['adresse']);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -13,38 +17,25 @@
 		<div class="bg_commodi">
 			<div id="header">
 				<div class="logo">
-					<img src="assets\img\logo.png">
+					<a href="index.php"><img src="assets\img\logo.png"></a>
 				</div>
-				<ul>
-					<div class="menunav">
-						<button class="navbtn btndirect" onclick="document.location.href = 'index.php'">Home</button>
-					</div>
-					<div class="menunav">
-						<button class="navbtn">Outils</button>
-						<div class="contentnav">
-							<a href="visualisation.php">Visualisation</a>
-							<a href="documentation.php">Documentation</a>
+				<nav>
+					<ul id="navigation">
+						<div class="menunav">
+							<button class="navbtn">Outils</button>
+							<div class="contentnav">
+								<a href="visualisation.php">Visualisation</a>
+								<a href="documentation.php">Documentation</a>
+							</div>
 						</div>
-					</div>
-					<div class="menunav">
-						<button class="navbtn">Compte</button>
-						<div class="contentnav">
-							<a href="inscription.php">Inscription</a>
-							<a href="connexion.php">Connexion</a>
+						<div class="menunav" id="admin">
+							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
 						</div>
+					</ul>
+					<div class="imgtop">
+						<a href="profil.php"><img src="API\img\account.png" alt="loupe"></a>
 					</div>
-					<div class="menunav" id="admin">
-						<button class="navbtn">Administration</button>
-						<div class="contentnav">
-							<a href="modification.php">Modification</a>
-							<a href="statistiques.php">Statistiques</a>
-						</div>
-					</div>
-				</ul>
-				<div class="imgtop">
-					<img src="assets\img\Loupe.png" alt="loupe">
-					<img src="assets\img\menu.png" alt="menu">
-				</div>
+				</nav>
 			</div>
 			<div class="commodi">
 				<h2>VITOUX QUENTIN</h2>

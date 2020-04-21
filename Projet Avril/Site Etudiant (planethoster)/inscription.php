@@ -12,6 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
 		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
+		<script src="script.js" type="text/javascript"></script>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -33,129 +34,96 @@
 		<div class="bg_commodi">
 			<div id="header">
 				<div class="logo">
-					<img src="assets\img\logo.png">
+					<a href="index.php"><img src="assets\img\logo.png"></a>
 				</div>
-				<ul>
-					<div class="menunav">
-						<button class="navbtn btndirect" onclick="document.location.href = 'index.php'">Home</button>
-					</div>
-					<div class="menunav">
-						<button class="navbtn">Outils</button>
-						<div class="contentnav">
-							<a href="visualisation.php">Visualisation</a>
-							<a href="documentation.php">Documentation</a>
+				<nav>
+					<ul id="navigation">
+						<div class="menunav">
+							<button class="navbtn">Outils</button>
+							<div class="contentnav">
+								<a href="visualisation.php">Visualisation</a>
+								<a href="documentation.php">Documentation</a>
+							</div>
 						</div>
-					</div>
-					<div class="menunav">
-						<button class="navbtn">Compte</button>
-						<div class="contentnav">
-							<a href="inscription.php">Inscription</a>
-							<a href="connexion.php">Connexion</a>
+						<div class="menunav" id="admin">
+							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
 						</div>
+					</ul>
+					<div class="imgtop">
+						<a href="profil.php"><img src="API\img\account.png" alt="loupe"></a>
 					</div>
-					<div class="menunav" id="admin">
-						<button class="navbtn">Administration</button>
-						<div class="contentnav">
-							<a href="modification.php">Modification</a>
-							<a href="statistiques.php">Statistiques</a>
-						</div>
-					</div>
-				</ul>
-				<div class="imgtop">
-					<img src="assets\img\Loupe.png" alt="loupe">
-					<img src="assets\img\menu.png" alt="menu">
-				</div>
+				</nav>
 			</div>
 		</div>
-		<div id="inscription">
-			<div id="inscription-gauche">
-				<h1>Inscription</h1>
-				<div id="inscription-1">
-					<div class="champs-alignes">
-						<input type="text" name="nom" placeholder="Nom">
-						<input type="text" name="prenom" placeholder="Prénom">
-						<input type="date" name="date">
-					</div>
-					<div id="adressePostale">
-						<input type="text" name="adresse" placeholder="Adresse Postale">
-					</div>
-					<div class="champs-alignes">
-						<input type="text" name="email" placeholder="Email">
-						<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78">
-					</div>
-					<div class="champs-alignes">
-						<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
-							<option value="filiere">Filière</option>
-							<?php
-								$liste = TrierFiliere();
-								AfficherFiliere($liste);
-							?>
-						</select>
-						<select name="groupe" id="groupe-select">
-							<option value="Groupe">Groupes</option>
-						</select>
-					</div>
-					<div id="mots-de-passe">
-						<div class="inscription-mdp">
-							<input type="password" name="mdp" placeholder="Mot de passe">
-							<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
-						</div>
-						<div class="inscription-mdp">
-							<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe">
-							<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
-						</div>
-					</div>
-					<div id="captcha">
-						<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
-					</div>
-					<button onclick="InscriptionSuivant(this)" id="button-inscrire">S'INSCRIRE</button>
+		<div id="page-connexion">
+			<div id="inscription">
+				<div id="inscription-gauche">
+					<h1>Inscription</h1>
+						<form action="inscription.php" method="post" id="inscription-1">
+							<div class="champs-alignes">
+								<input type="text" name="nom" placeholder="Nom" class="champs-inscription">
+								<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription">
+								<input type="date" name="date" class="champs-inscription">
+							</div>
+							<div id="adressePostale">
+								<input type="text" name="adresse" placeholder="Adresse Postale" class="champs-inscription">
+							</div>
+							<div class="champs-alignes">
+								<input type="text" name="email" placeholder="Email" class="champs-inscription">
+								<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78" class="champs-inscription">
+							</div>
+							<div class="champs-alignes">
+								<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
+									<option value="filiere">Filière</option>
+									<?php
+										$liste = TrierFiliere();
+										AfficherFiliere($liste);
+									?>
+								</select>
+								<select name="groupe" id="groupe-select">
+									<option value="Groupe">Groupes</option>
+								</select>
+							</div>
+							<div id="mots-de-passe">
+								<div class="inscription-mdp">
+									<input type="password" name="mdp" placeholder="Mot de passe" onchange="document.getElementById('ErrorMDP').style.display = 'none'" id="mdp1">
+									<button type="button" onclick="mdpcache('mdp1')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp1IMG" /></button>
+								</div>
+								<div class="inscription-mdp">
+									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe" onchange="document.getElementById('ErrorMDP').style.display = 'none'" id="mdp2">
+									<button type="button" onclick="mdpcache('mdp2')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp2IMG" /></button>
+								</div>
+							</div>
+							<p class="ErrorMDP">Les mots de passe ne correspondent pas.</p>
+							<div class="captcha">
+								<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
+							</div>
+							<button type="button" onclick="VerifForm('inscription')" id="button-inscrire">S'INSCRIRE</button>
+						</form>
+					<div id="separation"></div>
+					<h3 onclick="AllerConnexion()">J'ai déjà un compte</h3>
 				</div>
-				<div id="separation"></div>
-				<h3 onclick="AllerConnexion()">J'ai déjà un compte</h3>
+				<div class="inscription-image"></div>
 			</div>
-			<div id="inscription-image">
-
+			<div id="connexion">
+				<div class="inscription-image"></div>
+				<form action="test.php" method="post" id="connexion-droite">
+					<h1>Connexion</h1>
+					<input type="text" name="email" placeholder="Email" id="email-connexion">
+					<div class="inscription-mdp">
+						<input type="password" name="mdp" placeholder="Mot de passe" id="mdpConnexion">
+						<button type="button" onclick="mdpcache('mdpConnexion')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdpConnexionIMG" /></button>
+					</div>
+					<p class="ErrorMDP">Mot de passe incorect.</p>
+					<div class="captcha">
+						<input type="checkbox" name="checkbox-inscription" id="checkbox-connexion"><label for="checkbox-connexion">Je ne suis pas un robot</label>
+					</div>
+					<button type="button" onclick="VerifForm('connexion')" id="button-inscrire">SE CONNECTER</button>
+					<h4 onclick="MDPOublie()">Mot de passe oublié ?</h4>
+					<div id="separation"></div>
+					<h3 onclick="AllerInscription()">S'inscrire</h3>
+				</form>
 			</div>
-
-			<!-- <form action="inscription.php" method="post" id="Inscription_Formulaire">
-			<h1>Inscription</h1>
-			<div id="inscription-haut">
-				<div class="inscription-champs">
-					<input type="text" name="nom" class="champs-inscription" placeholder="Nom">
-					<input type="text" name="prenom" class="champs-inscription" placeholder="Prénom">
-					<input type="text" name="date" class="champs-inscription" placeholder="Date de naissance 01/02/2000">
-					<input type="text" name="tel" class="champs-inscription" placeholder="Téléphone 06.12.34.56.78">
-				</div>
-				<div id="inscription-image">
-					<img src="API/img/account.png" alt="ERROR"/>
-					<button>Ajouter une image</button>
-				</div>
-				<div class="inscription-champs">
-					<input type="text" name="email" class="champs-inscription" placeholder="Email">
-					<input type="text" name="adresse" class="champs-inscription" placeholder="Adresse Postale">
-					<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
-						<option value="filiere">>----------- Filière -----------<</option>
-						<?php
-							$liste = TrierFiliere();
-							AfficherFiliere($liste);
-						?>
-					</select>
-					<select name="groupe" id="groupe-select">
-						<option value="Groupe">>----------- Groupe -----------<</option>
-					</select>
-				</div>
-			</div>
-			<div id="inscription-bas">
-				<div id="inscription-mdp">
-					<input type="password" name="mdp" placeholder="Mot de passe">
-					<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
-				</div>
-				<div id="inscription-captcha">
-					<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
-				</div>
-				<button type="button" onclick="VerifForm()" id="button-inscrire">S'inscrire</button>
-			</div>
-			</form> -->
 		</div>
 	<footer>
 		<div id="footer_haut">
@@ -194,48 +162,12 @@
 			<p class="footer_copyright">Copyright 2020. All Rights Reserved.</p>
 		</div>
 	</footer>
-	<script type="text/javascript">
-		function VerifForm(){
-			var champs = document.getElementsByClassName('champs-inscription');
-			for (var i = 0; i < champs.length; i++) {
-				var etat = true;
-				if (champs[i] == "") {
-					etat = false;
-				}
-			}
-			if (document.getElementById('checkbox-inscription').checked != true) {
-				etat = false;
-			}
-			if (etat == true) {
-				formulaire = document.getElementById('Inscription_Formulaire');
-				formulaire.submit();
-			} else {
-				alert('Tous les champs ne sont pas remplis !');
+	<?php
+		if (isset($_GET['login'])) {
+			if ($_GET['login'] == 'failed') {
+				echo("<script type='text/javascript'> CheckConnexion(); </script>");
 			}
 		}
-
-		function AfficherGroupe(selection){
-			var valeur = selection.value;
-			var elt = document.getElementById('groupe-select');
-			if (valeur === "filiere") {
-				elt.innerHTML = 
-				"<option value=\"groupe\">Groupes</option>";
-			}
-			if (valeur === "L1-MIPI") {
-				elt.innerHTML = 
-				"<option value=\"Groupe\">Groupe</option>"+
-				"<option value=\"A1\">A1</option>"+
-				"<option value=\"A2\">A2</option>"+
-				"<option value=\"A3\">A3</option>";
-			}
-			if (valeur === "L2-MIPI") {
-				elt.innerHTML = 
-				"<option value=\"Groupe\">Groupe</option>"+
-				"<option value=\"B1\">B1</option>"+
-				"<option value=\"B2\">B2</option>"+
-				"<option value=\"B3\">B3</option>";
-			}
-		}
-	</script>
+	?>
 	</body>
 </html>

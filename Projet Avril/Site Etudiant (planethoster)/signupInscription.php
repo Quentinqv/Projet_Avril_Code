@@ -62,4 +62,64 @@
 			header("location:index.php?etat=$etat");
 		}
 	}
+
+	function Connexion(){
+		$lst = array('email', 'mdp');
+		$sortie = TRUE;
+		for ($i=0; $i < sizeof($lst) && $sortie == TRUE; $i++) {
+			if (!isset($_POST[$lst[$i]])) {
+				$sortie = FALSE;
+			}
+		}
+
+		if ($sortie == TRUE) {
+			$mdp = hash("sha256", $_POST['mdp']);
+			$laSortie = fopen("admin/comptes.csv", "r");
+			if ($_POST['email'] == "" || $mdp == hash("sha256", "")) {
+				#Les champs sont vides
+				exit();
+			}
+			$fin = FALSE;
+			while (!feof($laSortie) && $fin == FALSE) {
+				$ligne = fgetcsv($laSortie);
+				if ($_POST['email'] == $ligne[4] && $mdp == $ligne[9]) {
+					$fin = TRUE;
+					$id = $ligne[0];
+					$nom = $ligne[1];
+					$prenom = $ligne[2];
+					$date = $ligne[3];
+					$email = $ligne[4];
+					$tel = $ligne[5];
+					$adresse = $ligne[6];
+					$filiere = $ligne[7];
+					$groupe = $ligne[8];
+					$mdp = $ligne[9];
+					$img = $ligne[10];
+				} else {
+					$fin = FALSE;
+				}
+			}
+
+			if ($fin == TRUE) {
+				session_start();
+				$_SESSION['id'] = $id;
+				$_SESSION['nom'] = $nom;
+				$_SESSION['prenom'] = $prenom;
+				$_SESSION['date'] = $date;
+				$_SESSION['email'] = $email;
+				$_SESSION['tel'] = $tel;
+				$_SESSION['adresse'] = $adresse;
+				$_SESSION['filiere'] = $filiere;
+				$_SESSION['groupe'] = $groupe;
+				$_SESSION['mdp'] = $mdp;
+				$_SESSION['img'] = $img;
+				header("location:index.php?login=checked");
+				exit();
+			} 
+			if ($fin == FALSE) {
+				header("location:inscription.php?login=failed");
+				exit();
+			}
+		}
+	}
 ?>
