@@ -33,129 +33,94 @@
 		<div class="bg_commodi">
 			<div id="header">
 				<div class="logo">
-					<img src="assets\img\logo.png">
+					<a href="index.php"><img src="assets\img\logo.png"></a>
 				</div>
-				<ul>
-					<div class="menunav">
-						<button class="navbtn btndirect" onclick="document.location.href = 'index.php'">Home</button>
-					</div>
-					<div class="menunav">
-						<button class="navbtn">Outils</button>
-						<div class="contentnav">
-							<a href="visualisation.php">Visualisation</a>
-							<a href="documentation.php">Documentation</a>
+				<nav>
+					<ul id="navigation">
+						<div class="menunav">
+							<button class="navbtn">Outils</button>
+							<div class="contentnav">
+								<a href="visualisation.php">Visualisation</a>
+								<a href="documentation.php">Documentation</a>
+							</div>
 						</div>
-					</div>
-					<div class="menunav">
-						<button class="navbtn">Compte</button>
-						<div class="contentnav">
-							<a href="inscription.php">Inscription</a>
-							<a href="connexion.php">Connexion</a>
+						<div class="menunav" id="admin">
+							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
 						</div>
+					</ul>
+					<div class="imgtop">
+						<a href="profil.php"><img src="API\img\account.png" alt="loupe"></a>
 					</div>
-					<div class="menunav" id="admin">
-						<button class="navbtn">Administration</button>
-						<div class="contentnav">
-							<a href="modification.php">Modification</a>
-							<a href="statistiques.php">Statistiques</a>
-						</div>
-					</div>
-				</ul>
-				<div class="imgtop">
-					<img src="assets\img\Loupe.png" alt="loupe">
-					<img src="assets\img\menu.png" alt="menu">
-				</div>
+				</nav>
 			</div>
 		</div>
-		<div id="inscription">
-			<div id="inscription-gauche">
-				<h1>Inscription</h1>
-				<div id="inscription-1">
-					<div class="champs-alignes">
-						<input type="text" name="nom" placeholder="Nom">
-						<input type="text" name="prenom" placeholder="Prénom">
-						<input type="date" name="date">
-					</div>
-					<div id="adressePostale">
-						<input type="text" name="adresse" placeholder="Adresse Postale">
-					</div>
-					<div class="champs-alignes">
-						<input type="text" name="email" placeholder="Email">
-						<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78">
-					</div>
-					<div class="champs-alignes">
-						<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
-							<option value="filiere">Filière</option>
-							<?php
-								$liste = TrierFiliere();
-								AfficherFiliere($liste);
-							?>
-						</select>
-						<select name="groupe" id="groupe-select">
-							<option value="Groupe">Groupes</option>
-						</select>
-					</div>
-					<div id="mots-de-passe">
-						<div class="inscription-mdp">
-							<input type="password" name="mdp" placeholder="Mot de passe">
-							<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
-						</div>
-						<div class="inscription-mdp">
-							<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe">
-							<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
-						</div>
-					</div>
-					<div id="captcha">
-						<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
-					</div>
-					<button onclick="InscriptionSuivant(this)" id="button-inscrire">S'INSCRIRE</button>
+		<div id="page-connexion">
+			<div id="inscription">
+				<div id="inscription-gauche">
+					<h1>Inscription</h1>
+						<form action="inscription.php" method="post" id="inscription-1">
+							<div class="champs-alignes">
+								<input type="text" name="nom" placeholder="Nom">
+								<input type="text" name="prenom" placeholder="Prénom">
+								<input type="date" name="date">
+							</div>
+							<div id="adressePostale">
+								<input type="text" name="adresse" placeholder="Adresse Postale">
+							</div>
+							<div class="champs-alignes">
+								<input type="text" name="email" placeholder="Email">
+								<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78">
+							</div>
+							<div class="champs-alignes">
+								<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
+									<option value="filiere">Filière</option>
+									<?php
+										$liste = TrierFiliere();
+										AfficherFiliere($liste);
+									?>
+								</select>
+								<select name="groupe" id="groupe-select">
+									<option value="Groupe">Groupes</option>
+								</select>
+							</div>
+							<div id="mots-de-passe">
+								<div class="inscription-mdp">
+									<input type="password" name="mdp" placeholder="Mot de passe">
+									<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
+								</div>
+								<div class="inscription-mdp">
+									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe">
+									<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
+								</div>
+							</div>
+							<div class="captcha">
+								<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
+							</div>
+							<button onclick="VerifForm(this)" id="button-inscrire">S'INSCRIRE</button>
+						</form>
+					<div id="separation"></div>
+					<h3 onclick="AllerConnexion()">J'ai déjà un compte</h3>
 				</div>
-				<div id="separation"></div>
-				<h3 onclick="AllerConnexion()">J'ai déjà un compte</h3>
+				<div class="inscription-image"></div>
 			</div>
-			<div id="inscription-image">
-
+			<div id="connexion">
+				<div class="inscription-image"></div>
+				<form action="profil.php" method="post" id="connexion-droite">
+					<h1>Connexion</h1>
+					<input type="text" name="email" placeholder="Email">
+					<div class="inscription-mdp">
+						<input type="password" name="mdp" placeholder="Mot de passe">
+						<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
+					</div>
+					<div class="captcha">
+						<input type="checkbox" name="checkbox-inscription" id="checkbox-connexion"><label for="checkbox-connexion">Je ne suis pas un robot</label>
+					</div>
+					<button onclick="VerifForm(this)" id="button-inscrire">SE CONNECTER</button>
+					<h4 onclick="MDPOublie()">Mot de passe oublié ?</h4>
+					<div id="separation"></div>
+					<h3 onclick="AllerInscription()">S'inscrire</h3>
+				</form>
 			</div>
-
-			<!-- <form action="inscription.php" method="post" id="Inscription_Formulaire">
-			<h1>Inscription</h1>
-			<div id="inscription-haut">
-				<div class="inscription-champs">
-					<input type="text" name="nom" class="champs-inscription" placeholder="Nom">
-					<input type="text" name="prenom" class="champs-inscription" placeholder="Prénom">
-					<input type="text" name="date" class="champs-inscription" placeholder="Date de naissance 01/02/2000">
-					<input type="text" name="tel" class="champs-inscription" placeholder="Téléphone 06.12.34.56.78">
-				</div>
-				<div id="inscription-image">
-					<img src="API/img/account.png" alt="ERROR"/>
-					<button>Ajouter une image</button>
-				</div>
-				<div class="inscription-champs">
-					<input type="text" name="email" class="champs-inscription" placeholder="Email">
-					<input type="text" name="adresse" class="champs-inscription" placeholder="Adresse Postale">
-					<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
-						<option value="filiere">>----------- Filière -----------<</option>
-						<?php
-							$liste = TrierFiliere();
-							AfficherFiliere($liste);
-						?>
-					</select>
-					<select name="groupe" id="groupe-select">
-						<option value="Groupe">>----------- Groupe -----------<</option>
-					</select>
-				</div>
-			</div>
-			<div id="inscription-bas">
-				<div id="inscription-mdp">
-					<input type="password" name="mdp" placeholder="Mot de passe">
-					<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
-				</div>
-				<div id="inscription-captcha">
-					<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
-				</div>
-				<button type="button" onclick="VerifForm()" id="button-inscrire">S'inscrire</button>
-			</div>
-			</form> -->
 		</div>
 	<footer>
 		<div id="footer_haut">
@@ -235,6 +200,26 @@
 				"<option value=\"B2\">B2</option>"+
 				"<option value=\"B3\">B3</option>";
 			}
+		}
+
+		function AllerConnexion(){
+			var div = document.getElementById('inscription-gauche');
+			div.animate(
+				[ {left: "0" },
+					{left: "50%" }],
+				800);
+			setTimeout(function(){document.getElementById('inscription').style.display = "none";},800,);
+			setTimeout(function(){document.getElementById('connexion').style.display = "flex";},800,);
+		}
+
+		function AllerInscription(){
+			var div = document.getElementById('connexion-droite');
+			div.animate(
+				[ {right: "0" },
+					{right: "50%" }],
+				800);
+			setTimeout(function(){document.getElementById('connexion').style.display = "none";},800,);
+			setTimeout(function(){document.getElementById('inscription').style.display = "flex";},800,);
 		}
 	</script>
 	</body>

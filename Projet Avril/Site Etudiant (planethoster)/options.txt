@@ -1,0 +1,1 @@
+test1,pommes,test2,poires,test3,oranges,fruits,haricots,concombres,legumes
