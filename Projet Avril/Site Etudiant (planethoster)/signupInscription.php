@@ -63,8 +63,9 @@
 		}
 	}
 
-	function Connexion(){
+	function Connexion($listeCHAMPS,$listeINFOS){
 		$lst = array('email', 'mdp');
+		$lst = $listeCHAMPS;
 		$sortie = TRUE;
 		for ($i=0; $i < sizeof($lst) && $sortie == TRUE; $i++) {
 			if (!isset($_POST[$lst[$i]])) {
@@ -113,7 +114,7 @@
 				$_SESSION['groupe'] = $groupe;
 				$_SESSION['mdp'] = $mdp;
 				$_SESSION['img'] = $img;
-				header("location:index.php?login=checked");
+				header("location:inscription.php?login=checked");
 				exit();
 			} 
 			if ($fin == FALSE) {

@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	if (!isset($_SESSION['nom'])) {
+		header("location:inscription.php");
+	}
+	include 'signinInscription.php';
+	Connexion(array('email', 'mdp'),array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img"));
+?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -43,48 +51,14 @@
 				</div>
 			</div>
 		</div>
-
-		<div id="introduction">
-			<div id="quis_position">
-				<h2>UTILISATION</h2>
-				<h1>Outils disponibles</h1>
-				<div id="box_quis">
-					<div class="autem">
-						<img src="assets\img\orange.png" alt="ERROR">
-						<p>Visualiser</p>
-						<div class="bas_autem">
-							<h3>Aperçu de l'API disponible</h3>
-							<button onclick="document.location.href = 'visualisation.php'">+</button>
-						</div>
-					</div>	
-					<div class="autem">
-						<img src="assets\img\key_img.png" alt="ERROR">
-						<p>S'inscrire</p>
-						<div class="bas_autem">
-							<h3>Demander sa clé d'API</h3>
-							<button>+</button>
-						</div>
-					</div>
-					<div class="autem">
-						<img src="assets\img\documentation.jpg" alt="ERROR">
-						<p>Documentation</p>
-						<div class="bas_autem">
-							<h3>Voir la documentation de l'API et son utilisation</h3>
-							<button onclick="document.location.href = 'documentation.php'">+</button>
-						</div>
-					</div>
-				</div>
+		<div id="profil">
+			<h1>Profil</h1>
+			<div id="profil-image">
+				<img src="API/img/account.png" alt="ERROR"/>
+				<button type="button" onclick="document.location.href = 'deconnexion.php'">Changer l'image</button>
 			</div>
-		</div>
-		<div id="mollitia">
-			<div id="mollitia_gauche">
-				<img src="assets/img/mac.png" alt="ERROR"/>
-			</div>
-			<div id="mollitia_droite">
-				<h5 class="mollitia_title">UTILISATION</h5>
-				<h2 class="mollitia_title2">Une API façonnée en JSON</h2>
-				<p class="mollitia_text">Cette API a été créée dans le cadre d'un projet ayant pour but de manipuler le format JSON de manière approfondie, c'est-à-dire aborder la création d'un fichier JSON.</p>
-				<button id="mollitia_button" onclick="document.location.href = 'visualisation.php'">Explorer</button>
+			<div id="profil-informations">
+				
 			</div>
 		</div>
 	<footer>

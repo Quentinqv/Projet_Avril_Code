@@ -34,7 +34,7 @@
 		<div class="bg_commodi">
 			<div id="header">
 				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.png"></a>
+					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
 				</div>
 				<nav>
 					<ul id="navigation">
@@ -107,7 +107,7 @@
 			</div>
 			<div id="connexion">
 				<div class="inscription-image"></div>
-				<form action="test.php" method="post" id="connexion-droite">
+				<form action="profil.php" method="post" id="connexion-droite">
 					<h1>Connexion</h1>
 					<input type="text" name="email" placeholder="Email" id="email-connexion">
 					<div class="inscription-mdp">
