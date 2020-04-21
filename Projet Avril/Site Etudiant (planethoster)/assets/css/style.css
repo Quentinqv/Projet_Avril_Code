@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap%27');
 @font-face {     font-family: "Reef";     src: url('Reef.otf'); }
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
 
 html {
 	word-break: normal;
@@ -607,41 +608,57 @@ pre h1 {
 	margin-left: 10px;
 }
 
-/*------------------Documentation------------------*/
+/*------------------Inscription------------------*/
 #inscription {
 	width: 100%;
+	height: 100%;
 	background-color: #379FB6;
-	padding-top: 30px;
+	display: flex;
+	align-self: center;
+}
+
+#inscription-gauche {
+	width: 50%;
+	min-height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-self: center;
 	align-items: center;
 }
 
-#inscription-haut {
-	display: flex;
-	justify-content: space-around;
-	width: 80%;
-	margin-top: 50px;
-	align-self: center;
-	align-items: center;
+#inscription-image {
+	width: 50%;
+	background-image: url(../img/pluie.png);
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 #inscription h1 {
 	font-family: 'Rajdhani', sans-serif;
-	color: white;
 	text-align: center;
-	font-size: 80px;
+	font-size: 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
-.inscription-champs {
-	width: 30%;
-	margin-right: 2%;
+#inscription-1 {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	align-self: center;
+	align-items: center;
 }
 
-.inscription-champs input, .inscription-champs select {
+.champs-alignes {
 	width: 100%;
-	height: 50px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+#inscription-1 input:not(#checkbox-inscription), #inscription-1 select {
+	width: 40%;
+	height: 40px;
 	background-color: #EBEBEB;
 	color: #8B8B8B;
 	padding-left: 30px;
@@ -652,105 +669,111 @@ pre h1 {
 	font-family: 'Rajdhani', sans-serif;
 }
 
-.inscription-champs select {
-	border-radius: 1000px 0px 0px 1000px;
-	width: 108%;
+#inscription-1 select {
+	width: 44%;
 }
 
-.inscription-champs option {
-	background-color: #E2E2E2;
+#adressePostale {
+	width: 98.5%;
+	align-self: flex-start;
 }
 
-#inscription-image {
-	display: flex;
-	flex-direction: column;
-	align-self: center;
-	align-items: center;
+#adressePostale input {
+	width: 98.2% !important;
+}
+
+#captcha {
 	width: 30%;
-}
-
-#inscription-image img {
-	width: 75%;
-	border: solid 4px #545454;
+	height: 70px;
+	font-family: 'Rajdhani', sans-serif;
+	background-color: #DDDDDD;
 	border-radius: 20px;
-}
-
-#inscription-image button {
-	background-color: #C4C4C4;
-	width: 70%;
-	margin-top: 20px;
-	color: white;
-	height: 40px;
-	font-family: 'Rajdhani', sans-serif;
-	border: none;
-	border-radius: 10px;
-	font-size: 20px;
-}
-
-#inscription-bas {
-	display: flex;
-	flex-direction: column;
-	margin-top: 50px;
-	margin-bottom: 50px;
-}
-
-#inscription-mdp {
-	display: flex;
-	justify-content: space-between;
-	width: 40%;
-}
-
-#inscription-mdp input {
-	background-color: #EBEBEB;
-	color: #8B8B8B;
-	border-radius: 1000px;
-	border: none;
-	font-size: 20px;
-	font-family: 'Rajdhani', sans-serif;
-	padding-left: 30px;
-}
-
-#inscription-mdp img {
-	width: 50px;
-}
-
-#inscription-mdp button {
-	background-color: rgba(0,0,0,0);
-	border: none;
-	border-radius: 1000px;
-}
-
-#inscription-captcha {
-	width: 100%;
-	background-color: #E95656;
-	border: solid 4px #6D6D6D;
-	margin-top: 15px;
-	height: 45px;
-	border-radius: 10px;
 	display: flex;
 	align-self: center;
 	align-items: center;
-	font-family: 'Rajdhani', sans-serif;
-	font-weight: bold;
-	margin-bottom: 15px;
+	margin-top: 70px;
+	margin-bottom: 70px;
 }
 
-#button-inscrire {
-	height: 45px;
-	background-color: #C4C4C4;
-	color: white;
-	font-family: 'Rajdhani', sans-serif;
-	font-size: 24px;
-	border: none;
-	border-radius: 1000px;
-}
-
-#inscription-captcha label {
+#captcha label {
 	cursor: pointer;
 	user-select: none;
 }
 
+#checkbox-inscription {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#button-inscrire {
+	width: 40%;
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 30px;
+	border: none;
+	border-radius: 1000px;
+	min-height: 50px;
+	background-color: #C4C4C4;
+	margin-bottom: 40px;
+	word-break: break-all;
+}
+
+#mots-de-passe {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.inscription-mdp {
+	width: 44%;
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-self: center;
+	align-items: center;
+	background-color: #EBEBEB;
+	border-radius: 1000px;
+}
+
+.inscription-mdp button, .inscription-mdp input {
+	background-color: rgba(0,0,0,0) !important;
+	border: none !important;
+	border-radius: 1000px !important;
+}
+
+.inscription-mdp button {
+	margin-right: 5%;
+}
+
+.inscription-mdp input {
+	width: 80% !important;
+	margin-bottom: 0px !important;
+}
+
+.inscription-mdp img {
+	width: 30px;
+}
+
+#separation {
+	width: 50%;
+	border: solid 1px;
+	margin-bottom: 40px;
+}
+
+#inscription h3 {
+	font-size: 18px;
+	font-family: 'Quicksand', sans-serif;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-bottom: 50px;
+}
+
 /*------------------Media------------------*/
+@media screen and (max-width : 1024px){
+	.inscription-mdp button {
+		display: none;
+	}
+}
+
 @media screen and (max-width : 768px){
 	#header {
 		background-color: rgba(0,0,0,0);

@@ -68,7 +68,56 @@
 			</div>
 		</div>
 		<div id="inscription">
-			<form action="inscription.php" method="post" id="Inscription_Formulaire">
+			<div id="inscription-gauche">
+				<h1>Inscription</h1>
+				<div id="inscription-1">
+					<div class="champs-alignes">
+						<input type="text" name="nom" placeholder="Nom">
+						<input type="text" name="prenom" placeholder="Prénom">
+						<input type="date" name="date">
+					</div>
+					<div id="adressePostale">
+						<input type="text" name="adresse" placeholder="Adresse Postale">
+					</div>
+					<div class="champs-alignes">
+						<input type="text" name="email" placeholder="Email">
+						<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78">
+					</div>
+					<div class="champs-alignes">
+						<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
+							<option value="filiere">Filière</option>
+							<?php
+								$liste = TrierFiliere();
+								AfficherFiliere($liste);
+							?>
+						</select>
+						<select name="groupe" id="groupe-select">
+							<option value="Groupe">Groupes</option>
+						</select>
+					</div>
+					<div id="mots-de-passe">
+						<div class="inscription-mdp">
+							<input type="password" name="mdp" placeholder="Mot de passe">
+							<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
+						</div>
+						<div class="inscription-mdp">
+							<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe">
+							<button><img src="assets/img/oeil.png" alt="ERROR"/></button>
+						</div>
+					</div>
+					<div id="captcha">
+						<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
+					</div>
+					<button onclick="InscriptionSuivant(this)" id="button-inscrire">S'INSCRIRE</button>
+				</div>
+				<div id="separation"></div>
+				<h3 onclick="AllerConnexion()">J'ai déjà un compte</h3>
+			</div>
+			<div id="inscription-image">
+
+			</div>
+
+			<!-- <form action="inscription.php" method="post" id="Inscription_Formulaire">
 			<h1>Inscription</h1>
 			<div id="inscription-haut">
 				<div class="inscription-champs">
@@ -106,7 +155,7 @@
 				</div>
 				<button type="button" onclick="VerifForm()" id="button-inscrire">S'inscrire</button>
 			</div>
-			</form>
+			</form> -->
 		</div>
 	<footer>
 		<div id="footer_haut">
@@ -170,7 +219,7 @@
 			var elt = document.getElementById('groupe-select');
 			if (valeur === "filiere") {
 				elt.innerHTML = 
-				"<option value=\"filiere\">Filières</option>";
+				"<option value=\"groupe\">Groupes</option>";
 			}
 			if (valeur === "L1-MIPI") {
 				elt.innerHTML = 
