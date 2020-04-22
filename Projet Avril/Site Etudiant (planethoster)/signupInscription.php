@@ -46,25 +46,35 @@
 				fputs($laSortie, $_POST["filiere"] . ",");
 				fputs($laSortie, $_POST["groupe"] . ",");
 			}
-			fputs($laSortie, $mdpHASH . ",");
+			$alea = hash("sha256", uniqid($_POST['email']));
+			fputs($laSortie, $mdpHASH.$alea. ",");
 			if (empty($_POST['photo'])) {
-				fputs($laSortie, "account" . "\n");
+				fputs($laSortie, "account" . ",");
 			} else {
-				fputs($laSortie, strtoupper($_POST["nom"]).'_'.$_POST["prenom"] . "\n");
+				fputs($laSortie, strtoupper($num.'_'.$_POST["nom"].","));
 			}
+			fputs($laSortie, $alea. "\n");
 			fclose($laSortie);
-			$_SESSION['prenom'] = $_POST["prenom"];
-			$_SESSION['mdp'] = hash("sha256", $_POST['mdp']);
-			$etat = 'created';
-			header("location:index.php?etat=$etat");
+			Connexion(array('email','mdp'),array('id','nom', 'prenom', 'date', 'tel', 'email', 'adresse', 'filiere', 'groupe', 'mdp', 'img'),"NONE");
+			header("location:index.php?etat=created");
 		}  else {
-			$etat = 'undefined';
-			header("location:index.php?etat=$etat");
+			header("location:index.php?etat=undefined");
 		}
 	}
 
-	function Connexion($listeCHAMPS,$listeINFOS){
-		$lst = array('email', 'mdp');
+	function Connexion($listeCHAMPS,$listeINFOS,$id){
+		if (gettype($id) == "integer") {
+			$comptes = fopen("admin/comptes.csv", "r");
+			for ($i=0; $i < $id; $i++) { 
+				$ligne = fgetcsv($comptes);
+			}
+			$k = 0;
+			foreach ($listeINFOS as $key => $value) {
+				$_SESSION["$value"] = $ligne[$k];
+				$k++;
+			}
+			return TRUE;
+		}
 		$lst = $listeCHAMPS;
 		$sortie = TRUE;
 		for ($i=0; $i < sizeof($lst) && $sortie == TRUE; $i++) {
@@ -83,19 +93,13 @@
 			$fin = FALSE;
 			while (!feof($laSortie) && $fin == FALSE) {
 				$ligne = fgetcsv($laSortie);
-				if ($_POST['email'] == $ligne[4] && $mdp == $ligne[9]) {
+				if ($_POST['email'] == $ligne[4] && $mdp.$ligne[sizeof($ligne)-1] == $ligne[9]) {
 					$fin = TRUE;
-					$id = $ligne[0];
-					$nom = $ligne[1];
-					$prenom = $ligne[2];
-					$date = $ligne[3];
-					$email = $ligne[4];
-					$tel = $ligne[5];
-					$adresse = $ligne[6];
-					$filiere = $ligne[7];
-					$groupe = $ligne[8];
-					$mdp = $ligne[9];
-					$img = $ligne[10];
+					$i = 0;
+					foreach ($listeINFOS as $key => $value) {
+						$$value = $ligne[$i];
+						$i++;
+					}
 				} else {
 					$fin = FALSE;
 				}
@@ -103,24 +107,67 @@
 
 			if ($fin == TRUE) {
 				session_start();
-				$_SESSION['id'] = $id;
-				$_SESSION['nom'] = $nom;
-				$_SESSION['prenom'] = $prenom;
-				$_SESSION['date'] = $date;
-				$_SESSION['email'] = $email;
-				$_SESSION['tel'] = $tel;
-				$_SESSION['adresse'] = $adresse;
-				$_SESSION['filiere'] = $filiere;
-				$_SESSION['groupe'] = $groupe;
-				$_SESSION['mdp'] = $mdp;
-				$_SESSION['img'] = $img;
-				header("location:inscription.php?login=checked");
+				foreach ($listeINFOS as $key => $value) {
+					$_SESSION["$value"] = $$value;
+				}
+				header("location:profil.php?login=checked");
 				exit();
 			} 
 			if ($fin == FALSE) {
 				header("location:inscription.php?login=failed");
 				exit();
 			}
+		}
+	}
+
+	function deconnexion($liste){
+		session_start();
+		$_SESSION = array();
+		session_destroy();
+		foreach ($liste as $key => $value) {
+			unset($_SESSION["$value"]);
+		}
+		header('location:inscription.php');
+		exit();
+	}
+
+	function ModifInfos($id, $liste){
+		$comptes = fopen("admin/comptes.csv", "r");
+		$contenu = array();
+		while (!feof($comptes)) {
+			array_push($contenu, fgetcsv($comptes));
+		}
+		unset($contenu[sizeof($contenu)-1]);
+		$ligne = $contenu[$id-1];
+		$k = 0;
+		foreach ($liste as $key => $value) {
+			if (isset($_POST[$value]) && $_POST[$value] != "") {
+				if ($value == "mdp") {
+					$ligne[$k] = hash("sha256", $_POST[$value]).hash("sha256", $ligne[11]);
+					$k++;
+				} else {
+					$ligne[$k] = $_POST[$value];
+					$k++;
+				}
+			} else {
+				$k++;
+			}
+		}
+		$contenu[$id-1] = $ligne;
+		fclose($comptes);
+		$comptesF = fopen("admin/comptes.csv", "w");
+		for ($i=0; $i < sizeof($contenu); $i++) { 
+			if ($i == sizeof($contenu)) {
+				fputs($comptesF, implode(",", $contenu[$i]));
+			} else {
+				fputs($comptesF, implode(",", $contenu[$i])."\n");
+			}
+		}
+		$k = 0;
+		unset($liste[sizeof($liste)-1]);
+		foreach ($liste as $key => $value) {
+			$_SESSION["$value"] = $ligne[$k];
+			$k++;
 		}
 	}
 ?>

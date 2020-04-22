@@ -1,4 +1,8 @@
 <?php
+	session_start();
+	if (!isset($_SESSION['nom'])) {
+		$_SESSION['img'] = "account";
+	}
 	include 'signupInscription.php';
 	if (!empty($_POST['nom'])) {
 		$lst = array('nom', 'prenom', 'date', 'tel', 'email', 'adresse', 'filiere', 'groupe', 'mdp');
@@ -50,7 +54,7 @@
 						</div>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\account.png" alt="loupe"></a>
+						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
 					</div>
 				</nav>
 			</div>
@@ -86,11 +90,11 @@
 							</div>
 							<div id="mots-de-passe">
 								<div class="inscription-mdp">
-									<input type="password" name="mdp" placeholder="Mot de passe" onchange="document.getElementById('ErrorMDP').style.display = 'none'" id="mdp1">
+									<input type="password" name="mdp" placeholder="Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp1">
 									<button type="button" onclick="mdpcache('mdp1')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp1IMG" /></button>
 								</div>
 								<div class="inscription-mdp">
-									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe" onchange="document.getElementById('ErrorMDP').style.display = 'none'" id="mdp2">
+									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp2">
 									<button type="button" onclick="mdpcache('mdp2')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp2IMG" /></button>
 								</div>
 							</div>
@@ -107,7 +111,7 @@
 			</div>
 			<div id="connexion">
 				<div class="inscription-image"></div>
-				<form action="profil.php" method="post" id="connexion-droite">
+				<form action="profil.php?login=try" method="post" id="connexion-droite">
 					<h1>Connexion</h1>
 					<input type="text" name="email" placeholder="Email" id="email-connexion">
 					<div class="inscription-mdp">

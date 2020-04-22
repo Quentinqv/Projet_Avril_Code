@@ -1,10 +1,19 @@
 <?php
 	session_start();
+	include 'signupInscription.php';
+	if (isset($_GET['modif'])) {
+		if ($_GET['modif'] == 'change') {
+			ModifInfos($_SESSION['id'],array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img","alea"));
+		}
+	}
+	if (isset($_GET['login'])) {
+		if ($_GET['login'] == "try") {
+			Connexion(array('email', 'mdp'),array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img"),"NONE");
+		}
+	}
 	if (!isset($_SESSION['nom'])) {
 		header("location:inscription.php");
 	}
-	include 'signinInscription.php';
-	Connexion(array('email', 'mdp'),array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img"));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -13,6 +22,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
 		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
+		<script src="script.js" type="text/javascript"></script>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -37,29 +47,49 @@
 						</div>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\account.png" alt="loupe"></a>
+						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
 					</div>
 				</nav>
-			</div>
-			<div class="commodi">
-				<h2>VITOUX QUENTIN</h2>
-				<h1>Projet API (Avril 2020)</h1>
-				<p>Site WEB de Vitoux Quentin, LPI-WS, Université de Cergy-Pontoise, présentant le projet d'avril 2020</p>
-				<div class="bouton">	
-					<button class="bouton_orange" onclick="document.location.href = 'index.php#introduction'">En savoir plus</button>
-					<button class="bouton_transp" onclick="document.location.href = 'visualisation.php'">Essayer</button>
-				</div>
 			</div>
 		</div>
 		<div id="profil">
 			<h1>Profil</h1>
-			<div id="profil-image">
-				<img src="API/img/account.png" alt="ERROR"/>
-				<button type="button" onclick="document.location.href = 'deconnexion.php'">Changer l'image</button>
-			</div>
-			<div id="profil-informations">
-				
-			</div>
+			<form action="profil.php?modif=change" method="post" id="profil-form">
+				<div id="profil-image">
+					<img src="API/img/account.png" alt="ERROR"/>
+					<button type="button" onclick="document.location.href = 'deconnexion.php'">Changer l'image</button>
+				</div>
+				<div id="profil-informations">
+					<div class="infos">
+						<p><span>Nom :</span> <span class="infos-php" id="span_nom"><?php echo($_SESSION['nom']); ?></span><input type="text" name="nom" id="input_nom" placeholder="Nouveau Nom" value="<?php echo($_SESSION['nom']); ?>"></p><button type="button" onclick="ChangeProfil('nom')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Prénom :</span> <span class="infos-php" id="span_prenom"> <?php echo($_SESSION['prenom']); ?></span><input type="text" name="prenom" id="input_prenom" placeholder="Nouveau Prénom" value="<?php echo($_SESSION['prenom']); ?>"></p><button type="button" onclick="ChangeProfil('prenom')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Date de naissance :</span class="infos-php"> <span id="span_date"><?php echo($_SESSION['date']); ?></span><input type="date" name="date" id="input_date" value="<?php echo($_SESSION['date']); ?>"></p><button type="button" onclick="ChangeProfil('date')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Email :</span> <span class="infos-php" id="span_email"><?php echo($_SESSION['email']); ?></span><input type="text" name="email" id="input_email" placeholder="Nouveau Email" value="<?php echo($_SESSION['email']); ?>"></p><button type="button" onclick="ChangeProfil('email')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Téléphone :</span> <span class="infos-php" id="span_tel"><?php echo($_SESSION['tel']); ?></span><input type="text" name="tel" id="input_tel" placeholder="Nouveau Numéro" value="<?php echo($_SESSION['tel']); ?>"></p><button type="button" onclick="ChangeProfil('tel')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Adresse :</span> <span class="infos-php" id="span_adresse"><?php echo($_SESSION['adresse']); ?></span><input type="text" name="adresse" id="input_adresse" placeholder="Nouvelle Adresse" value="<?php echo($_SESSION['adresse']); ?>"></p><button type="button" onclick="ChangeProfil('adresse')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Filière :</span> <span class="infos-php" id="span_filiere"><?php echo($_SESSION['filiere']); ?></span><input type="text" name="filiere" id="input_filiere" placeholder="Nouvelle Filière" value="<?php echo($_SESSION['filiere']); ?>"></p><button type="button" onclick="ChangeProfil('filiere')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Groupe :</span> <span class="infos-php" id="span_groupe"><?php echo($_SESSION['groupe']); ?></span><input type="text" name="groupe" id="input_groupe" placeholder="Nouveau Groupe" value="<?php echo($_SESSION['groupe']); ?>"></p><button type="button" onclick="ChangeProfil('groupe')"><img src="assets/img/edit.png"></button>
+					</div>
+					<div class="infos">
+						<p><span>Mot de Passe :</span> <span class="infos-php" id="span_mdp">*****</span><input type="password" name="mdp" id="input_mdp" placeholder="Nouveau Mot de Passe"></p><button type="button" onclick="ChangeProfil('mdp')"><img src="assets/img/edit.png"></button>
+					</div>
+					<button type="button" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
+				</div>
+			</form>
 		</div>
 	<footer>
 		<div id="footer_haut">

@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if (!isset($_SESSION['nom'])) {
+		$_SESSION['img'] = "account";
+	}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -29,7 +35,7 @@
 						</div>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\account.png" alt="loupe"></a>
+						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
 					</div>
 				</nav>
 			</div>

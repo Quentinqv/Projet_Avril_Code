@@ -38,8 +38,7 @@ function VerifForm(but){
 			etat = false;
 		}
 		if (etat == true) {
-			formulaire = document.getElementById('Inscription_Formulaire');
-			formulaire.submit();
+			document.getElementById('inscription-1').submit();
 		} else {
 			alert('Tous les champs ne sont pas remplis !');
 		}
@@ -100,4 +99,21 @@ function AllerInscription(){
 		800);
 	setTimeout(function(){document.getElementById('connexion').style.display = "none";},800,);
 	setTimeout(function(){document.getElementById('inscription').style.display = "flex";},800,);
+}
+
+function ChangeProfil(champs){
+	console.log('span_'+champs);
+	document.getElementById('span_'+champs).style.display = "none";
+	document.getElementById('input_'+champs).style.display = "inline-block";
+}
+
+function ValiderModif(liste){
+	var liste1 = ["nom","prenom","date","email","tel","adresse","filiere","groupe"];
+	for (var i = 0; i < liste.length; i++) {
+		if(liste[i].value == ""){
+			alert("Tous les champs ne sont pas remplis.");
+			return false;
+		}
+	}
+	document.getElementById('profil-form').submit();
 }

@@ -646,7 +646,7 @@ pre h1 {
 	width: 50%;
 }
 
-#inscription h1, #connexion h1 {
+#inscription h1, #connexion h1, #profil h1 {
 	font-family: 'Rajdhani', sans-serif;
 	text-align: center;
 	font-size: 50px;
@@ -811,6 +811,72 @@ pre h1 {
 	margin-top: 20px;
 	font-size: 20px;
 	font-family: 'Rajdhani', sans-serif;
+}
+
+/*------------------Profil------------------*/
+#profil {
+	background-color: #379FB6;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+}
+
+#profil-form {
+	display: flex;
+	justify-content: space-around;
+}
+
+#profil-image {
+	width: 35%;
+	align-items: flex-start;
+}
+
+#profil-image img {
+	width: 80%;
+}
+
+#profil-informations {
+	width: 60%;
+}
+
+.infos {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.infos img {
+	width: 30px;
+}
+
+.infos p {
+	color: white;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 25px;
+}
+
+.infos span:first-child {
+	text-decoration: underline;
+}
+
+.infos input {
+	display: none;
+	height: 40px;
+	background-color: #EBEBEB;
+	color: #8B8B8B;
+	padding-left: 5px;
+	border-radius: 1000px;
+	border: none;
+	font-size: 20px;
+	font-family: 'Rajdhani', sans-serif;
+}
+
+.infos button {
+	border: none;
+	background-color: rgba(0,0,0,0);
+	border-radius: 1000px;
 }
 
 /*------------------Media------------------*/
