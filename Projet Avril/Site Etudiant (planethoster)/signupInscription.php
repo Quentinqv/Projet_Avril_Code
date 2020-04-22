@@ -49,14 +49,14 @@
 			$alea = hash("sha256", uniqid($_POST['email']));
 			fputs($laSortie, $mdpHASH.$alea. ",");
 			if (empty($_POST['photo'])) {
-				fputs($laSortie, "account" . ",");
+				fputs($laSortie, "account.png" . ",");
 			} else {
 				fputs($laSortie, strtoupper($num.'_'.$_POST["nom"].","));
 			}
 			fputs($laSortie, $alea. "\n");
 			fclose($laSortie);
 			Connexion(array('email','mdp'),array('id','nom', 'prenom', 'date', 'tel', 'email', 'adresse', 'filiere', 'groupe', 'mdp', 'img'),"NONE");
-			header("location:index.php?etat=created");
+			header("location:profil.php");
 		}  else {
 			header("location:index.php?etat=undefined");
 		}
@@ -139,19 +139,28 @@
 		}
 		unset($contenu[sizeof($contenu)-1]);
 		$ligne = $contenu[$id-1];
+		$nom = $ligne[1];
 		$k = 0;
 		foreach ($liste as $key => $value) {
 			if (isset($_POST[$value]) && $_POST[$value] != "") {
 				if ($value == "mdp") {
 					$ligne[$k] = hash("sha256", $_POST[$value]).hash("sha256", $ligne[11]);
 					$k++;
-				} else {
+				}
+				else {
 					$ligne[$k] = $_POST[$value];
 					$k++;
 				}
 			} else {
 				$k++;
 			}
+		}
+		$ligne[sizeof($ligne)-2] = $ligne[0].'_'.$ligne[1];
+		if (isset($_FILES['img_import']['tmp_name'])) {
+			move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[sizeof($ligne)-2].'.png');
+		}
+		if ($nom != $ligne[1]) {
+			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[sizeof($ligne)-2].'.png');
 		}
 		$contenu[$id-1] = $ligne;
 		fclose($comptes);

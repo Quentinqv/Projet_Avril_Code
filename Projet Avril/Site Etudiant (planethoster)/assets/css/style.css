@@ -825,11 +825,11 @@ pre h1 {
 #profil-form {
 	display: flex;
 	justify-content: space-around;
+	width: 100%;
 }
 
 #profil-image {
-	width: 35%;
-	align-items: flex-start;
+	width: 30%;
 }
 
 #profil-image img {
@@ -837,7 +837,7 @@ pre h1 {
 }
 
 #profil-informations {
-	width: 60%;
+	width: 40%;
 }
 
 .infos {
@@ -855,6 +855,7 @@ pre h1 {
 	color: white;
 	font-family: 'Quicksand', sans-serif;
 	font-size: 25px;
+	width: 100%;
 }
 
 .infos span:first-child {
@@ -862,6 +863,7 @@ pre h1 {
 }
 
 .infos input {
+	width: 60%;
 	display: none;
 	height: 40px;
 	background-color: #EBEBEB;
@@ -877,6 +879,37 @@ pre h1 {
 	border: none;
 	background-color: rgba(0,0,0,0);
 	border-radius: 1000px;
+}
+
+#profil-image {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+}
+
+#profil-image img {
+	border-radius: 25px;
+}
+
+#profil-image input {
+	background-color: #C4C4C4;
+	color: #292929;
+	font-family: 'Quicksand', sans-serif;
+	border-radius: 2px;
+	margin-top: 20px;
+}
+
+#Enregistrer-button {
+	background-color: #C4C4C4;
+	border-radius: 1000px;
+	color: white;
+	font-family: 'Quicksand', sans-serif;
+	margin-bottom: 50px;
+	font-size: 20px;
+	border: none;
+	width: 30%;
+	height: 50px;
 }
 
 /*------------------Media------------------*/

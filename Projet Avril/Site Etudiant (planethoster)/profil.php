@@ -47,17 +47,17 @@
 						</div>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
+						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>" alt="PP"></a>
 					</div>
 				</nav>
 			</div>
 		</div>
 		<div id="profil">
 			<h1>Profil</h1>
-			<form action="profil.php?modif=change" method="post" id="profil-form">
+			<form action="profil.php?modif=change" method="post" id="profil-form" enctype="multipart/form-data">
 				<div id="profil-image">
-					<img src="API/img/account.png" alt="ERROR"/>
-					<button type="button" onclick="document.location.href = 'deconnexion.php'">Changer l'image</button>
+					<img src="API/img/<?php echo($_SESSION['img']); ?>" alt="ERROR"/>
+					<input type="file" name="img_import" id="img_import">
 				</div>
 				<div id="profil-informations">
 					<div class="infos">
@@ -87,7 +87,7 @@
 					<div class="infos">
 						<p><span>Mot de Passe :</span> <span class="infos-php" id="span_mdp">*****</span><input type="password" name="mdp" id="input_mdp" placeholder="Nouveau Mot de Passe"></p><button type="button" onclick="ChangeProfil('mdp')"><img src="assets/img/edit.png"></button>
 					</div>
-					<button type="button" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
+					<button id="Enregistrer-button" type="button" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
 				</div>
 			</form>
 		</div>
