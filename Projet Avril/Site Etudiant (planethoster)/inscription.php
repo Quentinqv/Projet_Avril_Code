@@ -77,7 +77,7 @@
 								<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78" class="champs-inscription">
 							</div>
 							<div class="champs-alignes">
-								<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this)">
+								<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this, 'filiere-select', 'groupe-select')">
 									<option value="filiere">Filière</option>
 									<?php
 										$liste = TrierFiliere();

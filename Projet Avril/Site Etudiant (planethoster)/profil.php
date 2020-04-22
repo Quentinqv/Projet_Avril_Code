@@ -10,6 +10,9 @@
 		if ($_GET['login'] == "try") {
 			Connexion(array('email', 'mdp'),array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img"),"NONE");
 		}
+		if ($_GET['login'] == 'logout') {
+			deconnexion(array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img"));
+		}
 	}
 	if (!isset($_SESSION['nom'])) {
 		header("location:inscription.php");
@@ -26,6 +29,19 @@
 		<title>API Projet</title>
 	</head>
 	<body>
+		<?php
+			function TrierFiliere(){
+				$json = file_get_contents("API/filiere.json");
+				$json = json_decode($json, true);
+				return $json;
+			}
+
+			function AfficherFiliere($liste){
+				foreach ($liste as $key => $value) {
+					echo("<option value=\"$key\">$key</option>");
+				}
+			}
+		?>
 		<header>
 		</header>
 		<div class="bg_commodi">
@@ -58,6 +74,7 @@
 				<div id="profil-image">
 					<img src="API/img/<?php echo($_SESSION['img']); ?>" alt="ERROR"/>
 					<input type="file" name="img_import" id="img_import">
+					<p id="ErrorUpload">L'image n'a pas pu s'uploader.</p>
 				</div>
 				<div id="profil-informations">
 					<div class="infos">
@@ -79,15 +96,30 @@
 						<p><span>Adresse :</span> <span class="infos-php" id="span_adresse"><?php echo($_SESSION['adresse']); ?></span><input type="text" name="adresse" id="input_adresse" placeholder="Nouvelle Adresse" value="<?php echo($_SESSION['adresse']); ?>"></p><button type="button" onclick="ChangeProfil('adresse')"><img src="assets/img/edit.png"></button>
 					</div>
 					<div class="infos">
-						<p><span>Filière :</span> <span class="infos-php" id="span_filiere"><?php echo($_SESSION['filiere']); ?></span><input type="text" name="filiere" id="input_filiere" placeholder="Nouvelle Filière" value="<?php echo($_SESSION['filiere']); ?>"></p><button type="button" onclick="ChangeProfil('filiere')"><img src="assets/img/edit.png"></button>
+						<p><span>Filière :</span> <span class="infos-php" id="span_filiere"><?php echo($_SESSION['filiere']); ?></span>
+							<select name="filiere" id="input_filiere" onchange="AfficherGroupe(this, 'input_filiere', 'input_groupe')">
+									<option value="filiere">Filière</option>
+									<?php
+										$liste = TrierFiliere();
+										AfficherFiliere($liste);
+									?>
+								</select>
+							</p><button type="button" onclick="ChangeProfil('filiere')"><img src="assets/img/edit.png"></button>
 					</div>
 					<div class="infos">
-						<p><span>Groupe :</span> <span class="infos-php" id="span_groupe"><?php echo($_SESSION['groupe']); ?></span><input type="text" name="groupe" id="input_groupe" placeholder="Nouveau Groupe" value="<?php echo($_SESSION['groupe']); ?>"></p><button type="button" onclick="ChangeProfil('groupe')"><img src="assets/img/edit.png"></button>
+						<p><span>Groupe :</span> <span class="infos-php" id="span_groupe"><?php echo($_SESSION['groupe']); ?></span>
+							<select name="groupe" id="input_groupe">
+								<option value="groupe">Groupes</option>
+							</select>
+						</p>
 					</div>
 					<div class="infos">
 						<p><span>Mot de Passe :</span> <span class="infos-php" id="span_mdp">*****</span><input type="password" name="mdp" id="input_mdp" placeholder="Nouveau Mot de Passe"></p><button type="button" onclick="ChangeProfil('mdp')"><img src="assets/img/edit.png"></button>
 					</div>
-					<button id="Enregistrer-button" type="button" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
+					<div id="bouton-profil">
+						<button id="Enregistrer-button" type="button" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
+						<button id="deconnexion-button" type="button" onclick="document.location.href = 'profil.php?login=logout'">Déconnexion</button>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -128,5 +160,12 @@
 			<p class="footer_copyright">Copyright 2020. All Rights Reserved.</p>
 		</div>
 	</footer>
+	<?php
+		if (isset($_GET['upload'])) {
+			if ($_GET['upload'] == 'failed') {
+				echo("<script>document.getElementById('ErrorUpload').style.display = 'block';</script>");
+			}
+		}
+	?>
 	</body>
 </html>

@@ -157,7 +157,7 @@
 		}
 		$ligne[sizeof($ligne)-2] = $ligne[0].'_'.$ligne[1];
 		if (isset($_FILES['img_import']['tmp_name'])) {
-			move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[sizeof($ligne)-2].'.png');
+			$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[sizeof($ligne)-2].'.png');
 		}
 		if ($nom != $ligne[1]) {
 			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[sizeof($ligne)-2].'.png');

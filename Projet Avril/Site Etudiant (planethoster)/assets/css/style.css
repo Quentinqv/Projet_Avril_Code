@@ -820,6 +820,7 @@ pre h1 {
 	flex-direction: column;
 	align-self: center;
 	align-items: center;
+	padding-bottom: 100px;
 }
 
 #profil-form {
@@ -862,7 +863,7 @@ pre h1 {
 	text-decoration: underline;
 }
 
-.infos input {
+.infos input, .infos select {
 	width: 60%;
 	display: none;
 	height: 40px;
@@ -900,16 +901,30 @@ pre h1 {
 	margin-top: 20px;
 }
 
-#Enregistrer-button {
+#bouton-profil {
+	display: flex;
+	align-self: center;
+	align-items: center;
+}
+
+#Enregistrer-button, #deconnexion-button {
 	background-color: #C4C4C4;
 	border-radius: 1000px;
 	color: white;
 	font-family: 'Quicksand', sans-serif;
-	margin-bottom: 50px;
 	font-size: 20px;
 	border: none;
 	width: 30%;
 	height: 50px;
+	margin-right: 20px;
+}
+
+#ErrorUpload {
+	display: none;
+	color: red;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 20px;
+	margin-top: 20px;
 }
 
 /*------------------Media------------------*/

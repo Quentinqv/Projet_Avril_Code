@@ -58,9 +58,9 @@ function CheckConnexion(){
 	document.getElementsByClassName('ErrorMDP')[1].style.display = "block";
 }
 
-function AfficherGroupe(selection){
+function AfficherGroupe(selection, idSelect, idGroupe){
 	var valeur = selection.value;
-	var elt = document.getElementById('groupe-select');
+	var elt = document.getElementById(idGroupe);
 	if (valeur === "filiere") {
 		elt.innerHTML = 
 		"<option value=\"groupe\">Groupes</option>";
@@ -78,6 +78,34 @@ function AfficherGroupe(selection){
 		"<option value=\"B1\">B1</option>"+
 		"<option value=\"B2\">B2</option>"+
 		"<option value=\"B3\">B3</option>";
+	}
+	if (valeur === "LP-RS") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"C1\">C1</option>"+
+		"<option value=\"C2\">C2</option>"+
+		"<option value=\"C3\">C3</option>";
+	}
+	if (valeur === "LPI-RIWS") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"D1\">D1</option>"+
+		"<option value=\"D2\">D2</option>"+
+		"<option value=\"D3\">D3</option>";
+	}
+	if (valeur === "ECO") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"E1\">E1</option>"+
+		"<option value=\"E2\">E2</option>"+
+		"<option value=\"E3\">E3</option>";
+	}
+	if (valeur === "TS1") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"F1\">F1</option>"+
+		"<option value=\"F2\">F2</option>"+
+		"<option value=\"F3\">F3</option>";
 	}
 }
 
@@ -102,18 +130,28 @@ function AllerInscription(){
 }
 
 function ChangeProfil(champs){
-	console.log('span_'+champs);
-	document.getElementById('span_'+champs).style.display = "none";
-	document.getElementById('input_'+champs).style.display = "inline-block";
+	if (champs == 'filiere') {
+		document.getElementById('span_'+champs).style.display = "none";
+		document.getElementById('input_'+champs).style.display = "inline-block";
+		document.getElementById('span_groupe').style.display = "none";
+		document.getElementById('input_groupe').style.display = "inline-block";
+	} else {
+		document.getElementById('span_'+champs).style.display = "none";
+		document.getElementById('input_'+champs).style.display = "inline-block";
+	}
 }
 
 function ValiderModif(liste){
-	var liste1 = ["nom","prenom","date","email","tel","adresse","filiere","groupe"];
 	for (var i = 0; i < liste.length; i++) {
 		if(liste[i].value == ""){
 			alert("Tous les champs ne sont pas remplis.");
 			return false;
 		}
+	}
+	if (document.getElementById('input_filiere').options[document.getElementById('input_filiere').selectedIndex].value == 'filiere' || document.getElementById('input_groupe').options[document.getElementById('input_groupe').selectedIndex].value == 'Groupe') {
+		document.getElementById('input_filiere').options[document.getElementById('input_filiere').selectedIndex].value = "Indéfini";
+		document.getElementById('input_groupe').options[document.getElementById('input_groupe').selectedIndex].value = "Indéfini";
+		console.log('test');
 	}
 	document.getElementById('profil-form').submit();
 }
