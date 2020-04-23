@@ -1,1 +1,1 @@
-{"L1-MIPI":"filiere1","L2-MIPI":"filiere2","LP-RS":"filiere3","LPI-RIWS":"filiere4","ECO":"filiere5","TS1":"filiere6"}
+{"L1-MIPI":{"A1":{}, "A2":{}, "A3":{}},"L2-MIPI":{"B1":{}, "B2":{}, "B3":{}},"LP-RS":{"C1":{}, "C2":{}, "C3":{}},"LPI-RIWS":{"D1":{}, "D2":{}, "D3":{}},"ECO":{"E1":{}, "E2":{}, "E3":{}},"TS1":{"F1":{}, "F2":{}, "F3":{}}}

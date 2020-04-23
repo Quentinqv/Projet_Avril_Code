@@ -1,12 +1,4 @@
 <?php
-	function creerjson(){
-		$file = fopen("fruits.json", "w");
-		$json = array("fruits"=>["pommes"=>["test1"=>1],"poires"=>["test2"=>2],"oranges"=>["test3"=>3]],"legumes"=>["haricots"=>5,"concombres"=>10]);
-		$json = json_encode($json);
-		fwrite($file, $json);
-		return $json;
-	}
-
 	function TrierFiliere(){
 		$json = file_get_contents("API/filiere.json");
 		$json = json_decode($json, true);

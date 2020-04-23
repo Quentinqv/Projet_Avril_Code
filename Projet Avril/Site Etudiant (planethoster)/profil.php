@@ -72,7 +72,7 @@
 			<h1>Profil</h1>
 			<form action="profil.php?modif=change" method="post" id="profil-form" enctype="multipart/form-data">
 				<div id="profil-image">
-					<img src="API/img/<?php echo($_SESSION['img']); ?>" alt="ERROR"/>
+					<img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="ERROR"/>
 					<input type="file" name="img_import" id="img_import">
 					<p id="ErrorUpload">L'image n'a pas pu s'uploader.</p>
 				</div>
@@ -98,7 +98,7 @@
 					<div class="infos">
 						<p><span>Filière :</span> <span class="infos-php" id="span_filiere"><?php echo($_SESSION['filiere']); ?></span>
 							<select name="filiere" id="input_filiere" onchange="AfficherGroupe(this, 'input_filiere', 'input_groupe')">
-									<option value="filiere">Filière</option>
+									<option value="<?php echo($_SESSION['filiere']); ?>"><?php echo($_SESSION['filiere']); ?></option>
 									<?php
 										$liste = TrierFiliere();
 										AfficherFiliere($liste);
@@ -109,7 +109,7 @@
 					<div class="infos">
 						<p><span>Groupe :</span> <span class="infos-php" id="span_groupe"><?php echo($_SESSION['groupe']); ?></span>
 							<select name="groupe" id="input_groupe">
-								<option value="groupe">Groupes</option>
+								<option value="<?php echo($_SESSION['groupe']); ?>"><?php echo($_SESSION['groupe']); ?></option>
 							</select>
 						</p>
 					</div>

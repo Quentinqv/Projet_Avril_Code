@@ -1,1 +1,1 @@
-test1,pommes,test2,poires,test3,oranges,fruits,haricots,concombres,legumes
+Id,Nom,Prenom,Date_de_naissance,Email,Telephone,Adresse,Filiere,Groupe,IMG,A1,A2,A3,L1-MIPI,B1,B2,B3,L2-MIPI,C1,C2,C3,LP-RS,D1,D2,D3,LPI-RIWS,E1,E2,E3,ECO,F1,F2,F3,TS1,

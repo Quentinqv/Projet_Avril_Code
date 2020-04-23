@@ -35,7 +35,7 @@
 						</div>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>" alt="PP"></a>
+						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
 					</div>
 				</nav>
 			</div>

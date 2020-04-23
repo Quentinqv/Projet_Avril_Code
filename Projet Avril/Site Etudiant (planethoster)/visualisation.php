@@ -35,7 +35,7 @@
 						</div>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>" alt="PP"></a>
+						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
 					</div>
 				</nav>
 			</div>
@@ -50,14 +50,6 @@
 		<h3>Visualisation de l'API</h3>
 		<div>
 			<?php
-				function creerjson(){
-					$file = fopen("fruits.json", "w");
-					$json = array("fruits"=>["pommes"=>["test1"=>1],"poires"=>["test2"=>2],"oranges"=>["test3"=>3]],"legumes"=>["haricots"=>5,"concombres"=>10]);
-					$json = json_encode($json);
-					fwrite($file, $json);
-					return $json;
-				}
-
 				function AffJson($link){
 					$json = file_get_contents($link);
 					$json = json_decode($json, true);
@@ -78,8 +70,7 @@
 												}
 											}
 										}
-										$value[$key2]['<span class="link3" id="'.$key3.'" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key3.'</span>'] = $value2[$key3];
-										array_push($lstInfos, $key3);
+										$value[$key2]['<span class="link3" id="'.$key3.'" title=\'Voir la doc\'>'.$key3.'</span>'] = $value2[$key3];
 										unset($value[$key2][$key3]);
 									}
 								}
@@ -116,8 +107,7 @@
 					echo('</div>');
 				}
 
-				creerjson();
-				$lstinfos = AffJson("fruits.json");
+				$lstinfos = AffJson("jsonAPI.json");
 				AffInfos($lstinfos);
 			?>
 		</div>

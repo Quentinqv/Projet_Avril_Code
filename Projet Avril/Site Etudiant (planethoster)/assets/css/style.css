@@ -501,7 +501,7 @@ pre h1 {
 	color: #031BFF;
 }
 
-.link:hover, .link2:hover, .link3:hover, .link4:hover {
+.link:hover, .link2:hover, .link4:hover {
 	cursor: pointer;
 	background-color: #E0E0E0;
 }
