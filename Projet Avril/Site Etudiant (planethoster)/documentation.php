@@ -1,4 +1,7 @@
 <?php
+	include 'API/functionAPI.php';
+	$json = TrierFiliere('API/');
+	genereJSON($json, array('Id', 'Nom', 'Prenom', 'Date_de_naissance', 'Email', 'Telephone', 'Adresse', 'Filiere', 'Groupe', 'mdp', 'IMG', 'alea', 'Derniere_connexion', 'Nb_total_de_connexion'),'./');
 	session_start();
 	if (!isset($_SESSION['nom'])) {
 		$_SESSION['img'] = "account";

@@ -53,13 +53,41 @@
 			} else {
 				fputs($laSortie, strtoupper($num.'_'.$_POST["nom"].","));
 			}
-			fputs($laSortie, $alea. "\n");
+			fputs($laSortie, $alea.',');
+			fputs($laSortie, date("Y-m-d à H:i:s").',');
+			fputs($laSortie, "0". "\n");
 			fclose($laSortie);
 			Connexion(array('email','mdp'),array('id','nom', 'prenom', 'date', 'tel', 'email', 'adresse', 'filiere', 'groupe', 'mdp', 'img'),"NONE");
 			header("location:profil.php");
 		}  else {
 			header("location:index.php?etat=undefined");
 		}
+	}
+
+	function cptConnexion(){
+		$file = fopen("admin/comptes.csv", "r");
+		$contenu = [];
+		while (!feof($file)) {
+			array_push($contenu, fgetcsv($file));
+		}
+		foreach ($contenu as $key => $value) {
+			if ($value[0] == $_SESSION['id']) {
+				$contenu[$key][12] = date("Y-m-d à H:i:s");
+				$contenu[$key][13] = intval($contenu[$key][13])+1;
+			}
+		}
+		fclose($file);
+
+		$compte = fopen("admin/comptes.csv", "w");
+		for ($i=0; $i < sizeof($contenu)-1; $i++) { 
+			if ($i == sizeof($contenu)-1) {
+				fputs($compte, implode(',', $contenu[$i]));
+			} else {
+				fputs($compte, implode(',', $contenu[$i])."\n");
+			}
+		}
+		fclose($compte);
+		return TRUE;
 	}
 
 	function Connexion($listeCHAMPS,$listeINFOS,$id){
@@ -93,23 +121,21 @@
 			$fin = FALSE;
 			while (!feof($laSortie) && $fin == FALSE) {
 				$ligne = fgetcsv($laSortie);
-				if ($_POST['email'] == $ligne[4] && $mdp.$ligne[sizeof($ligne)-1] == $ligne[9]) {
+				if ($_POST['email'] == $ligne[4] && $mdp.$ligne[11] == $ligne[9]) {
 					$fin = TRUE;
 					$i = 0;
 					foreach ($listeINFOS as $key => $value) {
 						$$value = $ligne[$i];
 						$i++;
 					}
-				} else {
-					$fin = FALSE;
 				}
 			}
 
 			if ($fin == TRUE) {
-				session_start();
 				foreach ($listeINFOS as $key => $value) {
 					$_SESSION["$value"] = $$value;
 				}
+				cptConnexion();
 				header("location:profil.php?login=checked");
 				exit();
 			} 
@@ -155,12 +181,12 @@
 				$k++;
 			}
 		}
-		$ligne[sizeof($ligne)-2] = $ligne[0].'_'.$ligne[1];
+		$ligne[10] = $ligne[0].'_'.$ligne[1];
 		if (isset($_FILES['img_import']['tmp_name'])) {
-			$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[sizeof($ligne)-2].'.png');
+			$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');
 		}
 		if ($nom != $ligne[1]) {
-			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[sizeof($ligne)-2].'.png');
+			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[10].'.png');
 		}
 		$contenu[$id-1] = $ligne;
 		fclose($comptes);

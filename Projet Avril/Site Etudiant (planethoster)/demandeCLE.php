@@ -11,7 +11,9 @@
 		if ($double == TRUE) {
 			fputs($file, $_POST['email'].',');
 			$key = uniqid();
-			fputs($file, $key."\n");
+			fputs($file, $key.",");
+			fputs($file, date("Y-m-d à H:i:s").",");
+			fputs($file, "0\n");
 		} else {
 			fclose($file);
 			return FALSE;
