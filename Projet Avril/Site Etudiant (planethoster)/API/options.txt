@@ -1,1 +1,1 @@
-Id,Nom,Prenom,Date_de_naissance,Email,Telephone,Adresse,Filiere,Groupe,IMG,A1,A2,A3,L1-MIPI,B1,B2,B3,L2-MIPI,C1,C2,C3,LP-RS,D1,D2,D3,LPI-RIWS,E1,E2,E3,ECO,F1,F2,F3,TS1,Indefini,
+Id,Nom,Prenom,Date_de_naissance,Email,Telephone,Adresse,Filiere,Groupe,IMG,Derniere_connexion,Nb_total_de_connexion,L1-MIPI,L2-MIPI,LP-RS,LPI-RIWS,ECO,TS1,Indefini,

@@ -577,6 +577,12 @@ pre h1 {
 	flex-direction: column;
 }
 
+.infos4 {
+	list-style-type: square;
+	margin-left: 15%;
+	flex-direction: column;
+}
+
 .expl_json {
 	margin-bottom: 20px;
 }
@@ -609,6 +615,19 @@ pre h1 {
 	margin-top: 5px;
 }
 
+#intro-param {
+	margin-top: 25px;
+}
+
+.liste-param {
+	margin-top: 15px;
+}
+
+.liste-param li {
+	color: #B1002E;
+	font-family: 'Poppins', sans-serif;
+}
+
 .chemin_json {
 	margin-top: 10px;
 }
@@ -635,13 +654,14 @@ pre h1 {
 
 #inscription-gauche, #connexion-droite {
 	width: 50%;
-	min-height: 950px;
+	min-height: 800px;
 	display: flex;
 	flex-direction: column;
 	align-self: center;
 	align-items: center;
 	position: relative;
-	background-color: #379FB6;
+ 	background: rgb(230,230,230);
+	background: linear-gradient(180deg, rgba(230,230,230,0.19369754737832634) 0%, rgba(255,255,255,0.3225490879945728) 100%);
 }
 
 .inscription-image {
@@ -706,8 +726,8 @@ pre h1 {
 	display: flex;
 	align-self: center;
 	align-items: center;
-	margin-top: 70px;
-	margin-bottom: 70px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .captcha label {

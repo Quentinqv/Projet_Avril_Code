@@ -37,9 +37,6 @@
 		foreach ($comptes as $key => $value) {
 			$ligne = explode(",", $value);
 			foreach ($ligne as $key => $value) {
-				if ($key == 9 || $key == 11) {
-					unset($ligne[$key]);
-				} 
 				if ($key == 13) {
 					$ligne[$listeinfos[$key]] = str_replace("\n", '', $value);
 					unset($ligne[$key]);
@@ -49,6 +46,9 @@
 					unset($ligne[$key]);
 				}
 			}
+			$ligne['IMG'] = 'https://vitoux-quentin.yo.fr/API/API/img/'.$ligne['IMG'].'.png';
+			unset($ligne['mdp']);
+			unset($ligne['alea']);
 			array_push($json[$ligne['Filiere']][$ligne['Groupe']], $ligne);
 		}
 		$file = fopen($API."admin/jsonAPI.json", "w");
@@ -100,7 +100,7 @@
 				case TRUE:
 					#KEY trouvee
 					cptKey();
-					$liste = array('Id', 'Nom', 'Prenom', 'Date_de_naissance', 'Email', 'Telephone', 'Adresse', 'Filiere', 'Groupe', 'mdp', 'IMG', 'alea');
+					$liste = array('Id', 'Nom', 'Prenom', 'Date_de_naissance', 'Email', 'Telephone', 'Adresse', 'Filiere', 'Groupe', 'mdp', 'IMG', 'alea', 'Derniere_connexion', 'Nb_total_de_connexion');
 					foreach ($liste as $key => $value) {
 						if (isset($_GET[$value])) {
 							$compte = JSONInfo($value,$_GET[$value]);
@@ -120,6 +120,12 @@
 						}
 					}
 					if (isset($_GET['filiere'])) {
+						if ($_GET['filiere'] == 'ALL') {
+							$json = file_get_contents("filiere.json");
+							header("Content-type: application/json");
+							echo($json);
+							return TRUE;
+						}
 						if (isset($_GET['groupe'])) {
 							$json = file_get_contents("../admin/jsonAPI.json");
 							$json = json_decode($json, TRUE);
@@ -180,7 +186,9 @@
 			}
 		} else {
 			#KEY non trouvee
-			$json = file_get_contents("../admin/jsonAPI.json");
+			$jsonERROR = file_get_contents("../admin/errorAPI.json");
+			$json = json_decode($jsonERROR, TRUE);
+			$json = json_encode($json['errorKEY']);
 			header("Content-type: application/json");
 			echo($json);
 			return FALSE;

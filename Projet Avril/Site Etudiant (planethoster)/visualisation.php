@@ -77,8 +77,7 @@
 										unset($value[$key2][$key3]);
 									}
 								}
-								$json[$key]['<span class="link" id="'.$key2.'" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key2.'</span>'] = $value[$key2];
-								array_push($lstInfos, $key2);
+								$json[$key]['<span class="link" id="'.$key.'" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key2.'</span>'] = $value[$key2];
 								unset($json[$key][$key2]);
 							}
 						}
@@ -98,7 +97,7 @@
 					echo('<ul>');
 					$file = fopen("API/options.txt", "w");
 					foreach ($lst as $key => $value) {
-						echo("<li title='Voir la doc'><code onclick=\"Redirig(this)\">$value</code></li>");
+						echo("<li title='Voir la doc'><code id=\"$value\" onclick=\"Redirig(this)\">$value</code></li>");
 						if ($key != sizeof($lst) - 1) {
 							fwrite($file, $value.",");
 						} else {
@@ -153,7 +152,7 @@
 	</footer>
 	<script>
 		function Redirig(elt){
-			texte = elt.innerHTML;
+			texte = elt.id;
 			document.location.href = "documentation.php#"+texte;
 		}
 	</script>
