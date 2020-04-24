@@ -9,6 +9,7 @@
 
 	function genereJSON($json, $listeinfos){
 		$comptes = file("admin/comptes.csv");
+		$json["Indefini"] = array("Indefini" => array());
 		foreach ($comptes as $key => $value) {
 			$ligne = explode(",", $value);
 			foreach ($ligne as $key => $value) {
@@ -21,7 +22,7 @@
 			}
 			array_push($json[$ligne['Filiere']][$ligne['Groupe']], $ligne);
 		}
-		$file = fopen("jsonAPI.json", "w");
+		$file = fopen("admin/jsonAPI.json", "w");
 		$json = json_encode($json);
 		fwrite($file, $json);
 	}

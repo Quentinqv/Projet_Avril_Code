@@ -1,7 +1,48 @@
 <?php
+	function generateKey(){
+		$file = fopen("admin/keys.csv", "a+");
+		$double = TRUE;
+		while (!feof($file)) {
+			$ligne = fgetcsv($file);
+			if ($_POST['email'] == $ligne[0]) {
+				$double = FALSE;
+			}
+		}
+		if ($double == TRUE) {
+			fputs($file, $_POST['email'].',');
+			$key = uniqid();
+			fputs($file, $key."\n");
+		} else {
+			fclose($file);
+			return FALSE;
+		}
+		fclose($file);
+		return $key;
+	}
+
+	function recupCle(){
+		$file = fopen("admin/keys.csv", "r");
+		while (!feof($file)) {
+			$ligne = fgetcsv($file);
+			if ($ligne[0] == $_POST['emailRecup']) {
+				fclose($file);
+				return $ligne[1];
+			}
+		}
+		fclose($file);
+		return FALSE;
+	}
 	session_start();
 	if (!isset($_SESSION['nom'])) {
 		$_SESSION['img'] = "account";
+	}
+	if (isset($_GET['key'])) {
+		if ($_GET['key'] == 'created') {
+			$key = generateKey();
+		}
+		if ($_GET['key'] == 'recup') {
+			$keyRecup = recupCle();
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -16,7 +57,7 @@
 	<body>
 		<header>
 		</header>
-		<div class="bg_commodi">
+		<div id="DivIntroVisu">
 			<div id="header">
 				<div class="logo">
 					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
@@ -39,57 +80,51 @@
 					</div>
 				</nav>
 			</div>
-			<div class="commodi">
-				<h2>VITOUX QUENTIN</h2>
-				<h1>Projet API (Avril 2020)</h1>
-				<p>Site WEB de Vitoux Quentin, LPI-WS, Université de Cergy-Pontoise, présentant le projet d'avril 2020</p>
-				<div class="bouton">	
-					<button class="bouton_orange" onclick="document.location.href = 'index.php#introduction'">En savoir plus</button>
-					<button class="bouton_transp" onclick="document.location.href = 'visualisation.php'">Essayer</button>
-				</div>
+			<div id="IntroVisualisation">
+				<h2>DEMANDE</h2>
+				<h1>Demander sa clé d'API</h1>
+				<p>Demander sa clé afin de pouvoir utiliser l'API.</p>
+				<button class="bouton_orange" onclick="document.location.href = '#DemandeCle'">En savoir plus</button>
 			</div>
 		</div>
-
-		<div id="introduction">
-			<div id="quis_position">
-				<h2>UTILISATION</h2>
-				<h1>Outils disponibles</h1>
-				<div id="box_quis">
-					<div class="autem">
-						<img src="assets\img\visualisation.jpg" alt="ERROR">
-						<p>Visualiser</p>
-						<div class="bas_autem">
-							<h3>Aperçu de l'API disponible</h3>
-							<button onclick="document.location.href = 'visualisation.php'">+</button>
-						</div>
-					</div>	
-					<div class="autem">
-						<img src="assets\img\key_img.png" alt="ERROR">
-						<p>S'inscrire</p>
-						<div class="bas_autem">
-							<h3>Demander sa clé d'API</h3>
-							<button onclick="document.location.href = 'demandeCLE.php'">+</button>
-						</div>
-					</div>
-					<div class="autem">
-						<img src="assets\img\documentation.jpg" alt="ERROR">
-						<p>Documentation</p>
-						<div class="bas_autem">
-							<h3>Voir la documentation de l'API et son utilisation</h3>
-							<button onclick="document.location.href = 'documentation.php'">+</button>
-						</div>
-					</div>
-				</div>
+		<div id="DemandeCle">
+			<div id="cle-gauche">
+				<form action="demandeCLE.php?key=created" method="post">
+					<h2>Demandez votre clé</h2>
+					<h3>Rentrez votre email pour recevoir votre clé</h3>
+					<input type="text" name="email" placeholder="Entrez votre email">
+					<button type="submit">Générer</button>
+					<?php
+						if (isset($_GET['key'])) {
+							if ($_GET['key'] == 'created') {
+								if (gettype($key) == "string")  {
+									echo("<h4>Votre clé est : ".$key."</h4>");
+								} else {
+									echo("<h4>Cette adresse mail est déjà utilisée.</h4>");
+								}
+							}
+						}
+					?>
+				</form>
 			</div>
-		</div>
-		<div id="mollitia">
-			<div id="mollitia_gauche">
-			</div>
-			<div id="mollitia_droite">
-				<h5 class="mollitia_title">UTILISATION</h5>
-				<h2 class="mollitia_title2">Une API façonnée en JSON</h2>
-				<p class="mollitia_text">Cette API a été créée dans le cadre d'un projet ayant pour but de manipuler le format JSON de manière approfondie, c'est-à-dire aborder la création d'un fichier JSON.</p>
-				<button id="mollitia_button" onclick="document.location.href = 'visualisation.php'">Explorer</button>
+			<div id="cle-droite">
+				<form action="demandeCLE.php?key=recup" method="post">
+					<h2>Retrouvez votre clé</h2>
+					<h3>Rentrez votre email pour retrouver votre clé</h3>
+					<button type="submit">Retrouver</button>
+					<input type="text" name="emailRecup" placeholder="Entrez votre email">
+					<?php
+						if (isset($_GET['key'])) {
+							if ($_GET['key'] == 'recup') {
+								if (gettype($keyRecup) == "string")  {
+									echo("<h4>Votre clé est : ".$keyRecup."</h4>");
+								} else {
+									echo("<h4>Votre adresse n'a pas été trouvée</h4>");
+								}
+							}
+						}
+					?>
+				</form>
 			</div>
 		</div>
 	<footer>

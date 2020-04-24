@@ -93,7 +93,7 @@
 					echo('<div id="InfosVisu">');
 					echo('<h4>Voici quelques informations disponibles grâce à l\'API.</h4>');
 					echo('<ul>');
-					$file = fopen("options.txt", "w");
+					$file = fopen("API/options.txt", "w");
 					foreach ($lst as $key => $value) {
 						echo("<li title='Voir la doc'><code onclick=\"Redirig(this)\">$value</code></li>");
 						if ($key != sizeof($lst) - 1) {
@@ -101,13 +101,12 @@
 						} else {
 							fwrite($file, $value);
 						}
-						
 					}
 					echo('</ul>');
 					echo('</div>');
 				}
 
-				$lstinfos = AffJson("jsonAPI.json");
+				$lstinfos = AffJson("admin/jsonAPI.json");
 				AffInfos($lstinfos);
 			?>
 		</div>

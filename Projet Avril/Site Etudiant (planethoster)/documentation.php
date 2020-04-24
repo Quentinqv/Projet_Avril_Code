@@ -43,14 +43,14 @@
 			<h2>DOCUMENTATION</h2>
 			<h1>Documentation de l'API</h1>
 			<p>Ici se présente toute la documentation de l'API.</p>
-			<button class="bouton_orange" onclick="document.location.href = 'index.php#introduction'">En savoir plus</button>
+			<button class="bouton_orange" onclick="document.location.href = '#Documentation'">En savoir plus</button>
 		</div>
 	</div>
 	<div id="Documentation">
 		<h4>Rappel des options rapides disponibles</h4>
 		<?php
 			echo('<ul>');
-			$file = fopen("options.txt", "r");
+			$file = fopen("API/options.txt", "r");
 			$ligne = fgetcsv($file);
 			foreach ($ligne as $key => $value) {
 				echo("<li title='Voir la doc'><code onclick=\"Redirig(this)\">$value</code></li>");
@@ -68,7 +68,7 @@
 				</ol>
 			<p>Cette methode permet de récupérer les données sous forme d'objet. Ajouter TRUE comme deuxième paramètre à <span class="aff_donnees_code">json_decode($json, true)</span> permet de le transformer en tableau associatif.</p>
 			<p class="chemin_json">CHEMIN_JSON correspond à :</p>
-			<a class="lien" href="http://localhost/paris.json">http://localhost/paris.json</a>
+			<a class="lien" href="https://vitoux-quentin.yo.fr/API/API/jsonAPI.json">https://vitoux-quentin.yo.fr/API/API/API</a>
 		</div>
 		<h5>Affichage des données</h5>
 		<div id="aff_donnees">
@@ -80,9 +80,7 @@
 		<h5>Liste des paramètres retournés</h5>
 		<div id="liste_infos">
 			<ul class="infos1">
-				<li id="test1"><code>test1</code> Parametre de la météo</li>
-				<li id="test1"><code>test1</code> Parametre de la météo</li>
-				<li id="test1"><code>test1</code> Parametre de la météo</li>
+				<li id="L1-MIPI"><code>L1-MIPI</code>Contient tous les groupes</li>
 			</ul>
 			<ul class="infos2">
 				<li id="test2"><code>test2</code> Parametre de la météo</li>

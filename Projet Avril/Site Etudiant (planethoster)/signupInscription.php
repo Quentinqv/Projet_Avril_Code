@@ -49,7 +49,7 @@
 			$alea = hash("sha256", uniqid($_POST['email']));
 			fputs($laSortie, $mdpHASH.$alea. ",");
 			if (empty($_POST['photo'])) {
-				fputs($laSortie, "account.png" . ",");
+				fputs($laSortie, "account" . ",");
 			} else {
 				fputs($laSortie, strtoupper($num.'_'.$_POST["nom"].","));
 			}
