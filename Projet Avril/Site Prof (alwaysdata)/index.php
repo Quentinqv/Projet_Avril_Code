@@ -1,3 +1,12 @@
+<?php
+	session_start();
+	include 'signupInscription.php';
+	if (isset($_GET['login'])) {
+		if ($_GET['login'] == 'logout') {
+			deconnexion(array('id','nom', 'prenom', 'email', 'tel', 'filiere'));
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -6,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 		<link rel="stylesheet" href="https://use.typekit.net/aeb7isn.css">
+		<script src="script.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<?php
@@ -22,17 +32,21 @@
 			}
 		?>
 	<header>
+		<div id="imgHeader">
+			<a href="index.php"><img src="assets/img/logodepinfo.png"></a>
+		</div>
 		<ul>
 			<li><a href="trombinoscope.php">Trombinoscope</a></li>
-			<li><a href="inscription.php">Inscription</a></li>
-			<li><a href="index.php#connexion">Connexion</a></li>
+			<li><a href="index.php#formulaire-craft">Inscription</a></li>
+			<li><a href="connexion.php">Connexion</a></li>
+			<li><a href="profil.php">Profil</a></li>
 		</ul>
 	</header>
 		<div id="dl-craft">
 			<div id="dl-craft-gauche">
 				<img src="assets/img/logodepinfo.png" alt="ERROR"/>
 				<p>Site réservé à l'administration de l'Université de Cergy-Pontoise.</p>
-				<button onclick="document.location.href = 'index.php#connexion'">Se connecter</button>
+				<button onclick="document.location.href = 'connexion.php'">Se connecter</button>
 			</div>
 			<div id="dl-craft-droite">
 				<img src="assets/img/logo.png" alt="ERROR"/>
@@ -67,6 +81,9 @@
 		<div id="valeurs-craft">
 			<div>
 				<h2>les outils</h2>
+				<?php
+					print_r($_SESSION);
+				?>
 			</div>
 			<div id="valeurs-blocs-craft">
 				<div class="valeurs-bleu">
@@ -90,7 +107,7 @@
 			<form action="trombinoscope.php?create=try" method="post" id="formulaire">
 				<div id="form-haut">
 					<div id="form-gauche">
-						<input type="text" name="nom" placeholder="Nom">
+						<input type="text" name="nom" placeholder="Nom" class="champs-inscription">
 						<select name="filiere" id="filiere-select">
 							<option value="filiere">Filière Principale</option>
 							<?php
@@ -100,15 +117,22 @@
 						</select>
 					</div>
 					<div id="form-droite">
-						<input type="text" name="prenom" placeholder="Prénom">
-						<input type="text" name="tel" placeholder="Numéro de téléphone">
+						<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription">
+						<input type="text" name="tel" placeholder="Numéro de téléphone" class="champs-inscription">
 					</div>
 				</div>
 				<div id="form-bas">
-					<input type="text" name="mail" placeholder="Adresse mail">
-					<input type="text" name="mdp" placeholder="Mot de passe">
+					<input type="text" name="email" placeholder="Adresse mail" class="champs-inscription">
+					<div class="inscription-mdp">
+						<input type="password" name="mdp" placeholder="Mot de passe" id="mdp1">
+						<button type="button" onclick="mdpcache('mdp1')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp1IMG" /></button>
+					</div>
+					<div class="inscription-mdp">
+						<input type="password" name="mdpverif" placeholder="Confirmation Mot de passe" id="mdp2">
+						<button type="button" onclick="mdpcache('mdp2')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp2IMG" /></button>
+					</div>
 				</div>
-				<button>Créer</button>
+				<button type="button" onclick="VerifForm('inscription')">Créer</button>
 			</form>
 		</div>
 	</main>

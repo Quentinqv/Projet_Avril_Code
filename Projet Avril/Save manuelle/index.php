@@ -1,131 +1,128 @@
-<?php
-	session_start();
-	print_r($_SESSION['adresse']);
-?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
-		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
-		<title>API Projet</title>
+		<title>Accueil Administration</title>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://use.typekit.net/aeb7isn.css">
 	</head>
 	<body>
-		<header>
-		</header>
-		<div class="bg_commodi">
-			<div id="header">
-				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.png"></a>
-				</div>
-				<nav>
-					<ul id="navigation">
-						<div class="menunav">
-							<button class="navbtn">Outils</button>
-							<div class="contentnav">
-								<a href="visualisation.php">Visualisation</a>
-								<a href="documentation.php">Documentation</a>
-							</div>
-						</div>
-						<div class="menunav" id="admin">
-							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
-						</div>
-					</ul>
-					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\account.png" alt="loupe"></a>
-					</div>
-				</nav>
-			</div>
-			<div class="commodi">
-				<h2>VITOUX QUENTIN</h2>
-				<h1>Projet API (Avril 2020)</h1>
-				<p>Site WEB de Vitoux Quentin, LPI-WS, Université de Cergy-Pontoise, présentant le projet d'avril 2020</p>
-				<div class="bouton">	
-					<button class="bouton_orange" onclick="document.location.href = 'index.php#introduction'">En savoir plus</button>
-					<button class="bouton_transp" onclick="document.location.href = 'visualisation.php'">Essayer</button>
-				</div>
-			</div>
-		</div>
+		<?php
+			function TrierFiliere(){
+				$json = file_get_contents("admin/filiere.json");
+				$json = json_decode($json, true);
+				return $json;
+			}
 
-		<div id="introduction">
-			<div id="quis_position">
-				<h2>UTILISATION</h2>
-				<h1>Outils disponibles</h1>
-				<div id="box_quis">
-					<div class="autem">
-						<img src="assets\img\orange.png" alt="ERROR">
-						<p>Visualiser</p>
-						<div class="bas_autem">
-							<h3>Aperçu de l'API disponible</h3>
-							<button onclick="document.location.href = 'visualisation.php'">+</button>
-						</div>
-					</div>	
-					<div class="autem">
-						<img src="assets\img\key_img.png" alt="ERROR">
-						<p>S'inscrire</p>
-						<div class="bas_autem">
-							<h3>Demander sa clé d'API</h3>
-							<button>+</button>
-						</div>
-					</div>
-					<div class="autem">
-						<img src="assets\img\documentation.jpg" alt="ERROR">
-						<p>Documentation</p>
-						<div class="bas_autem">
-							<h3>Voir la documentation de l'API et son utilisation</h3>
-							<button onclick="document.location.href = 'documentation.php'">+</button>
-						</div>
-					</div>
+			function AfficherFiliere($liste){
+				foreach ($liste as $key => $value) {
+					echo("<option value=\"$key\">$key</option>");
+				}
+			}
+		?>
+	<header>
+		<ul>
+			<li><a href="trombinoscope.php">Trombinoscope</a></li>
+			<li><a href="inscription.php">Inscription</a></li>
+			<li><a href="index.php#connexion">Connexion</a></li>
+		</ul>
+	</header>
+		<div id="dl-craft">
+			<div id="dl-craft-gauche">
+				<img src="assets/img/logodepinfo.png" alt="ERROR"/>
+				<p>Site réservé à l'administration de l'Université de Cergy-Pontoise.</p>
+				<button onclick="document.location.href = 'index.php#connexion'">Se connecter</button>
+			</div>
+			<div id="dl-craft-droite">
+				<img src="assets/img/logo.png" alt="ERROR"/>
+			</div>
+		</div>
+	<main>
+		<h1>Trombinoscope</h1>
+		<div class="div-craft">
+			<div class="div-craft-gauche">
+				<img src="assets/img/appCraft.png" alt="ERROR"/>
+			</div>
+			<div class="div-craft-droite">
+				<h2>mosaïque</h2>
+				<p>Une mosaïque des étudiants est disponible pour toutes les classes du département informatique.</p>
+				<p class="intro-liste">Plusieurs informations sont disponibles :</p>
+				<div id="liste-infos">
+					<ul>
+						<li>Nom</li>
+						<li>Prenom</li>
+						<li>Date de naissance</li>
+						<li>Email</li>
+					</ul>
+					<ul>
+						<li>Téléphone</li>
+						<li>Adresse</li>
+						<li>Dernière connexion</li>
+						<li>Nombre de connexion</li>
+					</ul>
 				</div>
 			</div>
 		</div>
-		<div id="mollitia">
-			<div id="mollitia_gauche">
-				<img src="assets/img/mac.png" alt="ERROR"/>
+		<div id="valeurs-craft">
+			<div>
+				<h2>les outils</h2>
 			</div>
-			<div id="mollitia_droite">
-				<h5 class="mollitia_title">UTILISATION</h5>
-				<h2 class="mollitia_title2">Une API façonnée en JSON</h2>
-				<p class="mollitia_text">Cette API a été créée dans le cadre d'un projet ayant pour but de manipuler le format JSON de manière approfondie, c'est-à-dire aborder la création d'un fichier JSON.</p>
-				<button id="mollitia_button" onclick="document.location.href = 'visualisation.php'">Explorer</button>
+			<div id="valeurs-blocs-craft">
+				<div class="valeurs-bleu">
+					<h3>recherche</h3>
+					<p>La dernière recherche est disponible rapidement permettant un accès instantané aux professeurs.</p>
+				</div>
+				<div class="valeurs-rouge">
+					<h3>Liste</h3>
+					<p>Le trombinoscope propose plusieurs choix d'affichage, il en propose en réalité deux. Le premier est une mosaïque avec l'image de chaque personne, et le deuxième est une liste. Cet affichage est plus pratique pour observer les informations rapidement comme les dernières connexions.</p>
+				</div>
+				<div class="valeurs-bleu">
+					<h3>Imprimer</h3>
+					<p>Le trombinoscope offre la possiblité de l'imprimer et de l'enregistrer au format PDF. Ici encore sous plusieurs formats.</p>
+				</div>
 			</div>
 		</div>
+		<div id="formulaire-craft">
+			<div>
+				<h2>s'enregistrer</h2>
+			</div>
+			<form action="trombinoscope.php?create=try" method="post" id="formulaire">
+				<div id="form-haut">
+					<div id="form-gauche">
+						<input type="text" name="nom" placeholder="Nom">
+						<select name="filiere" id="filiere-select">
+							<option value="filiere">Filière Principale</option>
+							<?php
+								$liste = TrierFiliere();
+								AfficherFiliere($liste);
+							?>
+						</select>
+					</div>
+					<div id="form-droite">
+						<input type="text" name="prenom" placeholder="Prénom">
+						<input type="text" name="tel" placeholder="Numéro de téléphone">
+					</div>
+				</div>
+				<div id="form-bas">
+					<input type="text" name="mail" placeholder="Adresse mail">
+					<input type="text" name="mdp" placeholder="Mot de passe">
+				</div>
+				<button>Créer</button>
+			</form>
+		</div>
+	</main>
 	<footer>
-		<div id="footer_haut">
-			<div class="footer_case">
-				<h6 class="footer_title">Le projet</h6>
-				<p class="footer_text">Le projet d'avril est une création d'API, le principe est de mettre en place et d'utiliser le format JSON afin de mettre à disposition une API.</p>
-			</div>
-			<div class="footer_case">
-				<h6 class="footer_title">Plan</h6>
-				<ul id="temporibus_liste">
-					<li>Inscription</li>
-					<li>Demander sa clé</li>
-					<li>Documentation</li>
-					<li>Utilisation</li>
-				</ul>
-			</div>
-			<div class="footer_case">
-				<h6 class="footer_title">Informations</h6>
-				<ul id="sintet_liste">
-					<li class="footer_text"><img src="assets/img/ping.png" alt="ERROR"/>Université de Cergy-Pontoise</li>
-					<li class="footer_text"><img src="assets/img/phone.png" alt="ERROR"/>+33 6.51.24.32.66</li>
-					<li class="footer_text"><img src="assets/img/mail.png" alt="ERROR"/>quentin.vitoux@gmail.com</li>
-				</ul>
-			</div>
-			<div class="footer_case">
-				<h6 class="footer_title">Liens utiles</h6>
-				<ul id="molestiae_liste">
-					<li><a href="index.php">Accueil</a></li>
-					<li><a href="inscription.php">Inscription</a></li>
-					<li><a href="documentation.php">Documentation</a></li>
-					<li><a href="visualisation.php">Visualisation</a></li>
-				</ul>
-			</div>
+		<div id="logo-rs-footer">
+			<a href="https://www.u-cergy.fr/" target="blank"><img src="assets/img/globe.png"></a>
+			<a href="https://www.linkedin.com/edu/school?id=12494" target="blank"><img src="assets/img/LinkedIn.png"></a>
+			<a href="https://twitter.com/UniversiteCergy" target="blank"><img src="assets/img/twitter.png"></a>
 		</div>
-		<div id="footer_bas">
-			<p class="footer_copyright">Copyright 2020. All Rights Reserved.</p>
+		<div id="liens-footer">
+			<a>Université de Cergy-Pontoise</a>
+			<a>Département Informatique</a>
+			<a>Conditions gérérales</a>
+			<a>Mentions légales</a>
 		</div>
 	</footer>
 	</body>

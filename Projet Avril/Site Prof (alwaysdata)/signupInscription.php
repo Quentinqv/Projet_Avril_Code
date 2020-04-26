@@ -1,5 +1,6 @@
 <?php
 	function Inscription($listeCHAMPS, $etu){
+		deconnexion(array('id','nom', 'prenom', 'email', 'tel', 'filiere'), 'inscription');
 		$lst = $listeCHAMPS;
 		$sortie = TRUE;
 		for ($i=0; $i < sizeof($lst) && $sortie == TRUE; $i++) { 
@@ -15,7 +16,7 @@
 				for ($k=0; $k < strlen($infos[$i]); $k++) { 
 					for ($l=0; $l < strlen($caract); $l++) { 
 						if ($infos[$i][$k] == $caract[$l]) {
-							header("location:inscription.php?compte=notfull");
+							header("location:index.php#formulaire?compte=notfull");
 						}
 					}
 				}
@@ -25,8 +26,9 @@
 			$fichier = fopen("admin/comptes.csv", "r");
 			while (!feof($fichier)) {
 				$ligne = fgetcsv($fichier);
-				if ($_POST["tel"] == $ligne[3] || $_POST["email"] == $ligne[4]) {
-					header("location:inscription.php?etat=double");
+				if ($_POST["tel"] == $ligne[4] || $_POST["email"] == $ligne[3]) {
+					header("location:index.php#formulaire?etat=double");
+					exit();
 				}
 			}
 
@@ -40,24 +42,28 @@
 			}
 			fputs($laSortie, $_POST["email"] . ",");
 			fputs($laSortie, $_POST["tel"] . ",");
-			fputs($laSortie, $_POST["adresse"] . ",");
+			if ($etu == TRUE) {
+				fputs($laSortie, $_POST["adresse"] . ",");
+			}
 			fputs($laSortie, $_POST["filiere"] . ",");
 			if ($etu == TRUE) {
 				fputs($laSortie, $_POST["groupe"] . ",");
 			}
 			$alea = uniqid();
 			fputs($laSortie, hash('sha256', $_POST['mdp'].$alea). ",");
-			if (empty($_POST['photo'])) {
-				fputs($laSortie, "account" . ",");
-			} else {
-				fputs($laSortie, strtoupper($num.'_'.$_POST["nom"].","));
+			if ($etu == TRUE) {
+				if (empty($_POST['photo'])) {
+					fputs($laSortie, "account" . ",");
+				} else {
+					fputs($laSortie, strtoupper($num.'_'.$_POST["nom"].","));
+				}
 			}
 			fputs($laSortie, $alea.',');
 			fputs($laSortie, date("Y-m-d à H:i:s").',');
 			fputs($laSortie, "0". "\n");
 			fclose($laSortie);
-			Connexion(array('email','mdp'),array('id','nom', 'prenom', 'date', 'tel', 'email', 'adresse', 'filiere', 'groupe', 'mdp', 'img'),"NONE");
-			header("location:profil.php");
+			header("location:trombinoscope.php");
+			exit();
 		}  else {
 			header("location:index.php?etat=undefined");
 		}
@@ -120,7 +126,7 @@
 			$fin = FALSE;
 			while (!feof($laSortie) && $fin == FALSE) {
 				$ligne = fgetcsv($laSortie);
-				if ($_POST['email'] == $ligne[4] && hash('sha256', $_POST['mdp'].$ligne[11]) == $ligne[9]) {
+				if ($_POST['email'] == $ligne[3] && hash('sha256', $_POST['mdp'].$ligne[7]) == $ligne[6]) {
 					$fin = TRUE;
 					$i = 0;
 					foreach ($listeINFOS as $key => $value) {
@@ -135,25 +141,27 @@
 					$_SESSION["$value"] = $$value;
 				}
 				cptConnexion();
-				header("location:profil.php?login=checked");
+				header("location:trombinoscope.php?login=checked");
 				exit();
 			} 
 			if ($fin == FALSE) {
-				header("location:inscription.php?login=failed");
+				header("location:connexion.php?login=failed");
 				exit();
 			}
 		}
 	}
 
-	function deconnexion($liste){
+	function deconnexion($liste, $but = 'autre'){
 		session_start();
 		$_SESSION = array();
 		session_destroy();
 		foreach ($liste as $key => $value) {
 			unset($_SESSION["$value"]);
 		}
-		header('location:inscription.php');
-		exit();
+		if ($but = 'autre') {
+			header('location:index.php');
+			exit();
+		}
 	}
 
 	function ModifInfos($id, $liste){
