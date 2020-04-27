@@ -14,6 +14,7 @@ header {
 	top: 0px;
 	position: sticky;
 	background-color: #1E1E1E;
+	z-index: 99;
 }
 
 header ul {
@@ -366,7 +367,7 @@ footer {
 	width: 40%;
 }
 
-#formulaire input, #formulaire select, #connexion-droite input, #choix-trombi select {
+#formulaire input, #formulaire select, #connexion-droite input, #choix-trombi select, #SearchName input {
 	margin-bottom: 20px;
 	height: 54px;
 	border-radius: 1000px;
@@ -439,7 +440,7 @@ footer {
 	margin-bottom: 50px;
 }
 
-#ERRORmsg {
+#ERRORmsg, #ErrorSearch {
 	color: red;
 	font-size: 20px;
 	font-family: "Reef";
@@ -569,6 +570,9 @@ footer {
 
 .EachStudent img {
 	width: 200px;
+	height: 200px;
+	border-radius: 30px;
+	margin-bottom: 5px;
 }
 
 .EachStudent h3, .EachStudent h4 {
@@ -589,7 +593,7 @@ footer {
 }
 
 .MoreInfo {
-	display: block;
+	display: none;
 	hyphens: auto;
 }
 
@@ -603,4 +607,66 @@ footer {
 
 .IntroGroupe {
 	text-align: center;
+}
+
+#SearchName {
+	display: none;
+	opacity: 0;
+	top: 540px;
+	z-index: -1;
+	align-self: center;
+}
+
+#SearchName input {
+	width: 25%;
+	margin-right: 15px;
+	margin-bottom: 0px;
+}
+
+#BtnEtu {
+	margin-top: 20px;
+}
+
+#SearchName button {
+	margin-bottom: 0px;
+}
+
+#DivSearchName {
+	display: flex;
+}
+
+#EtudiantSolo {
+	display: flex;
+}
+
+#EtudiantSoloGauche {
+	display: flex;
+	justify-content: center;
+}
+
+#EtudiantSoloGauche img {
+	border-radius: 30px;
+}
+
+#EtudiantSoloGauche, #EtudiantSoloDroite {
+	width: 50%;
+}
+
+#EtudiantSoloDroite div {
+	display: flex;
+}
+
+#EtudiantSoloDroite div p {
+	width: 40%;
+	color: #C06538;
+	font-family: "Reef";
+	font-size: 28px;
+	margin-bottom: 10px;
+}
+
+#EtudiantSoloDroite div span {
+	color: white;
+	font-family: "Reef";
+	font-size: 28px;
+	margin-bottom: 10px;
 }

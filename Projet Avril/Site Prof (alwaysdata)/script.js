@@ -86,7 +86,7 @@ function VerifForm(but){
 		}
 	}
 	if (but === 'connexion') {
-		if (document.getElementById('email-connexion').value === "" || document.getElementById('mdpConnexion').value === "" || document.getElementById('checkbox-connexion').checked != true) {
+		if (document.getElementById('email-connexion').value === "" || document.getElementById('mdpConnexion').value === "") {
 			alert('Tous les champs ne sont pas remplis !');
 		} else {
 			document.getElementById('connexion-droite').submit();

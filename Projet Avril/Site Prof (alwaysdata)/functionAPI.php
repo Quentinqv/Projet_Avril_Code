@@ -42,6 +42,35 @@
 		}
 	}
 
+	/*function LastSearch($cookie){
+		$cookie = explode(',', $cookie);
+		switch ($cookie[0]) {
+			case 'all':
+				$_GET['filiere'] = 'TRUE';
+				$_POST['filiere'] = 'nomsgroupes';
+				return TRUE;
+				break;
+			case 'FiliGrp':
+				$_GET['filiere'] = 'TRUE';
+				$_GET['groupe'] = 'TRUE';
+				$_POST['filiere'] = $cookie[1];
+				$_POST['groupe'] = $cookie[2];
+				return TRUE;
+				break;
+			case 'filiere':
+				$_GET['filiere'] = 'TRUE';
+				$_POST['filiere'] = $cookie[1];
+				return TRUE;
+				break;
+			case 'etudiant':
+				$_GET['Etudiant'] = 'TRUE';
+				break;
+			default:
+				return FALSE;
+				break;
+		}
+	}*/
+
 	function ListeFiliere($json){
 		#Affiche la liste des filieres avec les groupes
 		echo("<h2 class='IntroGroupe'>Filières liées au département informatique</h2>
@@ -102,17 +131,65 @@
 		echo("</div>");
 	}
 
+	function AffEtudiantSolo($json){
+		echo("
+			<div id=\"EtudiantSolo\">
+				<div id=\"EtudiantSoloGauche\">
+					<img src=".$json[0]['IMG'].">
+				</div>
+				<div id=\"EtudiantSoloDroite\">
+					<div>
+						<p>Nom : </p><span>".$json[0]['Nom']."</span>
+					</div>
+					<div>
+						<p>Prenom : </p><span>".$json[0]['Prenom']."</span>
+					</div>
+					<div>
+						<p>Date de naissance : </p><span>".$json[0]['Date_de_naissance']."</span>
+					</div>
+					<div>
+						<p>Email : </p><span>".$json[0]['Email']."</span>
+					</div>
+					<div>
+						<p>Téléphone : </p><span>".$json[0]['Telephone']."</span>
+					</div>
+					<div>
+						<p>Adresse : </p><span>".$json[0]['Adresse']."</span>
+					</div>
+					<div>
+						<p>Filière : </p><span>".$json[0]['Filiere']."</span>
+					</div>
+					<div>
+						<p>Groupe : </p><span>".$json[0]['Groupe']."</span>
+					</div>
+					<div>
+						<p>Dernière connexion : </p><span>".$json[0]['Derniere_connexion']."</span>
+					</div>
+				</div>
+			</div>
+			");
+	}
+
+	/*function Cookie($contenu){
+		setcookie('LastSearch', '', time()-1);
+		unset($_COOKIE['LastSearch']);
+		setcookie('LastSearch', $contenu, time() + 365*24*3600);
+	}*/
+
 	function AfficherJson($arrayJson){
 		switch ($arrayJson[1]) {
 			case 'all':
 				ListeFiliere($arrayJson[0]);
+				#Cookie("all,null,null");
 				break;
 			case 'FiliGrp':
 				echo("<h2 class='IntroGroupe'>Filière : ".$arrayJson[0][0]['Filiere']." groupe ".$arrayJson[0][0]['Groupe']."</h2>");
 				AffStudent($arrayJson[0]);
+				#Cookie("FiliGrp,".$arrayJson[0][0]['Filiere'].",".$arrayJson[0][0]['Groupe']."");
 				break;
 			case 'filiere':
 				AffFiliere($arrayJson[0]);
+				#Cookie("filiere,".$_POST['filiere'].",null");
 				break;
 			case 'etudiant':
 				if (sizeof($arrayJson[0]) == 1) {
@@ -122,7 +199,7 @@
 				}
 				break;
 			default:
-				# code...
+				return FALSE;
 				break;
 		}
 	}
