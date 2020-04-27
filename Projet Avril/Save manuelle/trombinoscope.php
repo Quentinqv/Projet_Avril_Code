@@ -14,10 +14,10 @@
 	}
 
 	#PARTIE API
-	if (isset($_GET['filiere']) && !empty($_POST['filiere'])) {
+	/*if (isset($_GET['filiere']) && !empty($_POST['filiere'])) {
 		include 'functionAPI.php';
 		$json = GetJson();
-	}
+	}*/
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -76,62 +76,23 @@
 			</form>
 			<p id="ERRORmsg">Veuillez choisir une filière et/ou un groupe.</p>
 		</div>
-		<?php
-			function AffStudent($json){
-				echo("
-					<div class=\"mosaiqueGroupe\">
-					");
-				foreach ($json as $key => $value) {
-					echo("
-						<div class=\"EachStudent\">
-						<img src=".$value['IMG']." alt=\"ERROR\"/>
-						<h3>".$value['Nom']."</h3>
-						<h4>".$value['Prenom']."</h4>
-						<div class=\"MoreInfo\">
-							<h5>".$value['Date_de_naissance']."</h5>
-							<h5>".$value['Email']."</h5>
-							<h5>".$value['Adresse']."</h5>
-							<h5>".$value['Derniere_connexion']."</h5>
-						</div>
-					</div>
-						");
-				}
-				echo("
-					</div>
-					");
-			}
-
-			function AffFiliere($json){
-				$groupes = array_keys($json[0]);
-				echo("
-					<h2>Filiere : ".$_POST['filiere']."</h2>
-					");
-				foreach ($json[0] as $key => $value) {
-					echo("<h2 class=\"IntroGroupe\">Groupe : ".$value[0]['Groupe']."</h2>");
-					AffStudent($value);
-				}
-				echo("</div>");
-			}
-		?>
 		<div id="mosaique">
-			<?php
-				AffFiliere($json);
-			?>
-			<!-- <h2>Filiere : LaFiliere</h2>
-			<h2 class="IntroGroupe">Groupe : LeGroupe</h2>
-			<div class="mosaiqueGroupe">
-				<div class="EachStudent">
-					<img src="https://vitoux-quentin.yo.fr/API/API/img/account.png" alt="ERROR"/>
-					<h3>NOM</h3>
-					<h4>Prenom</h4>
-					<div class="MoreInfo">
-						<h5>Date de naissance</h5>
-						<h5>email</h5>
-						<h5>adresse</h5>
-						<h5>derniere connexion</h5>
+			<div id="NomsFiliere">
+				<div class="EachFiliere">
+					<div class="EachFiliereGauche">
+						<h3>Filière :</h3>
+						<h3>Groupes :</h3>
+					</div>
+					<div class="EachFiliereDroite">
+						<h4>LaFiliere</h4>
+						<ul>
+							<li>Groupe1</li>
+							<li>Groupe1</li>
+							<li>Groupe1</li>
+						</ul>
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</main>
 	<footer>

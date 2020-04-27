@@ -129,7 +129,7 @@
 						if (isset($_GET['groupe'])) {
 							$json = file_get_contents("../admin/jsonAPI.json");
 							$json = json_decode($json, TRUE);
-							if (array_key_exists($_GET['groupe'], $json)) {
+							if (array_key_exists($_GET['groupe'], $json[$_GET['filiere']])) {
 								$json = json_encode($json[$_GET['filiere']][$_GET['groupe']]);
 								header("Content-type: application/json");
 								echo($json);

@@ -502,40 +502,105 @@ footer {
 	border-radius: 30px;
 	margin-top: 50px;
 	margin-bottom: 50px;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
-#NomFiliere {
+#NomsFiliere {
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+#mosaique h2 {
+	font-size: 30px;
+	font-family: 'Karla', sans-serif;
+	color: white;
+	margin-bottom: 50px;
+	margin-left: 20px;
 }
 
 .EachFiliere {
-	width: 15%;
+	width: 300px;
 	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 50px;
 }
 
 .EachFiliere div {
 	width: 50%;
+	margin-right: 10px;
 }
 
 .EachFiliereGauche h3 {
 	color: #DBDBDB;
 	font-family: "Reef";
-	font-size: 18px;
+	font-size: 25px;
 	margin-bottom: 15px;
+	border-bottom: ridge;
 }
 
 .EachFiliereDroite h4 {
-	color: #DBDBDB;
+	color: #DA9000;
 	font-family: "Reef";
-	font-size: 18px;
+	font-size: 25px;
 	margin-bottom: 15px;
 }
 
 .EachFiliereDroite ul li {
 	color: #DBDBDB;
 	font-family: "Reef";
-	font-size: 16px;
+	font-size: 20px;
 	margin-bottom: 15px;
+	border-left: solid;
+	padding-left: 5px;
+}
+
+.EachStudent {
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin-right: 25px;
+}
+
+.EachStudent img {
+	width: 200px;
+}
+
+.EachStudent h3, .EachStudent h4 {
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.EachStudent h3 {
+	color: #DA9000;
+}
+
+.EachStudent h5 {
+	color: #C06538;
+	font-family: "Reef";
+	font-size: 18px;
+}
+
+.MoreInfo {
+	display: block;
+	hyphens: auto;
+}
+
+.mosaiqueGroupe {
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-bottom: 100px;
+}
+
+.IntroGroupe {
+	text-align: center;
 }

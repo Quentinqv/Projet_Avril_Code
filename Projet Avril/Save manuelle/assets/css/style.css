@@ -10,7 +10,7 @@ header {
 	width: 100%;
 	height: auto;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	top: 0px;
 	position: sticky;
 	background-color: #1E1E1E;
@@ -20,6 +20,7 @@ header ul {
 	display: flex;
 	align-self: center;
 	margin-right: 10%;
+	flex-wrap: wrap;
 }
 
 header li {
@@ -43,12 +44,21 @@ header a {
 	font-size: 30px;
 }
 
+#imgHeader {
+	align-self: center;
+	margin-left: 10%;
+}
+
+#imgHeader img {
+	height: 50px;
+}
+
 main:not(#dl-craft) {
 	padding-right: 5%;
 	padding-left: 5%;
 }
 
-.intro-liste {
+.intro-liste, #mainTrombi h1 {
 	border-bottom: 1px dashed orange;
 }
 
@@ -356,7 +366,7 @@ footer {
 	width: 40%;
 }
 
-#formulaire input, #formulaire select {
+#formulaire input, #formulaire select, #connexion-droite input, #choix-trombi select {
 	margin-bottom: 20px;
 	height: 54px;
 	border-radius: 1000px;
@@ -367,7 +377,7 @@ footer {
 	border: none;
 }
 
-#formulaire button {
+#formulaire button, #connexion-droite button {
 	width: 30%;
 	height: 90px;
 	background-color: #CE253F;
@@ -379,6 +389,153 @@ footer {
 	margin-left: 20px;
 }
 
-a {
-	background: none;
+#mdp1, #mdp2 {
+	margin-bottom: 20px;
+	height: 54px;
+	border-radius: 1000px;
+	padding-left: 20px;
+	width: 80%;
+	font-family: 'Karla', sans-serif;
+	color: #7C7C7C;
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+
+.inscription-mdp {
+	display: flex;
+	background-color: white;
+	width: 100%;
+	border-radius: 1000px;
+	margin-bottom: 20px;
+	align-self: center;
+}
+
+.inscription-mdp button {
+	width: 30px !important;
+	height: 30px !important;
+	margin-right: 5%;
+}
+
+.inscription-mdp button, .inscription-mdp input {
+	background-color: rgba(0,0,0,0) !important;
+	border: none !important;
+	border-radius: 1000px !important;
+	align-self: center;
+	margin-bottom: 0px !important;
+}
+
+.inscription-mdp img {
+	width: 30px;
+}
+
+#connexion-droite {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+	margin-bottom: 50px;
+}
+
+#ERRORmsg {
+	color: red;
+	font-size: 20px;
+	font-family: "Reef";
+	margin-bottom: 20px;
+	display: none;
+}
+
+#choix-trombi {
+	display: flex;
+	flex-direction: column;
+}
+
+#choix-trombi h3 {
+	font-size: 28px;
+	color: white;
+	font-family: 'Reef';
+	margin-bottom: 15px;
+}
+
+#choix-trombi select {
+	margin-bottom: 0px !important;
+}
+
+#choix-trombi button {
+	width: 200px;
+	height: 54px;
+	background-color: #CE253F;
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 20px;
+	border-radius: 30px;
+	border: none;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+#choix-trombi form {
+	display: flex;
+	align-items: center;
+}
+
+#choix-trombi form button:last-child{
+	background: rgb(206,37,63);
+	background: linear-gradient(180deg, rgba(206,37,63,1) 0%, rgba(140,25,43,1) 100%);
+}
+
+#chercher:hover {
+	color: black;
+}
+
+#choix-trombi select {
+	width: 300px;
+	margin-right: 15px;
+}
+
+#mosaique {
+	min-height: 800px;
+	background: rgb(30,30,30);
+	background: linear-gradient(180deg, rgba(30,30,30,1) 0%, rgba(61,61,61,1) 100%);
+	border-radius: 30px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#NomFiliere {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.EachFiliere {
+	width: 15%;
+	display: flex;
+}
+
+.EachFiliere div {
+	width: 50%;
+}
+
+.EachFiliereGauche h3 {
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+
+.EachFiliereDroite h4 {
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 18px;
+	margin-bottom: 15px;
+}
+
+.EachFiliereDroite ul li {
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 16px;
+	margin-bottom: 15px;
 }
