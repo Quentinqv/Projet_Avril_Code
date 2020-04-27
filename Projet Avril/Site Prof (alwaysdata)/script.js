@@ -179,3 +179,38 @@ function ValidTrombi(){
 	}
 	formu.submit();
 }
+
+function AffSearchName(){
+	let form = document.getElementById('SearchName');
+	if (form.style.opacity == 0) {
+		form.animate([
+		{display: 'none', opacity: 0, marginTop: "-50px"},
+		{display: 'flex', opacity: 1, marginTop: "20px"}
+			],500);
+		form.style.top = "620px";
+		form.style.opacity = 1;
+		form.style.zIndex = "1";
+		form.style.marginTop = "20px";
+	} else {
+		form.animate([
+		{display: 'flex', opacity: 1, marginTop: "20px"},
+		{display: 'none', opacity: 0, marginTop: "-50px"}
+			],500);
+		form.style.opacity = 0;
+		form.style.zIndex = "-1";
+		form.style.marginTop = "-50px";
+	}
+}
+
+function CheckSearchEtudiant(){
+	let nom = document.getElementById('nom');
+	let prenom = document.getElementById('prenom');
+	let email = document.getElementById('email');
+	if (nom.value == '' && prenom.value == '' && email.value == '') {
+		document.getElementById('ErrorSearch').style.display = 'block';
+		return false;
+	} else {
+		document.getElementById('SearchName').action = 'trombinoscope.php?Etudiant=TRUE';
+		document.getElementById('SearchName').submit();
+	}
+}

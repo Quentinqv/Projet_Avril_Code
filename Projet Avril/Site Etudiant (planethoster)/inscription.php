@@ -5,7 +5,7 @@
 	}
 	include 'signupInscription.php';
 	if (!empty($_POST['nom'])) {
-		$lst = array('nom', 'prenom', 'date', 'tel', 'email', 'adresse', 'filiere', 'groupe', 'mdp');
+		$lst = array('nom', 'prenom', 'date', 'email', 'tel', 'adresse', 'filiere', 'groupe', 'mdp');
 		Inscription($lst, TRUE);
 	}
 ?>

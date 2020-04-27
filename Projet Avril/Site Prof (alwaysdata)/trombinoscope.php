@@ -14,7 +14,7 @@
 	}
 
 	#PARTIE API
-	if (isset($_GET['filiere']) && !empty($_POST['filiere'])) {
+	if (isset($_GET['filiere']) && !empty($_POST['filiere']) || isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE') {
 		include 'functionAPI.php';
 		$json = GetJson();
 	}
@@ -75,60 +75,93 @@
 				<button type="button" id="chercher" onclick="ValidTrombi()">CHERCHER</button>
 			</form>
 			<p id="ERRORmsg">Veuillez choisir une filière et/ou un groupe.</p>
+			<div id="DivSearchName">
+				<button type="button" onclick="AffSearchName()" id="BtnEtu">Rechercher un étudiant</button>
+				<form id="SearchName" action="trombinoscope.php" method="post">
+					<input type="text" name="nom" placeholder="Nom" id="nom">
+					<input type="text" name="prenom" placeholder="Prenom" id="prenom">
+					<input type="text" name="email" placeholder="Email" id="email">
+					<button type="button" onclick="CheckSearchEtudiant()">Chercher</button>
+				</form>
+				<p id="ErrorSearch">Veuillez renseigner un champs.</p>
+			</div>
 		</div>
-		<?php
-			function AffStudent($json){
-				echo("
-					<div class=\"mosaiqueGroupe\">
-					");
-				foreach ($json as $key => $value) {
-					echo("
-						<div class=\"EachStudent\">
-						<img src=".$value['IMG']." alt=\"ERROR\"/>
-						<h3>".$value['Nom']."</h3>
-						<h4>".$value['Prenom']."</h4>
-						<div class=\"MoreInfo\">
-							<h5>".$value['Date_de_naissance']."</h5>
-							<h5>".$value['Email']."</h5>
-							<h5>".$value['Adresse']."</h5>
-							<h5>".$value['Derniere_connexion']."</h5>
-						</div>
-					</div>
-						");
-				}
-				echo("
-					</div>
-					");
-			}
-
-			function AffFiliere($json){
-				$groupes = array_keys($json[0]);
-				echo("
-					<h2>Filiere : ".$_POST['filiere']."</h2>
-					");
-				foreach ($json[0] as $key => $value) {
-					echo("<h2 class=\"IntroGroupe\">Groupe : ".$value[0]['Groupe']."</h2>");
-					AffStudent($value);
-				}
-				echo("</div>");
-			}
-		?>
 		<div id="mosaique">
 			<?php
-				AffFiliere($json);
+				if (isset($_POST['filiere']) || isset($_POST['nom']) || isset($_POST['prenom']) || isset($_POST['email'])) {
+					AfficherJson($json);
+				}
+
+				function AffEtudiantSolo($json){
+					echo("
+						<div id=\"EtudiantSolo\">
+							<div id=\"EtudiantSoloGauche\">
+								<img src=".$json[0]['IMG'].">
+							</div>
+							<div id=\"EtudiantSoloDroite\">
+								<div>
+									<p>Nom : </p><span>".$json[0]['Nom']."</span>
+								</div>
+								<div>
+									<p>Prenom : </p><span>".$json[0]['Prenom']."</span>
+								</div>
+								<div>
+									<p>Date de naissance : </p><span>".$json[0]['Date_de_naissance']."</span>
+								</div>
+								<div>
+									<p>Email : </p><span>".$json[0]['Email']."</span>
+								</div>
+								<div>
+									<p>Téléphone : </p><span>".$json[0]['Telephone']."</span>
+								</div>
+								<div>
+									<p>Adresse : </p><span>".$json[0]['Adresse']."</span>
+								</div>
+								<div>
+									<p>Filière : </p><span>".$json[0]['Filiere']."</span>
+								</div>
+								<div>
+									<p>Groupe : </p><span>".$json[0]['Groupe']."</span>
+								</div>
+								<div>
+									<p>Dernière connexion : </p><span>".$json[0]['Derniere_connexion']."</span>
+								</div>
+							</div>
+						</div>
+						");
+				}
 			?>
-			<!-- <h2>Filiere : LaFiliere</h2>
-			<h2 class="IntroGroupe">Groupe : LeGroupe</h2>
-			<div class="mosaiqueGroupe">
-				<div class="EachStudent">
-					<img src="https://vitoux-quentin.yo.fr/API/API/img/account.png" alt="ERROR"/>
-					<h3>NOM</h3>
-					<h4>Prenom</h4>
-					<div class="MoreInfo">
-						<h5>Date de naissance</h5>
-						<h5>email</h5>
-						<h5>adresse</h5>
-						<h5>derniere connexion</h5>
+			<!-- <div id="EtudiantSolo">
+				<div id="EtudiantSoloGauche">
+					<img src="https://vitoux-quentin.yo.fr/API/API/img/103_PIGNON.png">
+				</div>
+				<div id="EtudiantSoloDroite">
+					<div>
+						<p>Nom : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Prenom : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Date de naissance : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Email : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Téléphone : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Adresse : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Filière : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Groupe : </p><span>Le nom</span>
+					</div>
+					<div>
+						<p>Dernière connexion : </p><span>Le nom</span>
 					</div>
 				</div>
 			</div> -->

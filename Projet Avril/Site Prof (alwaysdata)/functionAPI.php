@@ -1,6 +1,24 @@
 <?php
 	function GetJson(){
+		#Fais une requete en fonction des parametres demandes
 		$key = '5ea57c1065ea6';
+		if (isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE') {
+			if (!empty($_POST['nom'])) {
+				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&Nom='.strtoupper($_POST['nom']));
+				$json = json_decode($json, TRUE);
+				return array($json,'etudiant');
+			}
+			if (!empty($_POST['prenom'])) {
+				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&Prenom='.$_POST['prenom']);
+				$json = json_decode($json, TRUE);
+				return array($json,'etudiant');
+			}
+			if (!empty($_POST['email'])) {
+				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&Email='.$_POST['email']);
+				$json = json_decode($json, TRUE);
+				return array($json,'etudiant');
+			}
+		}
 		if ($_GET['filiere'] == 'TRUE' && $_POST['filiere'] != 'filiere') {
 			if ($_POST['filiere'] == 'nomsgroupes') {
 				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&filiere=ALL');
@@ -25,6 +43,7 @@
 	}
 
 	function ListeFiliere($json){
+		#Affiche la liste des filieres avec les groupes
 		echo("<h2 class='IntroGroupe'>Filières liées au département informatique</h2>
 				<div id=\"NomsFiliere\">");
 				foreach ($json as $key => $value) {
@@ -46,7 +65,8 @@
 		return TRUE;
 	}
 
-	/*function AffStudent($json){
+	function AffStudent($json){
+		#Affiche une case pour un élève
 		echo("
 			<div class=\"mosaiqueGroupe\">
 			");
@@ -67,9 +87,20 @@
 		}
 		echo("
 			</div>
-		</div>
 			");
-	}*/
+	}
+
+	function AffFiliere($json){
+		#Affiche l
+		echo("
+			<h2>Filiere : ".$_POST['filiere']."</h2>
+			");
+		foreach ($json as $key => $value) {
+			echo("<h2 class=\"IntroGroupe\">Groupe : ".$value[0]['Groupe']."</h2>");
+			AffStudent($value);
+		}
+		echo("</div>");
+	}
 
 	function AfficherJson($arrayJson){
 		switch ($arrayJson[1]) {
@@ -81,7 +112,14 @@
 				AffStudent($arrayJson[0]);
 				break;
 			case 'filiere':
-				# code...
+				AffFiliere($arrayJson[0]);
+				break;
+			case 'etudiant':
+				if (sizeof($arrayJson[0]) == 1) {
+					AffEtudiantSolo($arrayJson[0]);
+				} else {
+					AffStudent($arrayJson[0]);
+				}
 				break;
 			default:
 				# code...

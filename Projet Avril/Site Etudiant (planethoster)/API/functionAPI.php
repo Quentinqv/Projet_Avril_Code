@@ -14,7 +14,7 @@
 		fclose($file);
 
 		$keys = fopen("../admin/keys.csv", "w");
-		for ($i=0; $i < sizeof($contenu)-1; $i++) { 
+		for ($i=0; $i < sizeof($contenu)-1; $i++) {
 			if ($i == sizeof($contenu)-1) {
 				fputs($keys, implode(',', $contenu[$i]));
 			} else {
@@ -75,6 +75,7 @@
 			if ($compte[$get] == $info) {
 				unset($compte['mdp']);
 				unset($compte['alea']);
+				$compte['IMG'] = 'https://vitoux-quentin.yo.fr/API/API/img/'.$compte['IMG'].'.png';
 				$doublon[$k] = $compte;
 				$k++;
 			}
