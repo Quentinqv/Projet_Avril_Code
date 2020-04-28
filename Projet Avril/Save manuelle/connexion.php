@@ -1,12 +1,7 @@
 <?php
 	session_start();
-	if (isset($_GET['login'])) {
-		if ($_GET['login'] == 'failed') {
-			echo('<script>document.getElementById("ERRORmsg").style.display = "block";</script>');
-		}
-	}
-	if (condition) {
-		# code...
+	if (!empty($_SESSION['nom'])) {
+		header('location:profil.php');
 	}
 ?>
 <!DOCTYPE html>
@@ -63,5 +58,15 @@
 			<a>Mentions légales</a>
 		</div>
 	</footer>
+	<?php
+		if (isset($_GET['login'])) {
+			if ($_GET['login'] == 'failed') {
+				echo('<script>document.getElementById("ERRORmsg").style.display = "block";</script>');
+			}
+			if ($_GET['login'] == 'NotLogin') {
+				echo('<script>alert("Vous n\'êtes pas connecté !")</script>');
+			}
+		}
+	?>
 	</body>
 </html>

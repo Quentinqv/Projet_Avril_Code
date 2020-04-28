@@ -1,6 +1,6 @@
 <?php
 	function Inscription($listeCHAMPS, $etu){
-		deconnexion(array('id','nom', 'prenom', 'email', 'tel', 'filiere'), 'inscription');
+		#deconnexion(array('id','nom', 'prenom', 'email', 'tel', 'filiere'), 'inscription');
 		$lst = $listeCHAMPS;
 		$sortie = TRUE;
 		for ($i=0; $i < sizeof($lst) && $sortie == TRUE; $i++) { 

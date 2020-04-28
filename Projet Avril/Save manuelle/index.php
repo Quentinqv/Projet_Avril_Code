@@ -81,9 +81,6 @@
 		<div id="valeurs-craft">
 			<div>
 				<h2>les outils</h2>
-				<?php
-					print_r($_SESSION);
-				?>
 			</div>
 			<div id="valeurs-blocs-craft">
 				<div class="valeurs-bleu">

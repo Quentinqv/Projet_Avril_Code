@@ -65,20 +65,20 @@
 					<h1>Inscription</h1>
 						<form action="inscription.php" method="post" id="inscription-1">
 							<div class="champs-alignes">
-								<input type="text" name="nom" placeholder="Nom" class="champs-inscription">
-								<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription">
-								<input type="date" name="date" class="champs-inscription">
+								<input type="text" name="nom" placeholder="Nom" class="champs-inscription" required="required" id="nom-inscription">
+								<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription" required="required" id="prenom-inscription">
+								<input type="date" name="date" class="champs-inscription" required="required" aria-required="true">
 							</div>
 							<div id="adressePostale">
-								<input type="text" name="adresse" placeholder="Adresse Postale" class="champs-inscription">
+								<input type="text" name="adresse" placeholder="Adresse Postale" class="champs-inscription" required="required" id="adresse-inscription">
 							</div>
 							<div class="champs-alignes">
-								<input type="text" name="email" placeholder="Email" class="champs-inscription">
-								<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78" class="champs-inscription">
+								<input type="email" name="email" placeholder="Email @u-cergy.fr" class="champs-inscription" pattern=".+@u-cergy.fr" required="required" id="email-inscription">
+								<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78" class="champs-inscription" required="required" id="tel-inscription" minlength="14" maxlength="14">
 							</div>
 							<div class="champs-alignes">
 								<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this, 'filiere-select', 'groupe-select')">
-									<option value="filiere">Filière</option>
+									<option value="filiere">Filières</option>
 									<?php
 										$liste = TrierFiliere();
 										AfficherFiliere($liste);
@@ -90,19 +90,19 @@
 							</div>
 							<div id="mots-de-passe">
 								<div class="inscription-mdp">
-									<input type="password" name="mdp" placeholder="Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp1">
+									<input type="password" name="mdp" placeholder="Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp1" required="required" minlength="6">
 									<button type="button" onclick="mdpcache('mdp1')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp1IMG" /></button>
 								</div>
 								<div class="inscription-mdp">
-									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp2">
+									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp2" required="required" minlength="6">
 									<button type="button" onclick="mdpcache('mdp2')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp2IMG" /></button>
 								</div>
 							</div>
 							<p class="ErrorMDP">Les mots de passe ne correspondent pas.</p>
 							<div class="captcha">
-								<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription"><label for="checkbox-inscription">Je ne suis pas un robot</label>
+								<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription" required="required"><label for="checkbox-inscription">Je ne suis pas un robot</label>
 							</div>
-							<button type="button" onclick="VerifForm('inscription')" id="button-inscrire">S'INSCRIRE</button>
+							<button type="submit" onclick="VerifForm('inscription')" id="button-inscrire">S'INSCRIRE</button>
 						</form>
 					<div id="separation"></div>
 					<h3 onclick="AllerConnexion()">J'ai déjà un compte</h3>

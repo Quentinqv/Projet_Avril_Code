@@ -9,13 +9,13 @@
 		}
 
 		if ($sortie == TRUE) {
-			$infos = array($_POST['nom'],$_POST['prenom']);
+			$infos = array($_POST['nom'],$_POST['prenom'],$_POST['adresse']);
 			$caract = ",?;.:/!§ù%*µ$£";
 			for ($i=0; $i < sizeof($infos); $i++) { 
 				for ($k=0; $k < strlen($infos[$i]); $k++) { 
 					for ($l=0; $l < strlen($caract); $l++) { 
 						if ($infos[$i][$k] == $caract[$l]) {
-							header("location:inscription.php?compte=notfull");
+							header("location:inscription.php?compte=notcreated");
 						}
 					}
 				}
@@ -56,7 +56,7 @@
 			fputs($laSortie, date("Y-m-d à H:i:s").',');
 			fputs($laSortie, "0". "\n");
 			fclose($laSortie);
-			Connexion(array('email','mdp'),array('id','nom', 'prenom', 'date', 'tel', 'email', 'adresse', 'filiere', 'groupe', 'mdp', 'img'),"NONE");
+			Connexion(array('email','mdp'),array('id','nom', 'prenom', 'date', 'email', 'tel', 'adresse', 'filiere', 'groupe', 'mdp', 'img'),"NONE");
 			header("location:profil.php");
 		}  else {
 			header("location:index.php?etat=undefined");
@@ -180,13 +180,18 @@
 				$k++;
 			}
 		}
-		$ligne[10] = $ligne[0].'_'.$ligne[1];
-		if (isset($_FILES['img_import']['tmp_name'])) {
-			$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');
-		}
-		if ($nom != $ligne[1]) {
-			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[10].'.png');
-		}
+		#Si il clique sur 'Ajouter'
+		if (!empty($_FILES['img_import']['name'])) {
+			#Si la taille n'est pas égale à 0, ca veut dire qu'il y a une image
+			if ($_FILES['img_import']['size'] != 0) {
+				#Si le nom n'est pas le même qu'avant
+				if ($nom != $ligne[1] && $nom != 'account') {
+					$ligne[10] = $ligne[0].'_'.$ligne[1];
+					rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[10].'.png');
+				} else {
+					$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');
+				}
+			}		}
 		$contenu[$id-1] = $ligne;
 		fclose($comptes);
 		$comptesF = fopen("admin/comptes.csv", "w");

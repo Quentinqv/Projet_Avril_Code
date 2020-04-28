@@ -1,8 +1,8 @@
 <?php
 	session_start();
-	if (empty($_SESSION['nom'])) {
+	/*if (empty($_SESSION['nom'])) {
 		header('location:connexion.php?login=NotLogin');
-	}
+	}*/
 	if (isset($_GET['create'])) {
 		if ($_GET['create'] == 'try') {
 			include 'signupInscription.php';

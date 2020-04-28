@@ -73,20 +73,17 @@ function VerifForm(but){
 				etat = false;
 			}
 		}
-		if (document.getElementById('filiere-select').value === 'filiere' || document.getElementById('groupe-select').value === 'Groupe') {
-			etat = false;
-		}
-		if (document.getElementById('checkbox-inscription').checked != true) {
+		if (document.getElementById('filiere-select').value === 'filiere') {
 			etat = false;
 		}
 		if (etat == true) {
-			document.getElementById('inscription-1').submit();
+			document.getElementById('formulaire').submit();
 		} else {
 			alert('Tous les champs ne sont pas remplis !');
 		}
 	}
 	if (but === 'connexion') {
-		if (document.getElementById('email-connexion').value === "" || document.getElementById('mdpConnexion').value === "" || document.getElementById('checkbox-connexion').checked != true) {
+		if (document.getElementById('email-connexion').value === "" || document.getElementById('mdpConnexion').value === "") {
 			alert('Tous les champs ne sont pas remplis !');
 		} else {
 			document.getElementById('connexion-droite').submit();

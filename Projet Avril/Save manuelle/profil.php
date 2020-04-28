@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if (empty($_SESSION['nom'])) {
+		header('location:connexion.php?login=NotLogin');
+	}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -22,7 +28,33 @@
 	</header>
 	<main>
 		<h1>Profil</h1>
-		<button type="button" onclick="document.location.href = 'index.php?login=logout'">Se déconnecter</button>
+		<div id="Profil">
+			<div id="EtudiantSoloGauche">
+				<div>
+					<img src="assets/img/logo.png" alt="ERROR"/>
+				</div>
+			</div>
+			<div id="EtudiantSoloDroite">
+				<div>
+					<p>Nom : </p><span><?php echo($_SESSION['nom']) ?></span>
+				</div>
+				<div>
+					<p>Prenom : </p><span><?php echo($_SESSION['prenom']) ?></span>
+				</div>
+				<div>
+					<p>Email : </p><span><?php echo($_SESSION['email']) ?></span>
+				</div>
+				<div>
+					<p>Téléphone : </p><span><?php echo($_SESSION['tel']) ?></span>
+				</div>
+				<div>
+					<p>Filière : </p><span><?php echo($_SESSION['filiere']) ?></span>
+				</div>
+			</div>
+		</div>
+		<div id="DivBtnDeco">
+			<button type="button" onclick="document.location.href = 'index.php?login=logout'" id="BtnDeco">Se déconnecter</button>
+		</div>
 	</main>
 	<footer>
 		<div id="logo-rs-footer">

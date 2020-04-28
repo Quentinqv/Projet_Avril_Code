@@ -1,5 +1,8 @@
 <?php
 	session_start();
+	/*if (empty($_SESSION['nom'])) {
+		header('location:connexion.php?login=NotLogin');
+	}*/
 	if (isset($_GET['create'])) {
 		if ($_GET['create'] == 'try') {
 			include 'signupInscription.php';
@@ -14,7 +17,17 @@
 	}
 
 	#PARTIE API
-	if (isset($_GET['filiere']) && !empty($_POST['filiere']) || isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE') {
+	/*$last = FALSE;
+	if (isset($_GET['last'])) {
+		include 'functionAPI.php';
+		if ($_GET['last'] == 'last') {
+			LastSearch($_COOKIE['LastSearch']);
+			$json = GetJson();
+			$last = TRUE;
+		}
+	}*/
+	if ((isset($_GET['filiere']) && !empty($_POST['filiere']) || isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE')/* && $last == FALSE*/) {
+		print_r('heyyy');
 		include 'functionAPI.php';
 		$json = GetJson();
 	}
@@ -91,80 +104,7 @@
 				if (isset($_POST['filiere']) || isset($_POST['nom']) || isset($_POST['prenom']) || isset($_POST['email'])) {
 					AfficherJson($json);
 				}
-
-				function AffEtudiantSolo($json){
-					echo("
-						<div id=\"EtudiantSolo\">
-							<div id=\"EtudiantSoloGauche\">
-								<img src=".$json[0]['IMG'].">
-							</div>
-							<div id=\"EtudiantSoloDroite\">
-								<div>
-									<p>Nom : </p><span>".$json[0]['Nom']."</span>
-								</div>
-								<div>
-									<p>Prenom : </p><span>".$json[0]['Prenom']."</span>
-								</div>
-								<div>
-									<p>Date de naissance : </p><span>".$json[0]['Date_de_naissance']."</span>
-								</div>
-								<div>
-									<p>Email : </p><span>".$json[0]['Email']."</span>
-								</div>
-								<div>
-									<p>Téléphone : </p><span>".$json[0]['Telephone']."</span>
-								</div>
-								<div>
-									<p>Adresse : </p><span>".$json[0]['Adresse']."</span>
-								</div>
-								<div>
-									<p>Filière : </p><span>".$json[0]['Filiere']."</span>
-								</div>
-								<div>
-									<p>Groupe : </p><span>".$json[0]['Groupe']."</span>
-								</div>
-								<div>
-									<p>Dernière connexion : </p><span>".$json[0]['Derniere_connexion']."</span>
-								</div>
-							</div>
-						</div>
-						");
-				}
 			?>
-			<!-- <div id="EtudiantSolo">
-				<div id="EtudiantSoloGauche">
-					<img src="https://vitoux-quentin.yo.fr/API/API/img/103_PIGNON.png">
-				</div>
-				<div id="EtudiantSoloDroite">
-					<div>
-						<p>Nom : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Prenom : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Date de naissance : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Email : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Téléphone : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Adresse : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Filière : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Groupe : </p><span>Le nom</span>
-					</div>
-					<div>
-						<p>Dernière connexion : </p><span>Le nom</span>
-					</div>
-				</div>
-			</div> -->
 		</div>
 	</main>
 	<footer>

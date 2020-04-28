@@ -464,7 +464,7 @@ footer {
 	margin-bottom: 0px !important;
 }
 
-#choix-trombi button {
+#choix-trombi button, #BtnDeco {
 	width: 200px;
 	height: 54px;
 	background-color: #CE253F;
@@ -635,7 +635,7 @@ footer {
 	display: flex;
 }
 
-#EtudiantSolo {
+#EtudiantSolo, #Profil {
 	display: flex;
 }
 
@@ -669,4 +669,22 @@ footer {
 	font-family: "Reef";
 	font-size: 28px;
 	margin-bottom: 10px;
+}
+
+#Profil {
+	margin-bottom: 50px;
+}
+
+#Profil img {
+	width: 50%;
+}
+
+#Profil #EtudiantSoloGauche div {
+	text-align: center;
+}
+
+#DivBtnDeco {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
 }

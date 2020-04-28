@@ -87,7 +87,7 @@
 						<p><span>Date de naissance :</span class="infos-php"> <span id="span_date"><?php echo($_SESSION['date']); ?></span><input type="date" name="date" id="input_date" value="<?php echo($_SESSION['date']); ?>"></p><button type="button" onclick="ChangeProfil('date')"><img src="assets/img/edit.png"></button>
 					</div>
 					<div class="infos">
-						<p><span>Email :</span> <span class="infos-php" id="span_email"><?php echo($_SESSION['email']); ?></span><input type="text" name="email" id="input_email" placeholder="Nouveau Email" value="<?php echo($_SESSION['email']); ?>"></p><button type="button" onclick="ChangeProfil('email')"><img src="assets/img/edit.png"></button>
+						<p><span>Email :</span> <span class="infos-php" id="span_email"><?php echo($_SESSION['email']); ?></span><input type="email" name="email" id="input_email" placeholder="Nouveau Email @u-cergy.fr"  pattern=".+@u-cergy.fr" value="<?php echo($_SESSION['email']); ?>"></p><button type="button" onclick="ChangeProfil('email')"><img src="assets/img/edit.png"></button>
 					</div>
 					<div class="infos">
 						<p><span>Téléphone :</span> <span class="infos-php" id="span_tel"><?php echo($_SESSION['tel']); ?></span><input type="text" name="tel" id="input_tel" placeholder="Nouveau Numéro" value="<?php echo($_SESSION['tel']); ?>"></p><button type="button" onclick="ChangeProfil('tel')"><img src="assets/img/edit.png"></button>
