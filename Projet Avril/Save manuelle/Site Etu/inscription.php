@@ -23,6 +23,7 @@
 		<?php
 			function TrierFiliere(){
 				$json = file_get_contents("API/filiere.json");
+				$json = json_decode($json, true);
 				return $json;
 			}
 
@@ -31,12 +32,7 @@
 					echo("<option value=\"$key\">$key</option>");
 				}
 			}
-
-			$liste = json_decode(TrierFiliere());
 		?>
-		<script type="text/javascript">
-			var json = <?php echo(TrierFiliere()) ?>;
-		</script>
 		<header>
 		</header>
 		<div class="bg_commodi">
@@ -81,9 +77,10 @@
 								<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78" class="champs-inscription" required="required" id="tel-inscription" minlength="14" maxlength="14">
 							</div>
 							<div class="champs-alignes">
-								<select name="filiere" id="filiere-select" onchange="AfficherFiliere(this,json,'groupe-select')">
+								<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this, 'filiere-select', 'groupe-select')">
 									<option value="filiere">Filières</option>
 									<?php
+										$liste = TrierFiliere();
 										AfficherFiliere($liste);
 									?>
 								</select>
