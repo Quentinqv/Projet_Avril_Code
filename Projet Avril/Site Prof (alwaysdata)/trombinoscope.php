@@ -17,20 +17,21 @@
 	}
 
 	#PARTIE API
-	/*$last = FALSE;
-	if (isset($_GET['last'])) {
+	function GoAPI(){
 		include 'functionAPI.php';
-		if ($_GET['last'] == 'last') {
-			LastSearch($_COOKIE['LastSearch']);
-			$json = GetJson();
-			$last = TRUE;
+		if (isset($_GET['lastSearch'])) {
+			if ($_GET['lastSearch'] == 'go') {
+				$arrayjson = AffJsonCookie($_COOKIE['LastSearch']);
+				return $arrayjson;
+			}
 		}
-	}*/
-	if ((isset($_GET['filiere']) && !empty($_POST['filiere']) || isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE')/* && $last == FALSE*/) {
-		print_r('heyyy');
-		include 'functionAPI.php';
-		$json = GetJson();
+		if ((isset($_GET['filiere']) && !empty($_POST['filiere']) || isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE')) {
+			Cookie($_POST['filiere'].','.$_POST['groupe']);
+			$json = GetJson();
+			return $json;
+		}
 	}
+	$json = GoAPI();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -45,8 +46,7 @@
 	<body>
 		<?php
 			function TrierFiliere(){
-				$json = file_get_contents("admin/filiere.json");
-				$json = json_decode($json, true);
+				$json = file_get_contents("https://vitoux-quentin.yo.fr/API/API/filiere.json");
 				return $json;
 			}
 
@@ -55,7 +55,12 @@
 					echo("<option value=\"$key\">$key</option>");
 				}
 			}
+
+			$liste = json_decode(TrierFiliere());
 		?>
+		<script type="text/javascript">
+			var json = <?php echo(TrierFiliere()) ?>;
+		</script>
 	<header>
 		<div id="imgHeader">
 			<a href="index.php"><img src="assets/img/logodepinfo.png"></a>
@@ -72,11 +77,10 @@
 		<div id="choix-trombi">
 			<h3>Choix :</h3>
 			<form action="trombinoscope.php" method="post" id="form-trombi">
-				<select name="filiere" id="filiere-select" onchange="AfficherGroupe(this, 'filiere-select', 'groupe-select')">
+				<select name="filiere" id="filiere-select" onchange="AfficherFiliere(this,json,'groupe-select')">
 					<option value="filiere">Filière</option>
 					<option value="nomsgroupes">Noms + Groupes</option>
 					<?php
-						$liste = TrierFiliere();
 						AfficherFiliere($liste);
 					?>
 				</select>
@@ -101,7 +105,7 @@
 		</div>
 		<div id="mosaique">
 			<?php
-				if (isset($_POST['filiere']) || isset($_POST['nom']) || isset($_POST['prenom']) || isset($_POST['email'])) {
+				if (isset($_POST['filiere']) || isset($_POST['nom']) || isset($_POST['prenom']) || isset($_POST['email']) || isset($_GET['lastSearch']) && $_GET['lastSearch'] == 'go') {
 					AfficherJson($json);
 				}
 			?>
@@ -126,7 +130,6 @@
 				echo('<script>
 					document.getElementById(\'btn-inscription\').style.display = "none";
 					document.getElementById(\'btn-connexion\').style.display = "none";
-					document.getElementById(\'formulaire-craft\').style.display = "none";
 					</script>
 					');
 			}

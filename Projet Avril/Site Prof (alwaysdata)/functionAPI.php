@@ -42,35 +42,6 @@
 		}
 	}
 
-	/*function LastSearch($cookie){
-		$cookie = explode(',', $cookie);
-		switch ($cookie[0]) {
-			case 'all':
-				$_GET['filiere'] = 'TRUE';
-				$_POST['filiere'] = 'nomsgroupes';
-				return TRUE;
-				break;
-			case 'FiliGrp':
-				$_GET['filiere'] = 'TRUE';
-				$_GET['groupe'] = 'TRUE';
-				$_POST['filiere'] = $cookie[1];
-				$_POST['groupe'] = $cookie[2];
-				return TRUE;
-				break;
-			case 'filiere':
-				$_GET['filiere'] = 'TRUE';
-				$_POST['filiere'] = $cookie[1];
-				return TRUE;
-				break;
-			case 'etudiant':
-				$_GET['Etudiant'] = 'TRUE';
-				break;
-			default:
-				return FALSE;
-				break;
-		}
-	}*/
-
 	function ListeFiliere($json){
 		#Affiche la liste des filieres avec les groupes
 		echo("<h2 class='IntroGroupe'>Filières liées au département informatique</h2>
@@ -120,7 +91,6 @@
 	}
 
 	function AffFiliere($json){
-		#Affiche l
 		echo("
 			<h2>Filiere : ".$_POST['filiere']."</h2>
 			");
@@ -170,26 +140,37 @@
 			");
 	}
 
-	/*function Cookie($contenu){
+	function Cookie($contenu){
 		setcookie('LastSearch', '', time()-1);
 		unset($_COOKIE['LastSearch']);
 		setcookie('LastSearch', $contenu, time() + 365*24*3600);
-	}*/
+	}
+
+	function AffJsonCookie($cookie){
+		$key = '5ea57c1065ea6';
+		$liste = explode(',', $cookie);
+		if ($liste[0] == 'nomsgroupes') {
+			$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&filiere=ALL');
+			$json = json_decode($json, TRUE);
+			return array($json,'all');
+		} else {
+			$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&filiere='.$liste[0].'&groupe='.$liste[1]);
+			$json = json_decode($json, TRUE);
+			return array($json,'FiliGrp');
+		}
+	}
 
 	function AfficherJson($arrayJson){
 		switch ($arrayJson[1]) {
 			case 'all':
 				ListeFiliere($arrayJson[0]);
-				#Cookie("all,null,null");
 				break;
 			case 'FiliGrp':
 				echo("<h2 class='IntroGroupe'>Filière : ".$arrayJson[0][0]['Filiere']." groupe ".$arrayJson[0][0]['Groupe']."</h2>");
 				AffStudent($arrayJson[0]);
-				#Cookie("FiliGrp,".$arrayJson[0][0]['Filiere'].",".$arrayJson[0][0]['Groupe']."");
 				break;
 			case 'filiere':
 				AffFiliere($arrayJson[0]);
-				#Cookie("filiere,".$_POST['filiere'].",null");
 				break;
 			case 'etudiant':
 				if (sizeof($arrayJson[0]) == 1) {

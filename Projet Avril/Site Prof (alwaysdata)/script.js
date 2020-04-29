@@ -182,3 +182,29 @@ function verfiCaract(listeChampsId, caract){
 		}
 	}
 }
+
+function AfficherFiliere(selection,liste,IdGrp){
+	if (selection.value == 'filiere') {
+		let SelectGroupe = document.getElementById(IdGrp);
+		SelectGroupe.innerHTML = "<option value='Groupe'>Groupes</option>";
+		SelectGroupe.style.display = "block";
+		return false;
+	}
+	if (selection.value == 'nomsgroupes') {
+		let SelectGroupe = document.getElementById(IdGrp);
+		SelectGroupe.style.display = "none";
+		return false;
+	} 
+	else {
+		let groupes = Object.keys(liste[selection.value]);
+		let SelectGroupe = document.getElementById(IdGrp);
+		SelectGroupe.style.display = "block";
+		SelectGroupe.innerHTML = "";
+		let contenu = [];
+		for (var i = 0; i < groupes.length; i++) {
+			contenu[i] = "<option value='"+groupes[i]+"'>"+groupes[i]+"</option>";
+		}
+		SelectGroupe.innerHTML = contenu;
+		return true;
+	}
+}
