@@ -1,0 +1,690 @@
+@font-face {     font-family: "Reef";     src: url('Reef.otf'); }
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital@1&display=swap');
+
+body {
+	background-color: #1E1E1E;
+	width: 100%;
+}
+
+header {
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+	top: 0px;
+	position: sticky;
+	background-color: #1E1E1E;
+	z-index: 99;
+}
+
+header ul {
+	display: flex;
+	align-self: center;
+	margin-right: 10%;
+	flex-wrap: wrap;
+}
+
+header li {
+	padding-top: 20px;
+	padding-bottom: 15px;
+	width: auto;
+}
+
+header li:hover {
+	border-bottom: solid;
+	border-color: white;
+}
+
+header a {
+	color: #DBDBDB;
+	font-family: "Reef";
+	width: 200px;
+	padding: 20px;
+	margin-left: 40px;
+	text-decoration: none;
+	font-size: 30px;
+}
+
+#imgHeader {
+	align-self: center;
+	margin-left: 10%;
+}
+
+#imgHeader img {
+	height: 50px;
+}
+
+main:not(#dl-craft) {
+	padding-right: 5%;
+	padding-left: 5%;
+}
+
+.intro-liste, #mainTrombi h1 {
+	border-bottom: 1px dashed orange;
+}
+
+#dl-craft {
+	display: flex;
+	justify-content: space-around;
+	height: 700px;
+	padding-top: 100px;
+	align-self: center;
+	align-items: center;
+	padding-left: 5%;
+	padding-bottom: 150px;
+	background: rgb(33,33,33);
+	background: linear-gradient(0deg, rgba(30,30,30,1) 0%, rgba(71,149,240,1) 22%, rgba(30,30,30,1) 55%);
+}
+
+#dl-craft-gauche {
+	width: 30%;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+#dl-craft-gauche p {
+	color: #DBDBDB;
+	font-size: 30px;
+	font-family: "Reef";
+	width: 80%;
+	line-height: 35px;
+	margin-bottom: 80px;
+}
+
+#dl-craft-gauche img {
+	width: 300px;
+	margin-bottom: 80px;
+}
+
+#dl-craft-gauche button {
+	background-color: #CE253F;
+	color: #DBDBDB;
+	font-size: 25px;
+	width: 60%;
+	min-height: 80px;
+	border: none;
+	border-radius: 30px;
+	font-family: "Reef";
+}
+
+#dl-craft-droite {
+	width: 60%;
+}
+
+#dl-craft-droite img {
+	width: 80%;
+}
+
+h1 {
+	font-size: 90px;
+	text-align: center;
+	margin-top: 200px;
+	color: white;
+	margin-bottom: 150px;
+	font-family: lemongrass-caps,sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.div-craft {
+	display: flex;
+	justify-content: space-around;
+	height: 600px;
+}
+
+.div-craft img {
+	width: 100%;
+}
+
+.div-craft h2, #valeurs-craft h2, #telecharger-craft h2, #formulaire-craft h2 {
+	font-size: 60px;
+	text-transform: uppercase;
+	margin-bottom: 80px;
+	color: white;
+	font-family: lemongrass-caps,sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.div-craft p {
+	font-size: 25px;
+	color: white;
+	font-family: 'Karla', sans-serif;
+	width: 70%;
+	line-height: 45px;
+	margin-bottom: 30px;
+}
+
+.div-craft-gauche, .div-craft-droite {
+	width: 50%;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	align-items: center;
+	align-self: center;
+}
+
+#valeurs-craft, #telecharger-craft {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-self: center;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#valeurs-blocs-craft {
+	display: flex;
+	justify-content: center;
+	margin-top: 50px;
+}
+
+.valeurs-bleu {
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	align-items: center;
+	align-self: center;
+	width: 20%;
+	min-height: 400px;
+	text-align: center;
+	background: rgb(71,149,240);
+	background: radial-gradient(circle, rgba(71,149,240,1) 0%, rgba(71,149,240,0.98) 48%);
+	box-shadow: #4795F0 0px 0px 40px 30px;
+	border-radius: 15px;
+	border: none;
+}
+
+.valeurs-bleu h3, .valeurs-rouge h3 {
+	text-transform: uppercase;
+	font-size: 40px;
+	color: white;
+	margin-bottom: 40px;
+	margin-top: 25px;
+	font-family: lemongrass-caps,sans-serif;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.valeurs-bleu p, .valeurs-rouge p {
+	font-family: 'Karla', sans-serif;
+	font-size: 21px;
+	color: white;
+	width: 90%;
+	line-height: 27px;
+}
+
+.valeurs-rouge {
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	align-items: center;
+	align-self: center;
+	width: 20%;
+	min-height: 500px;
+	text-align: center;
+	background: #CE253F;
+	background: radial-gradient(circle, rgba(206,37,63,1) 0%, rgba(206,37,63,0.98) 48%);
+	box-shadow: #CE253F 0px 0px 50px 50px;
+	border-radius: 15px;
+	border: none;
+	margin-right: 15%;
+	margin-left: 15%;
+}
+
+#liste-infos {
+	display: flex;
+	width: 80%;
+	justify-content: center;
+}
+
+#liste-infos ul:first-child {
+	text-align: left;
+	width: 50%;
+}
+
+#liste-infos ul:first-child li {
+	padding-right: 5%;
+}
+
+#liste-infos ul:last-child {
+	text-align: right;
+	width: 50%;
+}
+
+#liste-infos ul:last-child li {
+	padding-left: 5%;
+}
+
+#liste-infos li {
+	font-size: 18px;
+	color: white;
+	font-family: 'Karla', sans-serif;
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+}
+
+#liste-infos ul li:nth-child(2n+1) {
+	border-bottom: solid;
+	border-color: rgb(71,149,240);
+}
+
+#liste-infos ul li:nth-child(2n+0) {
+	border-bottom: solid;
+	border-color: #CE253F;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	min-height: 600px;
+	align-self: center;
+	align-items: center;
+	background: rgb(71,149,240);
+	background: linear-gradient(0deg, rgba(71,149,240,1) 0%, rgba(71,149,240,0.8407563709077381) 62%, rgba(52,82,117,0) 100%);
+}
+
+#logo-rs-footer {
+	display: flex;
+	justify-content: space-around;
+	width: auto;
+	min-width: 20%;
+	margin-top: 250px;
+}
+
+#logo-rs-footer a, #logo-rs-footer button {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+#logo-rs-footer img {
+	width: 80px;
+	height: 80px;
+	border-radius: 1000px;
+}
+
+#logo-rs-footer button {
+	width: 80px;
+	height: 80px;
+	border-radius: 1000px;
+	border: none;
+	cursor: pointer;
+	background-color: #dbdbdb;
+}
+
+#logo-rs-footer button img {
+	width: 30px;
+	height: 30px;
+	border-radius: 1000px;
+}
+
+#liens-footer {
+	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+#liens-footer a {
+	font-family: 'Karla', sans-serif;
+	color: #212121;
+	margin-bottom: 20px;
+	text-decoration: none;
+}
+
+#formulaire-craft {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+	margin-bottom: 100px;
+	margin-top: 250px;
+}
+
+#formulaire {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+	width: 50%;
+}
+
+#form-haut {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#form-bas {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+#form-gauche, #form-droite {
+	width: 40%;
+}
+
+#formulaire input, #formulaire select, #connexion-droite input, #choix-trombi select, #SearchName input {
+	margin-bottom: 20px;
+	height: 54px;
+	border-radius: 1000px;
+	padding-left: 20px;
+	width: 100%;
+	font-family: 'Karla', sans-serif;
+	color: #7C7C7C;
+	border: none;
+}
+
+#formulaire button, #connexion-droite button {
+	width: 30%;
+	height: 90px;
+	background-color: #CE253F;
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 30px;
+	border-radius: 30px;
+	border: none;
+	margin-left: 20px;
+}
+
+#mdp1, #mdp2 {
+	margin-bottom: 20px;
+	height: 54px;
+	border-radius: 1000px;
+	padding-left: 20px;
+	width: 80%;
+	font-family: 'Karla', sans-serif;
+	color: #7C7C7C;
+	border: none;
+	background-color: rgba(0,0,0,0);
+}
+
+.inscription-mdp {
+	display: flex;
+	background-color: white;
+	width: 100%;
+	border-radius: 1000px;
+	margin-bottom: 20px;
+	align-self: center;
+}
+
+.inscription-mdp button {
+	width: 30px !important;
+	height: 30px !important;
+	margin-right: 5%;
+}
+
+.inscription-mdp button, .inscription-mdp input {
+	background-color: rgba(0,0,0,0) !important;
+	border: none !important;
+	border-radius: 1000px !important;
+	align-self: center;
+	margin-bottom: 0px !important;
+}
+
+.inscription-mdp img {
+	width: 30px;
+}
+
+#connexion-droite {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+	margin-bottom: 50px;
+}
+
+#ERRORmsg, #ErrorSearch {
+	color: red;
+	font-size: 20px;
+	font-family: "Reef";
+	margin-bottom: 20px;
+	display: none;
+}
+
+#choix-trombi {
+	display: flex;
+	flex-direction: column;
+}
+
+#choix-trombi h3 {
+	font-size: 28px;
+	color: white;
+	font-family: 'Reef';
+	margin-bottom: 15px;
+}
+
+#choix-trombi select {
+	margin-bottom: 0px !important;
+}
+
+#choix-trombi button, #BtnDeco {
+	width: 200px;
+	height: 54px;
+	background-color: #CE253F;
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 20px;
+	border-radius: 30px;
+	border: none;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+#choix-trombi form {
+	display: flex;
+	align-items: center;
+}
+
+#choix-trombi form button:last-child{
+	background: rgb(206,37,63);
+	background: linear-gradient(180deg, rgba(206,37,63,1) 0%, rgba(140,25,43,1) 100%);
+}
+
+#chercher:hover {
+	color: black;
+}
+
+#choix-trombi select {
+	width: 300px;
+	margin-right: 15px;
+}
+
+#mosaique {
+	min-height: 800px;
+	background: rgb(30,30,30);
+	background: linear-gradient(180deg, rgba(30,30,30,1) 0%, rgba(61,61,61,1) 100%);
+	border-radius: 30px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#NomsFiliere {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+#mosaique h2 {
+	font-size: 30px;
+	font-family: 'Karla', sans-serif;
+	color: white;
+	margin-bottom: 50px;
+	margin-left: 20px;
+}
+
+.EachFiliere {
+	width: 300px;
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 50px;
+}
+
+.EachFiliere div {
+	width: 50%;
+	margin-right: 10px;
+}
+
+.EachFiliereGauche h3 {
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 25px;
+	margin-bottom: 15px;
+	border-bottom: ridge;
+}
+
+.EachFiliereDroite h4 {
+	color: #DA9000;
+	font-family: "Reef";
+	font-size: 25px;
+	margin-bottom: 15px;
+}
+
+.EachFiliereDroite ul li {
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 20px;
+	margin-bottom: 15px;
+	border-left: solid;
+	padding-left: 5px;
+}
+
+.EachStudent {
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin-right: 25px;
+}
+
+.EachStudent img {
+	width: 200px;
+	height: 200px;
+	border-radius: 30px;
+	margin-bottom: 5px;
+}
+
+.EachStudent h3, .EachStudent h4 {
+	color: #DBDBDB;
+	font-family: "Reef";
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.EachStudent h3 {
+	color: #DA9000;
+}
+
+.EachStudent h5 {
+	color: #C06538;
+	font-family: "Reef";
+	font-size: 18px;
+}
+
+.MoreInfo {
+	display: none;
+	hyphens: auto;
+}
+
+.mosaiqueGroupe {
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-bottom: 100px;
+}
+
+.IntroGroupe {
+	text-align: center;
+}
+
+#SearchName {
+	display: none;
+	opacity: 0;
+	top: 540px;
+	z-index: -1;
+	align-self: center;
+}
+
+#SearchName input {
+	width: 25%;
+	margin-right: 15px;
+	margin-bottom: 0px;
+}
+
+#BtnEtu {
+	margin-top: 20px;
+}
+
+#SearchName button {
+	margin-bottom: 0px;
+}
+
+#DivSearchName {
+	display: flex;
+}
+
+#EtudiantSolo, #Profil {
+	display: flex;
+}
+
+#EtudiantSoloGauche {
+	display: flex;
+	justify-content: center;
+}
+
+#EtudiantSoloGauche img {
+	border-radius: 30px;
+}
+
+#EtudiantSoloGauche, #EtudiantSoloDroite {
+	width: 50%;
+}
+
+#EtudiantSoloDroite div {
+	display: flex;
+}
+
+#EtudiantSoloDroite div p {
+	width: 40%;
+	color: #C06538;
+	font-family: "Reef";
+	font-size: 28px;
+	margin-bottom: 10px;
+}
+
+#EtudiantSoloDroite div span {
+	color: white;
+	font-family: "Reef";
+	font-size: 28px;
+	margin-bottom: 10px;
+}
+
+#Profil {
+	margin-bottom: 50px;
+}
+
+#Profil img {
+	width: 50%;
+}
+
+#Profil #EtudiantSoloGauche div {
+	text-align: center;
+}
+
+#DivBtnDeco {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+}

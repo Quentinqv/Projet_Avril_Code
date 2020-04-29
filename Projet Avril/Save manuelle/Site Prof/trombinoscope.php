@@ -1,8 +1,8 @@
 <?php
 	session_start();
-	if (empty($_SESSION['nom'])) {
+	/*if (empty($_SESSION['nom'])) {
 		header('location:connexion.php?login=NotLogin');
-	}
+	}*/
 	if (isset($_GET['create'])) {
 		if ($_GET['create'] == 'try') {
 			include 'signupInscription.php';
@@ -62,8 +62,8 @@
 		</div>
 		<ul>
 			<li><a href="trombinoscope.php">Trombinoscope</a></li>
-			<li id="btn-inscription"><a href="index.php#formulaire-craft">Inscription</a></li>
-			<li id="btn-connexion"><a href="connexion.php">Connexion</a></li>
+			<li><a href="index.php#formulaire-craft">Inscription</a></li>
+			<li><a href="connexion.php">Connexion</a></li>
 			<li><a href="profil.php">Profil</a></li>
 		</ul>
 	</header>
@@ -120,17 +120,5 @@
 			<a>Mentions légales</a>
 		</div>
 	</footer>
-	<?php
-		if (isset($_SESSION['nom'])) {
-			if ($_SESSION['nom'] != '') {
-				echo('<script>
-					document.getElementById(\'btn-inscription\').style.display = "none";
-					document.getElementById(\'btn-connexion\').style.display = "none";
-					document.getElementById(\'formulaire-craft\').style.display = "none";
-					</script>
-					');
-			}
-		}
-	?>
 	</body>
 </html>

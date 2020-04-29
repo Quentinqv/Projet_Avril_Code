@@ -56,6 +56,7 @@
 			fputs($laSortie, date("Y-m-d à H:i:s").',');
 			fputs($laSortie, "0". "\n");
 			fclose($laSortie);
+			AddLog('inscription',$num);
 			Connexion(array('email','mdp'),array('id','nom', 'prenom', 'date', 'email', 'tel', 'adresse', 'filiere', 'groupe', 'mdp', 'img'),"NONE");
 			header("location:profil.php");
 		}  else {
@@ -135,6 +136,7 @@
 					$_SESSION["$value"] = $$value;
 				}
 				cptConnexion();
+				AddLog('connexion');
 				header("location:profil.php?login=checked");
 				exit();
 			} 
@@ -180,18 +182,15 @@
 				$k++;
 			}
 		}
-		#Si il clique sur 'Ajouter'
+		if ($nom != $ligne[1]) {
+			$ligne[10] = $ligne[0].'_'.$ligne[1];
+			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[10].'.png');
+		}
+		#Si il ajoute une image
 		if (!empty($_FILES['img_import']['name'])) {
-			#Si la taille n'est pas égale à 0, ca veut dire qu'il y a une image
-			if ($_FILES['img_import']['size'] != 0) {
-				#Si le nom n'est pas le même qu'avant
-				if ($nom != $ligne[1] && $nom != 'account') {
-					$ligne[10] = $ligne[0].'_'.$ligne[1];
-					rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[10].'.png');
-				} else {
-					$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');
-				}
-			}		}
+			$ligne[10] = $ligne[0].'_'.$ligne[1];
+			$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');	
+		}
 		$contenu[$id-1] = $ligne;
 		fclose($comptes);
 		$comptesF = fopen("admin/comptes.csv", "w");
@@ -208,5 +207,25 @@
 			$_SESSION["$value"] = $ligne[$k];
 			$k++;
 		}
+	}
+
+	function AddLog($event,$id = 0){
+		$log = fopen("admin/logs.csv", "a");
+		$date = date("Y-m-d;H:i:s");
+		switch ($event) {
+			case 'inscription':
+				fputs($log, $event.",".$date.','.$id.'_'.strtoupper($_POST['nom'])."\n");
+				break;
+			case 'connexion':
+				fputs($log, $event.','.$date.','.$_POST['email']."\n");
+				break;
+			case 'addkey':
+				fputs($log, $event.','.$date.','.$_POST['email']."\n");
+				break;
+			default:
+				return FALSE;
+				break;
+		}
+		return TRUE;
 	}
 ?>

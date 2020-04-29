@@ -71,57 +71,6 @@ function CheckConnexion(){
 	document.getElementsByClassName('ErrorMDP')[1].style.display = "block";
 }
 
-function AfficherGroupe(selection, idSelect, idGroupe){
-	var valeur = selection.value;
-	var elt = document.getElementById(idGroupe);
-	if (valeur === "filiere") {
-		elt.innerHTML = 
-		"<option value=\"groupe\">Groupes</option>";
-	}
-	if (valeur === "L1-MIPI") {
-		elt.innerHTML = 
-		"<option value=\"Groupe\">Groupes</option>"+
-		"<option value=\"A1\">A1</option>"+
-		"<option value=\"A2\">A2</option>"+
-		"<option value=\"A3\">A3</option>";
-	}
-	if (valeur === "L2-MIPI") {
-		elt.innerHTML = 
-		"<option value=\"Groupe\">Groupes</option>"+
-		"<option value=\"B1\">B1</option>"+
-		"<option value=\"B2\">B2</option>"+
-		"<option value=\"B3\">B3</option>";
-	}
-	if (valeur === "LP-RS") {
-		elt.innerHTML = 
-		"<option value=\"Groupe\">Groupes</option>"+
-		"<option value=\"C1\">C1</option>"+
-		"<option value=\"C2\">C2</option>"+
-		"<option value=\"C3\">C3</option>";
-	}
-	if (valeur === "LPI-RIWS") {
-		elt.innerHTML = 
-		"<option value=\"Groupe\">Groupes</option>"+
-		"<option value=\"D1\">D1</option>"+
-		"<option value=\"D2\">D2</option>"+
-		"<option value=\"D3\">D3</option>";
-	}
-	if (valeur === "ECO") {
-		elt.innerHTML = 
-		"<option value=\"Groupe\">Groupes</option>"+
-		"<option value=\"E1\">E1</option>"+
-		"<option value=\"E2\">E2</option>"+
-		"<option value=\"E3\">E3</option>";
-	}
-	if (valeur === "TS1") {
-		elt.innerHTML = 
-		"<option value=\"Groupe\">Groupes</option>"+
-		"<option value=\"F1\">F1</option>"+
-		"<option value=\"F2\">F2</option>"+
-		"<option value=\"F3\">F3</option>";
-	}
-}
-
 function AllerConnexion(){
 	var div = document.getElementById('inscription-gauche');
 	div.animate(
@@ -144,13 +93,27 @@ function AllerInscription(){
 
 function ChangeProfil(champs){
 	if (champs == 'filiere') {
-		document.getElementById('span_'+champs).style.display = "none";
-		document.getElementById('input_'+champs).style.display = "inline-block";
-		document.getElementById('span_groupe').style.display = "none";
-		document.getElementById('input_groupe').style.display = "inline-block";
+		if (document.getElementById('span_'+champs).style.display == "none") {
+			document.getElementById('span_'+champs).style.display = "inline-block";
+			document.getElementById('input_'+champs).style.display = "none";
+			document.getElementById('span_groupe').style.display = "inline-block";
+			document.getElementById('input_groupe').style.display = "none";
+			document.getElementById('input_'+champs).value = '';
+		} else {
+			document.getElementById('span_'+champs).style.display = "none";
+			document.getElementById('input_'+champs).style.display = "inline-block";
+			document.getElementById('span_groupe').style.display = "none";
+			document.getElementById('input_groupe').style.display = "inline-block";
+		}
 	} else {
-		document.getElementById('span_'+champs).style.display = "none";
-		document.getElementById('input_'+champs).style.display = "inline-block";
+		if (document.getElementById('span_'+champs).style.display == "none") {
+			document.getElementById('span_'+champs).style.display = "inline-block";
+			document.getElementById('input_'+champs).style.display = "none";
+			document.getElementById('input_'+champs).value = '';
+		} else {
+			document.getElementById('span_'+champs).style.display = "none";
+			document.getElementById('input_'+champs).style.display = "inline-block";
+		}
 	}
 }
 
@@ -164,10 +127,6 @@ function ValiderModif(liste){
 	if (document.getElementById('input_email').value.slice(-11) != '@u-cergy.fr') {
 		alert("Tous les champs ne sont pas correctement remplis.");
 		return false;
-	}
-	if (document.getElementById('input_filiere').options[document.getElementById('input_filiere').selectedIndex].value == 'filiere' || document.getElementById('input_groupe').options[document.getElementById('input_groupe').selectedIndex].value == 'Groupe') {
-		document.getElementById('input_filiere').options[document.getElementById('input_filiere').selectedIndex].value = "Indéfini";
-		document.getElementById('input_groupe').options[document.getElementById('input_groupe').selectedIndex].value = "Indéfini";
 	}
 	document.getElementById('profil-form').submit();
 }
@@ -183,5 +142,23 @@ function verfiCaract(listeChampsId, caract){
 				}
 			}
 		}
+	}
+}
+
+function AfficherFiliere(selection,liste,IdGrp){
+	if (selection.value == 'filiere') {
+		let SelectGroupe = document.getElementById(IdGrp);
+		SelectGroupe.innerHTML = "<option value='Groupe'>Groupes</option>";
+		return false;
+	} else {
+		let groupes = Object.keys(liste[selection.value]);
+		let SelectGroupe = document.getElementById(IdGrp);
+		SelectGroupe.innerHTML = "";
+		let contenu = [];
+		for (var i = 0; i < groupes.length; i++) {
+			contenu[i] = "<option value='"+groupes[i]+"'>"+groupes[i]+"</option>";
+		}
+		SelectGroupe.innerHTML = contenu;
+		return true;
 	}
 }

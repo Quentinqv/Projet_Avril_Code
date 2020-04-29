@@ -1,4 +1,5 @@
 <?php
+	include 'signupInscription.php';
 	function generateKey(){
 		$file = fopen("admin/keys.csv", "a+");
 		$double = TRUE;
@@ -14,6 +15,7 @@
 			fputs($file, $key.",");
 			fputs($file, date("Y-m-d à H:i:s").",");
 			fputs($file, "0\n");
+			AddLog('addkey');
 		} else {
 			fclose($file);
 			return FALSE;

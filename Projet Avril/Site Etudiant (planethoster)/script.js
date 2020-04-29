@@ -132,7 +132,6 @@ function ValiderModif(liste){
 }
 
 function verfiCaract(listeChampsId, caract){
-	//var caract = ",?;:/!§ù%*µ$£&";
 	for (var j = 0; j < listeChampsId.length; j++) {
 		for (var i = 0; i<document.getElementById(listeChampsId[j]).value.length; i++) {
 			for (var k = 0; k < caract.length; k++) {

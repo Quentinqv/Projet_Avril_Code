@@ -31,19 +31,6 @@ function VerifForm(but){
 				etat = false;
 			}
 		}
-		let email = document.getElementById('email-inscription').value;
-		if (email.slice(-11) != '@u-cergy.fr') {
-			etat = false;
-		}
-		if (verfiCaract(['nom-inscription','prenom-inscription'], ",?;:.@/!§ù%*µ$£&") == false) {
-			etat = false;
-		}
-		if (verfiCaract(['email-inscription'], ",?;:/!§ù%*µ$£&") == false) {
-			etat = false;
-		}
-		if (verfiCaract(['tel-inscription'], ",?;:/!§ù%*µ$£&") == false) {
-			etat = false;
-		}
 		if (document.getElementById('filiere-select').value === 'filiere') {
 			etat = false;
 		}
@@ -110,6 +97,61 @@ function CheckConnexion(){
 	document.getElementsByClassName('ErrorMDP')[1].style.display = "block";
 }
 
+function AfficherGroupe(selection, idSelect, idGroupe){
+	var valeur = selection.value;
+	var elt = document.getElementById(idGroupe);
+	elt.style.display = "block";
+	if (valeur === "filiere") {
+		elt.innerHTML = 
+		"<option value=\"groupe\">Groupes</option>";
+	}
+	if (valeur === "nomsgroupes") {
+		elt.style.display = "none";
+	}
+	if (valeur === "L1-MIPI") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"A1\">A1</option>"+
+		"<option value=\"A2\">A2</option>"+
+		"<option value=\"A3\">A3</option>";
+	}
+	if (valeur === "L2-MIPI") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"B1\">B1</option>"+
+		"<option value=\"B2\">B2</option>"+
+		"<option value=\"B3\">B3</option>";
+	}
+	if (valeur === "LP-RS") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"C1\">C1</option>"+
+		"<option value=\"C2\">C2</option>"+
+		"<option value=\"C3\">C3</option>";
+	}
+	if (valeur === "LPI-RIWS") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"D1\">D1</option>"+
+		"<option value=\"D2\">D2</option>"+
+		"<option value=\"D3\">D3</option>";
+	}
+	if (valeur === "ECO") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"E1\">E1</option>"+
+		"<option value=\"E2\">E2</option>"+
+		"<option value=\"E3\">E3</option>";
+	}
+	if (valeur === "TS1") {
+		elt.innerHTML = 
+		"<option value=\"Groupe\">Groupe</option>"+
+		"<option value=\"F1\">F1</option>"+
+		"<option value=\"F2\">F2</option>"+
+		"<option value=\"F3\">F3</option>";
+	}
+}
+
 function ValidTrombi(){
 	document.getElementById("ERRORmsg").style.display = "none";
 	var selectF = document.getElementById('filiere-select').value;
@@ -167,18 +209,5 @@ function CheckSearchEtudiant(){
 	} else {
 		document.getElementById('SearchName').action = 'trombinoscope.php?Etudiant=TRUE';
 		document.getElementById('SearchName').submit();
-	}
-}
-
-function verfiCaract(listeChampsId, caract){
-	for (var j = 0; j < listeChampsId.length; j++) {
-		for (var i = 0; i<document.getElementById(listeChampsId[j]).value.length; i++) {
-			for (var k = 0; k < caract.length; k++) {
-				if (document.getElementById(listeChampsId[j]).value[i] == caract[k])  {
-					alert("Le champs n'est pas valide");
-					return(false);
-				}
-			}
-		}
 	}
 }

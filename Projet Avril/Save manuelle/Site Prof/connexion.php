@@ -67,11 +67,6 @@
 				echo('<script>alert("Vous n\'êtes pas connecté !")</script>');
 			}
 		}
-		if (isset($_SESSION['nom'])) {
-			if ($_SESSION['nom'] != '') {
-				header('location:profil.php');
-			}
-		}
 	?>
 	</body>
 </html>

@@ -20,7 +20,8 @@
 	<body>
 		<?php
 			function TrierFiliere(){
-				$json = file_get_contents("https://vitoux-quentin.yo.fr/API/API/filiere.json");
+				$json = file_get_contents("admin/filiere.json");
+				$json = json_decode($json, true);
 				return $json;
 			}
 
@@ -29,8 +30,6 @@
 					echo("<option value=\"$key\">$key</option>");
 				}
 			}
-
-			$liste = json_decode(TrierFiliere());
 		?>
 	<header>
 		<div id="imgHeader">
@@ -38,8 +37,8 @@
 		</div>
 		<ul>
 			<li><a href="trombinoscope.php">Trombinoscope</a></li>
-			<li id="btn-inscription"><a href="index.php#formulaire-craft">Inscription</a></li>
-			<li id="btn-connexion"><a href="connexion.php">Connexion</a></li>
+			<li><a href="index.php#formulaire-craft">Inscription</a></li>
+			<li><a href="connexion.php">Connexion</a></li>
 			<li><a href="profil.php">Profil</a></li>
 		</ul>
 	</header>
@@ -105,31 +104,32 @@
 			<form action="trombinoscope.php?create=try" method="post" id="formulaire">
 				<div id="form-haut">
 					<div id="form-gauche">
-						<input type="text" name="nom" placeholder="Nom" class="champs-inscription" id="nom-inscription" required="required">
+						<input type="text" name="nom" placeholder="Nom" class="champs-inscription">
 						<select name="filiere" id="filiere-select">
 							<option value="filiere">Filière Principale</option>
 							<?php
+								$liste = TrierFiliere();
 								AfficherFiliere($liste);
 							?>
 						</select>
 					</div>
 					<div id="form-droite">
-						<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription" required="required" id="prenom-inscription">
-						<input type="text" name="tel" placeholder="Numéro de téléphone" class="champs-inscription" required="required" id="tel-inscription">
+						<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription">
+						<input type="text" name="tel" placeholder="Numéro de téléphone" class="champs-inscription">
 					</div>
 				</div>
 				<div id="form-bas">
-					<input type="email" name="email" placeholder="Email @u-cergy.fr" class="champs-inscription" required="required" pattern=".+@u-cergy.fr" id="email-inscription">
+					<input type="text" name="email" placeholder="Adresse mail" class="champs-inscription">
 					<div class="inscription-mdp">
-						<input type="password" name="mdp" placeholder="Mot de passe" id="mdp1" required="required" minlength="6">
+						<input type="password" name="mdp" placeholder="Mot de passe" id="mdp1">
 						<button type="button" onclick="mdpcache('mdp1')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp1IMG" /></button>
 					</div>
 					<div class="inscription-mdp">
-						<input type="password" name="mdpverif" placeholder="Confirmation Mot de passe" id="mdp2" required="required" minlength="6">
+						<input type="password" name="mdpverif" placeholder="Confirmation Mot de passe" id="mdp2">
 						<button type="button" onclick="mdpcache('mdp2')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp2IMG" /></button>
 					</div>
 				</div>
-				<button type="submit" onclick="VerifForm('inscription')">Créer</button>
+				<button type="button" onclick="VerifForm('inscription')">Créer</button>
 			</form>
 		</div>
 	</main>
@@ -146,17 +146,5 @@
 			<a>Mentions légales</a>
 		</div>
 	</footer>
-	<?php
-		if (isset($_SESSION['nom'])) {
-			if ($_SESSION['nom'] != '') {
-				echo('<script>
-					document.getElementById(\'btn-inscription\').style.display = "none";
-					document.getElementById(\'btn-connexion\').style.display = "none";
-					document.getElementById(\'formulaire-craft\').style.display = "none";
-					</script>
-					');
-			}
-		}
-	?>
 	</body>
 </html>

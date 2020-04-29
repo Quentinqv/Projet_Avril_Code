@@ -32,7 +32,6 @@
 		<?php
 			function TrierFiliere(){
 				$json = file_get_contents("API/filiere.json");
-				$json = json_decode($json, true);
 				return $json;
 			}
 
@@ -41,7 +40,12 @@
 					echo("<option value=\"$key\">$key</option>");
 				}
 			}
+
+			$liste = json_decode(TrierFiliere());
 		?>
+		<script type="text/javascript">
+			var json = <?php echo(TrierFiliere()) ?>;
+		</script>
 		<header>
 		</header>
 		<div class="bg_commodi">
@@ -97,10 +101,9 @@
 					</div>
 					<div class="infos">
 						<p><span>Filière :</span> <span class="infos-php" id="span_filiere"><?php echo($_SESSION['filiere']); ?></span>
-							<select name="filiere" id="input_filiere" onchange="AfficherGroupe(this, 'input_filiere', 'input_groupe')">
+							<select name="filiere" id="input_filiere" onchange="AfficherFiliere(this,json,'input_groupe')">
 									<option value="<?php echo($_SESSION['filiere']); ?>"><?php echo($_SESSION['filiere']); ?></option>
 									<?php
-										$liste = TrierFiliere();
 										AfficherFiliere($liste);
 									?>
 								</select>
