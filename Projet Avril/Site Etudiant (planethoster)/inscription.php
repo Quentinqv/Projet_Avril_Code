@@ -4,7 +4,7 @@
 		$_SESSION['img'] = "account";
 	}
 	include 'signupInscription.php';
-	if (!empty($_POST['nom'])) {
+	if (!empty($_POST['nom']) && $_GET['submit'] == 'TRUE') {
 		$lst = array('nom', 'prenom', 'date', 'email', 'tel', 'adresse', 'filiere', 'groupe', 'mdp');
 		Inscription($lst, TRUE);
 	}
@@ -67,7 +67,7 @@
 			<div id="inscription">
 				<div id="inscription-gauche">
 					<h1>Inscription</h1>
-						<form action="inscription.php" method="post" id="inscription-1">
+						<form action="inscription.php?submit=FALSE" method="post" id="inscription-1">
 							<div class="champs-alignes">
 								<input type="text" name="nom" placeholder="Nom" class="champs-inscription" required="required" id="nom-inscription">
 								<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription" required="required" id="prenom-inscription">
@@ -78,7 +78,7 @@
 							</div>
 							<div class="champs-alignes">
 								<input type="email" name="email" placeholder="Email @u-cergy.fr" class="champs-inscription" pattern=".+@u-cergy.fr" required="required" id="email-inscription">
-								<input type="text" name="tel" placeholder="Téléphone 06.12.34.56.78" class="champs-inscription" required="required" id="tel-inscription" minlength="14" maxlength="14">
+								<input type="tel" name="tel" placeholder="Téléphone 0612345678" class="champs-inscription" required="required" id="tel-inscription" minlength="10" maxlength="10" pattern="[0]{1}[0-9]{9}">
 							</div>
 							<div class="champs-alignes">
 								<select name="filiere" id="filiere-select" onchange="AfficherFiliere(this,json,'groupe-select')">

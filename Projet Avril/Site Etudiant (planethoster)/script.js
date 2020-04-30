@@ -41,18 +41,17 @@ function VerifForm(but){
 		if (document.getElementById('checkbox-inscription').checked != true) {
 			etat = false;
 		}
-		if (verfiCaract(['nom-inscription','prenom-inscription','adresse-inscription'], ",?;:.@/!§ù%*µ$£&") == false) {
+		if (verfiCaract(['nom-inscription','prenom-inscription','adresse-inscription','tel-inscription'], ",?;:.@/!§ù%*µ$£&") == false) {
 			etat = false;
 		}
 		if (verfiCaract(['email-inscription'], ",?;:/!§ù%*µ$£&") == false) {
 			etat = false;
 		}
-		if (verfiCaract(['tel-inscription'], ",?;:/!§ù%*µ$£&") == false) {
-			etat = false;
-		}
 		if (etat == true) {
+			document.getElementById('inscription-1').action = "inscription.php?submit=TRUE";
 			document.getElementById('inscription-1').submit();
 		} else {
+			document.getElementById('inscription-1').action = "inscription.php?submit=FALSE";
 			alert('Tous les champs ne sont pas correctement remplis !');
 		}
 	}
@@ -124,10 +123,19 @@ function ValiderModif(liste){
 			return false;
 		}
 	}
-	if (document.getElementById('input_email').value.slice(-11) != '@u-cergy.fr') {
+	let etat = true;
+	if (verfiCaract(['input_nom','input_prenom','input_adresse','input_tel'], ",?;:.@/!§ù%*µ$£&") == false) {
+			etat = false;
+		}
+		if (verfiCaract(['input_email'], ",?;:/!§ù%*µ$£&") == false) {
+			etat = false;
+		}
+	if (document.getElementById('input_email').value.slice(-11) != '@u-cergy.fr' || etat == false) {
 		alert("Tous les champs ne sont pas correctement remplis.");
+		document.getElementById('profil-form').action = 'profil.php?modif=change&submit=FALSE';
 		return false;
 	}
+	document.getElementById('profil-form').action = 'profil.php?modif=change&submit=TRUE';
 	document.getElementById('profil-form').submit();
 }
 
@@ -136,7 +144,6 @@ function verfiCaract(listeChampsId, caract){
 		for (var i = 0; i<document.getElementById(listeChampsId[j]).value.length; i++) {
 			for (var k = 0; k < caract.length; k++) {
 				if (document.getElementById(listeChampsId[j]).value[i] == caract[k])  {
-					alert("Le champs n'est pas valide");
 					return(false);
 				}
 			}

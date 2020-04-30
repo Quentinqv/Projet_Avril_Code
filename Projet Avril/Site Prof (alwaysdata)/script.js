@@ -208,3 +208,31 @@ function AfficherFiliere(selection,liste,IdGrp){
 		return true;
 	}
 }
+
+function AffMoreInfos(affall, selection, action = 1){
+	let listesChamps = document.getElementsByClassName('MoreInfo');
+	if (affall == false) {
+		if (action == false) {
+			selection.setAttribute('onclick','AffMoreInfos(false, this, true)');
+			for (var i = 0; i < listesChamps.length; i++) {
+				listesChamps[i].style.display = "none";
+			}
+		} else {
+			selection.setAttribute('onclick','AffMoreInfos(false, this, false)');
+			for (var i = 0; i < listesChamps.length; i++) {
+				listesChamps[i].style.display = "block";
+			}
+		}
+		
+		return true;
+	}
+	if (affall == true) {
+		let idDIV = selection.id.substr(0,selection.id.length-3);
+		console.log(document.getElementById(idDIV).style.display);
+		if (document.getElementById(idDIV).style.display == "none") {
+			document.getElementById(idDIV).style.display = "block";
+		} else {
+			document.getElementById(idDIV).style.display = "none";
+		}
+	}
+}

@@ -2,7 +2,7 @@
 	session_start();
 	include 'signupInscription.php';
 	if (isset($_GET['modif'])) {
-		if ($_GET['modif'] == 'change') {
+		if ($_GET['modif'] == 'change' && $_GET['submit'] == 'TRUE') {
 			ModifInfos($_SESSION['id'],array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img","alea"));
 		}
 	}
@@ -74,7 +74,7 @@
 		</div>
 		<div id="profil">
 			<h1>Profil</h1>
-			<form action="profil.php?modif=change" method="post" id="profil-form" enctype="multipart/form-data">
+			<form action="profil.php?modif=change&submit=FALSE" method="post" id="profil-form" enctype="multipart/form-data">
 				<div id="profil-image">
 					<img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="ERROR"/>
 					<input type="file" name="img_import" id="img_import">
@@ -94,7 +94,7 @@
 						<p><span>Email :</span> <span class="infos-php" id="span_email"><?php echo($_SESSION['email']); ?></span><input type="email" name="email" id="input_email" placeholder="Nouveau Email @u-cergy.fr"  pattern=".+@u-cergy.fr" value="<?php echo($_SESSION['email']); ?>"></p><button type="button" onclick="ChangeProfil('email')"><img src="assets/img/edit.png"></button>
 					</div>
 					<div class="infos">
-						<p><span>Téléphone :</span> <span class="infos-php" id="span_tel"><?php echo($_SESSION['tel']); ?></span><input type="text" name="tel" id="input_tel" placeholder="Nouveau Numéro" value="<?php echo($_SESSION['tel']); ?>"></p><button type="button" onclick="ChangeProfil('tel')"><img src="assets/img/edit.png"></button>
+						<p><span>Téléphone :</span> <span class="infos-php" id="span_tel"><?php echo($_SESSION['tel']); ?></span><input type="tel" name="tel" id="input_tel" placeholder="Nouveau Numéro" value="<?php echo($_SESSION['tel']); ?>" minlength="10" maxlength="10" pattern="[0]{1}[0-9]{9}"></p><button type="button" onclick="ChangeProfil('tel')"><img src="assets/img/edit.png"></button>
 					</div>
 					<div class="infos">
 						<p><span>Adresse :</span> <span class="infos-php" id="span_adresse"><?php echo($_SESSION['adresse']); ?></span><input type="text" name="adresse" id="input_adresse" placeholder="Nouvelle Adresse" value="<?php echo($_SESSION['adresse']); ?>"></p><button type="button" onclick="ChangeProfil('adresse')"><img src="assets/img/edit.png"></button>
@@ -120,7 +120,7 @@
 						<p><span>Mot de Passe :</span> <span class="infos-php" id="span_mdp">*****</span><input type="password" name="mdp" id="input_mdp" placeholder="Nouveau Mot de Passe"></p><button type="button" onclick="ChangeProfil('mdp')"><img src="assets/img/edit.png"></button>
 					</div>
 					<div id="bouton-profil">
-						<button id="Enregistrer-button" type="button" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
+						<button id="Enregistrer-button" type="submit" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
 						<button id="deconnexion-button" type="button" onclick="document.location.href = 'profil.php?login=logout'">Déconnexion</button>
 					</div>
 				</div>

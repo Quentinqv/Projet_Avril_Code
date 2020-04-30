@@ -26,7 +26,7 @@
 			}
 		}
 		if ((isset($_GET['filiere']) && !empty($_POST['filiere']) || isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE')) {
-			Cookie($_POST['filiere'].','.$_POST['groupe']);
+			#Cookie($_POST['filiere'].','.$_POST['groupe']);
 			$json = GetJson();
 			return $json;
 		}
@@ -39,7 +39,8 @@
 		<title>Trombinoscope</title>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen">
+		<link rel="stylesheet" href="impression/stylePrint.css" type="text/css" media="print">
 		<link rel="stylesheet" href="https://use.typekit.net/aeb7isn.css">
 		<script src="script.js" type="text/javascript"></script>
 	</head>
@@ -89,6 +90,9 @@
 				</select>
 				<button>MOSAÏQUE</button>
 				<button>LISTE</button>
+				<button type="button" id="infos-btn" onclick="AffMoreInfos(false, this, true)">PLUS D'INFOS</button>
+				<button type="button" id="lastSearch-btn">DERNIERE RECHERCHE</button>
+				<button type="button" onclick="window.print()" id="print-btn">IMPRIMER</button>
 				<button type="button" id="chercher" onclick="ValidTrombi()">CHERCHER</button>
 			</form>
 			<p id="ERRORmsg">Veuillez choisir une filière et/ou un groupe.</p>
@@ -107,6 +111,8 @@
 			<?php
 				if (isset($_POST['filiere']) || isset($_POST['nom']) || isset($_POST['prenom']) || isset($_POST['email']) || isset($_GET['lastSearch']) && $_GET['lastSearch'] == 'go') {
 					AfficherJson($json);
+					echo('<script>document.getElementById("print-btn").style.display = "block";
+						document.getElementById("infos-btn").style.display = "block";</script>');
 				}
 			?>
 		</div>

@@ -1,7 +1,7 @@
 <?php
 	function GetJson(){
 		#Fais une requete en fonction des parametres demandes
-		$key = '5ea57c1065ea6';
+		$key = '5ea97ee1dd5e0';
 		if (isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE') {
 			if (!empty($_POST['nom'])) {
 				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&Nom='.strtoupper($_POST['nom']));
@@ -73,10 +73,10 @@
 		foreach ($json as $key => $value) {
 			echo("
 				<div class=\"EachStudent\">
-				<img src=".$value['IMG']." alt=\"ERROR\"/>
+				<img src=".$value['IMG']." alt=\"ERROR\"/  id=".$value['Id'].'img'." onclick=\"AffMoreInfos(true,this)\">
 				<h3>".$value['Nom']."</h3>
 				<h4>".$value['Prenom']."</h4>
-				<div class=\"MoreInfo\">
+				<div class=\"MoreInfo\" id=".$value['Id']." style='display: none'>
 					<h5>".$value['Date_de_naissance']."</h5>
 					<h5>".$value['Email']."</h5>
 					<h5>".$value['Adresse']."</h5>
@@ -102,42 +102,46 @@
 	}
 
 	function AffEtudiantSolo($json){
-		echo("
-			<div id=\"EtudiantSolo\">
-				<div id=\"EtudiantSoloGauche\">
-					<img src=".$json[0]['IMG'].">
+		if (empty($json['IMG'])) {
+			echo('<h2>Aucun élève trouvé</h2>');
+		} else {
+			echo("
+				<div id=\"EtudiantSolo\">
+					<div id=\"EtudiantSoloGauche\">
+						<img src=".$json['IMG'].">
+					</div>
+					<div id=\"EtudiantSoloDroite\">
+						<div>
+							<p>Nom : </p><span>".$json['Nom']."</span>
+						</div>
+						<div>
+							<p>Prenom : </p><span>".$json['Prenom']."</span>
+						</div>
+						<div>
+							<p>Date de naissance : </p><span>".$json['Date_de_naissance']."</span>
+						</div>
+						<div>
+							<p>Email : </p><span>".$json['Email']."</span>
+						</div>
+						<div>
+							<p>Téléphone : </p><span>".$json['Telephone']."</span>
+						</div>
+						<div>
+							<p>Adresse : </p><span>".$json['Adresse']."</span>
+						</div>
+						<div>
+							<p>Filière : </p><span>".$json['Filiere']."</span>
+						</div>
+						<div>
+							<p>Groupe : </p><span>".$json['Groupe']."</span>
+						</div>
+						<div>
+							<p>Dernière connexion : </p><span>".$json['Derniere_connexion']."</span>
+						</div>
+					</div>
 				</div>
-				<div id=\"EtudiantSoloDroite\">
-					<div>
-						<p>Nom : </p><span>".$json[0]['Nom']."</span>
-					</div>
-					<div>
-						<p>Prenom : </p><span>".$json[0]['Prenom']."</span>
-					</div>
-					<div>
-						<p>Date de naissance : </p><span>".$json[0]['Date_de_naissance']."</span>
-					</div>
-					<div>
-						<p>Email : </p><span>".$json[0]['Email']."</span>
-					</div>
-					<div>
-						<p>Téléphone : </p><span>".$json[0]['Telephone']."</span>
-					</div>
-					<div>
-						<p>Adresse : </p><span>".$json[0]['Adresse']."</span>
-					</div>
-					<div>
-						<p>Filière : </p><span>".$json[0]['Filiere']."</span>
-					</div>
-					<div>
-						<p>Groupe : </p><span>".$json[0]['Groupe']."</span>
-					</div>
-					<div>
-						<p>Dernière connexion : </p><span>".$json[0]['Derniere_connexion']."</span>
-					</div>
-				</div>
-			</div>
-			");
+				");
+		}
 	}
 
 	function Cookie($contenu){
@@ -147,7 +151,7 @@
 	}
 
 	function AffJsonCookie($cookie){
-		$key = '5ea57c1065ea6';
+		$key = '5ea97ee1dd5e0';
 		$liste = explode(',', $cookie);
 		if ($liste[0] == 'nomsgroupes') {
 			$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&filiere=ALL');

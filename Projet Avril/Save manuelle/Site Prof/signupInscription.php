@@ -1,6 +1,5 @@
 <?php
 	function Inscription($listeCHAMPS, $etu){
-		#deconnexion(array('id','nom', 'prenom', 'email', 'tel', 'filiere'), 'inscription');
 		$lst = $listeCHAMPS;
 		$sortie = TRUE;
 		for ($i=0; $i < sizeof($lst) && $sortie == TRUE; $i++) { 
@@ -62,6 +61,7 @@
 			fputs($laSortie, date("Y-m-d à H:i:s").',');
 			fputs($laSortie, "0". "\n");
 			fclose($laSortie);
+			Connexion(array('email','mdp'),array('id', 'nom', 'prenom', 'email', 'tel', 'filiere'),'NONE');
 			header("location:trombinoscope.php");
 			exit();
 		}  else {

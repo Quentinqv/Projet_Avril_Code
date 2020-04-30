@@ -1,3 +1,14 @@
 addkey,2020-04-29;09:06:41,marine@gmail.com
 inscription,2020-04-29;09:08:16,104_TESTLOG
 connexion,2020-04-29;09:08:16,testlog@u-cergy.fr
+inscription,2020-04-30;07:27:46,105_,
+inscription,2020-04-30;07:53:41,105_PIGNON
+connexion,2020-04-30;07:53:42,pignon@u-cergy.fr
+inscription,2020-04-30;08:01:53,105_PIGNON
+connexion,2020-04-30;08:01:53,pignon@u-cergy.fr
+inscription,2020-04-30;08:19:08,105_PIGNON
+connexion,2020-04-30;08:19:08,pignon@u-cergy.fr
+appelAPI,2020-04-30;08:27:39,letest/Site%20Etu/API/API.php?key=letest
+appelAPI,2020-04-30;08:28:32,letest/Site%20Etu/API/API.php?key=letest
+appelAPI,2020-04-30;08:28:50,letest/Site%20Etu/API/API.php?key=letest
+appelAPI,2020-04-30;08:29:28,/Site%20Etu/API/API.php?key=letest

@@ -210,7 +210,9 @@
 	}
 
 	function AddLog($event,$id = 0){
-		$log = fopen("admin/logs.csv", "a");
+		if ($event != 'appelAPI') {
+			$log = fopen("admin/logs.csv", "a");
+		}
 		$date = date("Y-m-d;H:i:s");
 		switch ($event) {
 			case 'inscription':
@@ -221,6 +223,11 @@
 				break;
 			case 'addkey':
 				fputs($log, $event.','.$date.','.$_POST['email']."\n");
+				break;
+			case 'appelAPI':
+				$log = fopen("../admin/logs.csv", "a");
+				fputs($log, $event.','.$date.','. $_SERVER['REQUEST_URI']."\n");
+				fclose($log);
 				break;
 			default:
 				return FALSE;

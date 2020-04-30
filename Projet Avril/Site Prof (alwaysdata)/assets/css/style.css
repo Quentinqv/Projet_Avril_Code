@@ -573,6 +573,7 @@ footer {
 	height: 200px;
 	border-radius: 30px;
 	margin-bottom: 5px;
+	cursor: pointer;
 }
 
 .EachStudent h3, .EachStudent h4 {
@@ -687,4 +688,17 @@ footer {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 50px;
+}
+
+#print-btn, #infos-btn {
+	display: none;
+}
+
+#form-trombi {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#form-trombi button, #form-trombi select {
+	margin-top: 10px;
 }
