@@ -187,9 +187,19 @@
 			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[10].'.png');
 		}
 		#Si il ajoute une image
+		$TailleIMG = TRUE;
 		if (!empty($_FILES['img_import']['name'])) {
-			$ligne[10] = $ligne[0].'_'.$ligne[1];
-			$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');	
+			if ($_FILES['img_import']['size'] > 1000000) {
+				$TailleIMG = FALSE;
+			} else {
+				$type = explode('/',$_FILES['img_import']['type']);
+				if ($type[0] != 'image' && $type[1] != 'jpeg' || 'jpg' || 'png') {
+					$TailleIMG = FALSE;
+				} else {
+					$ligne[10] = $ligne[0].'_'.$ligne[1];
+					$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');
+				}
+			}
 		}
 		$contenu[$id-1] = $ligne;
 		fclose($comptes);

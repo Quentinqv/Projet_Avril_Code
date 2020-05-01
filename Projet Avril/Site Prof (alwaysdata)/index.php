@@ -57,7 +57,7 @@
 		<h1>Trombinoscope</h1>
 		<div class="div-craft">
 			<div class="div-craft-gauche">
-				<img src="assets/img/appCraft.png" alt="ERROR"/>
+				<img src="assets/img/trombi.png" alt="ERROR"/>
 			</div>
 			<div class="div-craft-droite">
 				<h2>mosaïque</h2>

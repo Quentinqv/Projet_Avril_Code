@@ -9,6 +9,7 @@ header, footer, #choix-trombi, .MoreInfo {
 .mosaiqueGroupe, .EachStudent, .EachStudent img {
 	width: 120px;
 	text-align: center;
+	word-break: break-all;
 }
 
 .EachStudent img {
@@ -56,4 +57,10 @@ h1 {
 	border-left: solid;
 	padding: 10px;
 	width: 170px;
+}
+
+.EachStudent p {
+	width: 100px;
+	word-break: break-all;
+	font-size: 10px;
 }

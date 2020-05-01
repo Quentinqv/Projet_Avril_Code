@@ -166,6 +166,10 @@ h1 {
 	align-self: center;
 }
 
+.div-craft-gauche img {
+	border-radius: 30px;
+}
+
 #valeurs-craft, #telecharger-craft {
 	display: flex;
 	flex-direction: column;
@@ -587,7 +591,7 @@ footer {
 	color: #DA9000;
 }
 
-.EachStudent h5 {
+.EachStudent p {
 	color: #C06538;
 	font-family: "Reef";
 	font-size: 18px;
@@ -596,6 +600,8 @@ footer {
 .MoreInfo {
 	display: none;
 	hyphens: auto;
+	word-break: break-all;
+	width: 180px;
 }
 
 .mosaiqueGroupe {
@@ -647,6 +653,7 @@ footer {
 
 #EtudiantSoloGauche img {
 	border-radius: 30px;
+	width: 300px;
 }
 
 #EtudiantSoloGauche, #EtudiantSoloDroite {
@@ -701,4 +708,8 @@ footer {
 
 #form-trombi button, #form-trombi select {
 	margin-top: 10px;
+}
+
+#btn-mosaique {
+	display: none;
 }

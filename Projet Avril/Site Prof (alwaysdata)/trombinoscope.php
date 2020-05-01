@@ -26,7 +26,9 @@
 			}
 		}
 		if ((isset($_GET['filiere']) && !empty($_POST['filiere']) || isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE')) {
-			#Cookie($_POST['filiere'].','.$_POST['groupe']);
+			if (isset($_POST['filiere']) && isset($_POST['groupe'])) {
+				Cookie($_POST['filiere'].','.$_POST['groupe']);
+			}
 			$json = GetJson();
 			return $json;
 		}
@@ -88,10 +90,10 @@
 				<select name="groupe" id="groupe-select">
 					<option value="Groupe">Groupes</option>
 				</select>
-				<button>MOSAÏQUE</button>
-				<button>LISTE</button>
+				<button type="button" onclick="MettreMosaique()" id="btn-mosaique">MOSAÏQUE</button>
+				<button type="button" onclick="MettreListe()" id="btn-liste">LISTE</button>
 				<button type="button" id="infos-btn" onclick="AffMoreInfos(false, this, true)">PLUS D'INFOS</button>
-				<button type="button" id="lastSearch-btn">DERNIERE RECHERCHE</button>
+				<button type="button" id="lastSearch-btn" onclick="document.location.href = 'trombinoscope.php?lastSearch=go'">DERNIERE RECHERCHE</button>
 				<button type="button" onclick="window.print()" id="print-btn">IMPRIMER</button>
 				<button type="button" id="chercher" onclick="ValidTrombi()">CHERCHER</button>
 			</form>
@@ -136,6 +138,19 @@
 				echo('<script>
 					document.getElementById(\'btn-inscription\').style.display = "none";
 					document.getElementById(\'btn-connexion\').style.display = "none";
+					</script>
+					');
+			}
+		}
+		if (isset($_COOKIE['lastSearch'])) {
+			if (!empty($_COOKIE['lastSearch'])) {
+				echo('<script>
+					document.getElementById(\'lastSearch-btn\').style.display = "block";
+					</script>
+					');
+			} else {
+				echo('<script>
+					document.getElementById(\'lastSearch-btn\').style.display = "none";
 					</script>
 					');
 			}

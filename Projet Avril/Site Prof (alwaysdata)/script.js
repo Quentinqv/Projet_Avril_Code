@@ -236,3 +236,65 @@ function AffMoreInfos(affall, selection, action = 1){
 		}
 	}
 }
+
+function MettreListe(){
+	document.getElementById('btn-liste').style.display = 'none';
+	document.getElementById('btn-mosaique').style.display = 'block';
+	document.getElementById('infos-btn').style.display = 'none';
+	let divGrp = document.getElementsByClassName('mosaiqueGroupe')[0];
+	divGrp.style.flexDirection = "column";
+	let Etudiant = document.getElementsByClassName('EachStudent');
+	let legende = Etudiant[0].cloneNode(true);
+	legende.style.backgroundColor = '#111111';
+	legende.getElementsByTagName('h3')[0].innerHTML = 'NOM';
+	legende.getElementsByTagName('h3')[0].style.marginLeft = '10px';
+	legende.getElementsByTagName('h4')[0].innerHTML = 'Prenom';
+	legende.getElementsByTagName('img')[0].id = 'imgemail';
+	legende.getElementsByClassName('MoreInfo')[0].id = 'moreinfoemail';
+	legende.getElementsByClassName('MoreInfo')[0].getElementsByTagName('p')[0].innerHTML = 'Date de naissance';
+	legende.getElementsByClassName('MoreInfo')[0].getElementsByTagName('p')[1].innerHTML = 'Email';
+	legende.getElementsByClassName('MoreInfo')[0].getElementsByTagName('p')[2].innerHTML = 'Adresse';
+	legende.getElementsByClassName('MoreInfo')[0].getElementsByTagName('p')[3].innerHTML = 'Dernière Connexion';
+	legende.getElementsByClassName('MoreInfo')[0].getElementsByTagName('p')[3].style.marginRight = '10px';
+	divGrp.prepend(legende);
+	for (var i = 0; i < Etudiant.length; i++) {
+		Etudiant[i].style.width = "100%";
+		Etudiant[i].style.justifyContent = "space-between";
+		Etudiant[i].style.flexDirection = "row";
+		Etudiant[i].style.textAlign = 'left';
+		Etudiant[i].style.height = '40px';
+		Etudiant[i].style.borderBottom = 'solid 1px #EAA63A';
+		Etudiant[i].getElementsByTagName('h3')[0].style.width = '10%';
+		Etudiant[i].getElementsByTagName('h4')[0].style.width = '10%';
+		Etudiant[i].getElementsByTagName('img')[0].style.display = 'none';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.display = 'flex';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.flexDirection = 'row';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.width = '80%';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.justifyContent = "space-between";
+	}
+}
+
+function MettreMosaique(){
+	document.getElementById('btn-liste').style.display = 'block';
+	document.getElementById('btn-mosaique').style.display = 'none';
+	document.getElementById('infos-btn').style.display = 'block';
+	let divGrp = document.getElementsByClassName('mosaiqueGroupe')[0];
+	divGrp.style.flexDirection = "row";
+	let Etudiant = document.getElementsByClassName('EachStudent');
+	Etudiant[0].remove();
+	for (var i = 0; i < Etudiant.length; i++) {
+		Etudiant[i].style.width = "200px";
+		Etudiant[i].style.justifyContent = "start";
+		Etudiant[i].style.flexDirection = "column";
+		Etudiant[i].style.textAlign = 'center';
+		Etudiant[i].style.height = 'auto';
+		Etudiant[i].style.borderBottom = 'none';
+		Etudiant[i].getElementsByTagName('h3')[0].style.width = 'auto';
+		Etudiant[i].getElementsByTagName('h4')[0].style.width = 'auto';
+		Etudiant[i].getElementsByTagName('img')[0].style.display = 'block';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.display = 'none';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.flexDirection = 'none';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.width = 'auto';
+		Etudiant[i].getElementsByClassName('MoreInfo')[0].style.justifyContent = "none";
+	}
+}

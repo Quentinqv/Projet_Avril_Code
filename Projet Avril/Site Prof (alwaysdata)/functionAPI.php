@@ -1,19 +1,19 @@
 <?php
 	function GetJson(){
 		#Fais une requete en fonction des parametres demandes
-		$key = '5ea97ee1dd5e0';
+		$key = '5ea2ca13aa5ff';
 		if (isset($_GET['Etudiant']) && $_GET['Etudiant'] == 'TRUE') {
-			if (!empty($_POST['nom'])) {
+			if ($_POST['nom'] != '') {
 				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&Nom='.strtoupper($_POST['nom']));
 				$json = json_decode($json, TRUE);
 				return array($json,'etudiant');
 			}
-			if (!empty($_POST['prenom'])) {
+			if ($_POST['prenom'] != '') {
 				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&Prenom='.$_POST['prenom']);
 				$json = json_decode($json, TRUE);
 				return array($json,'etudiant');
 			}
-			if (!empty($_POST['email'])) {
+			if ($_POST['email'] != '') {
 				$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&Email='.$_POST['email']);
 				$json = json_decode($json, TRUE);
 				return array($json,'etudiant');
@@ -73,14 +73,14 @@
 		foreach ($json as $key => $value) {
 			echo("
 				<div class=\"EachStudent\">
-				<img src=".$value['IMG']." alt=\"ERROR\"/  id=".$value['Id'].'img'." onclick=\"AffMoreInfos(true,this)\">
+				<img src=".$value['IMG']." alt=\"ERROR\"  id=".$value['Id'].'img'." onclick=\"AffMoreInfos(true,this)\">
 				<h3>".$value['Nom']."</h3>
 				<h4>".$value['Prenom']."</h4>
 				<div class=\"MoreInfo\" id=".$value['Id']." style='display: none'>
-					<h5>".$value['Date_de_naissance']."</h5>
-					<h5>".$value['Email']."</h5>
-					<h5>".$value['Adresse']."</h5>
-					<h5>".$value['Derniere_connexion']."</h5>
+					<p>".$value['Date_de_naissance']."</p>
+					<p>".$value['Email']."</p>
+					<p>".$value['Adresse']."</p>
+					<p>".$value['Derniere_connexion']."</p>
 				</div>
 			</div>
 				");
@@ -151,7 +151,7 @@
 	}
 
 	function AffJsonCookie($cookie){
-		$key = '5ea97ee1dd5e0';
+		$key = '5ea2ca13aa5ff';
 		$liste = explode(',', $cookie);
 		if ($liste[0] == 'nomsgroupes') {
 			$json = file_get_contents('https://vitoux-quentin.yo.fr/API/API/API.php?key='.$key.'&filiere=ALL');
@@ -178,7 +178,11 @@
 				break;
 			case 'etudiant':
 				if (sizeof($arrayJson[0]) == 1) {
-					AffEtudiantSolo($arrayJson[0]);
+					if (empty($arrayJson[0][0]['IMG'])) {
+						echo('<h2>Aucun élève trouvé</h2>');
+					} else {
+						AffEtudiantSolo($arrayJson[0][0]);
+					}
 				} else {
 					AffStudent($arrayJson[0]);
 				}
