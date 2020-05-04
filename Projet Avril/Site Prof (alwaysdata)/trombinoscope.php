@@ -40,11 +40,11 @@
 	<head>
 		<title>Trombinoscope</title>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen">
-		<link rel="stylesheet" href="impression/stylePrint.css" type="text/css" media="print">
-		<link rel="stylesheet" href="https://use.typekit.net/aeb7isn.css">
-		<script src="script.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen"/>
+		<link rel="stylesheet" href="impression/stylePrint.css" type="text/css" media="print"/>
+		<link rel="stylesheet" href="https://use.typekit.net/aeb7isn.css"/>
+		<script src="script.js"></script>
 	</head>
 	<body>
 		<?php
@@ -66,7 +66,7 @@
 		</script>
 	<header>
 		<div id="imgHeader">
-			<a href="index.php"><img src="assets/img/logodepinfo.png"></a>
+			<a href="index.php"><img src="assets/img/logodepinfo.png" alt="ERROR"/></a>
 		</div>
 		<ul>
 			<li><a href="trombinoscope.php">Trombinoscope</a></li>
@@ -101,9 +101,9 @@
 			<div id="DivSearchName">
 				<button type="button" onclick="AffSearchName()" id="BtnEtu">Rechercher un étudiant</button>
 				<form id="SearchName" action="trombinoscope.php" method="post">
-					<input type="text" name="nom" placeholder="Nom" id="nom">
-					<input type="text" name="prenom" placeholder="Prenom" id="prenom">
-					<input type="text" name="email" placeholder="Email" id="email">
+					<input type="text" name="nom" placeholder="Nom" id="nom"/>
+					<input type="text" name="prenom" placeholder="Prenom" id="prenom"/>
+					<input type="text" name="email" placeholder="Email" id="email"/>
 					<button type="button" onclick="CheckSearchEtudiant()">Chercher</button>
 				</form>
 				<p id="ErrorSearch">Veuillez renseigner un champs.</p>
@@ -121,9 +121,9 @@
 	</main>
 	<footer>
 		<div id="logo-rs-footer">
-			<a href="https://www.u-cergy.fr/" target="blank"><img src="assets/img/globe.png"></a>
-			<a href="https://www.linkedin.com/edu/school?id=12494" target="blank"><img src="assets/img/LinkedIn.png"></a>
-			<a href="https://twitter.com/UniversiteCergy" target="blank"><img src="assets/img/twitter.png"></a>
+			<a href="https://www.u-cergy.fr/" target="blank"><img src="assets/img/globe.png" alt="ERROR"/></a>
+			<a href="https://www.linkedin.com/edu/school?id=12494" target="blank"><img src="assets/img/LinkedIn.png" alt="ERROR"/></a>
+			<a href="https://twitter.com/UniversiteCergy" target="blank"><img src="assets/img/twitter.png" alt="ERROR"/></a>
 		</div>
 		<div id="liens-footer">
 			<a>Université de Cergy-Pontoise</a>
@@ -153,6 +153,19 @@
 					document.getElementById(\'lastSearch-btn\').style.display = "none";
 					</script>
 					');
+			}
+		}
+		if (isset($_GET['Etudiant'])) {
+			echo("<script>
+				document.getElementById('print-btn').style.display = 'none';
+				document.getElementById('btn-liste').style.display = 'none';
+				</script>");
+		}
+		if (isset($_GET['filiere'])) {
+			if ($_POST['filiere'] == 'nomsgroupes') {
+				echo("<script>
+				document.getElementById('btn-liste').style.display = 'none';
+				</script>");
 			}
 		}
 	?>

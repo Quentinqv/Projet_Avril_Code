@@ -7,8 +7,12 @@
 		}
 		foreach ($contenu as $key => $value) {
 			if ($value[1] == $_GET['key']) {
-				$contenu[$key][2] = date("Y-m-d à H:i:s");
-				$contenu[$key][3] = intval($contenu[$key][3])+1;
+				if (date("d:H",$contenu[$key][2]) == date("d:H",time())) {
+					$contenu[$key][3] = intval($contenu[$key][3])+1;
+				} else {
+					$contenu[$key][2] = time();
+					$contenu[$key][3] = 1;
+				}
 			}
 		}
 		fclose($file);
@@ -33,17 +37,30 @@
 
 	function genereJSON($json, $listeinfos,$API){
 		$comptes = file($API."admin/comptes.csv");
-		$json["Indefini"] = array("Indefini" => array());
 		foreach ($comptes as $key => $value) {
-			$ligne = explode(",", $value);
-			foreach ($ligne as $key => $value) {
-				if ($key == 13) {
-					$ligne[$listeinfos[$key]] = str_replace("\n", '', $value);
-					unset($ligne[$key]);
+			$comptes[$key] = explode(',', $value);
+		}
+		foreach ($comptes as $key => $value) {
+			$comptes[$value[1].'_'.$value[2]] = $value;
+			unset($comptes[$key]);
+		}
+		ksort($comptes);
+		$cpt = 0;
+		foreach ($comptes as $key => $value) {
+			$comptes[$cpt] = $value;
+			unset($comptes[$key]);
+			$cpt++;
+		}
+		$json["Indefini"] = array("Indefini" => array());
+		foreach ($comptes as $key => $ligne) {
+			foreach ($ligne as $key2 => $value2) {
+				if ($key2 == 13) {
+					$ligne[$listeinfos[$key2]] = str_replace("\n", '', $value2);
+					unset($ligne[$key2]);
 				}
 				else {
-					$ligne[$listeinfos[$key]] = $value;
-					unset($ligne[$key]);
+					$ligne[$listeinfos[$key2]] = $value2;
+					unset($ligne[$key2]);
 				}
 			}
 			$ligne['IMG'] = 'https://vitoux-quentin.yo.fr/API/API/img/'.$ligne['IMG'].'.png';
@@ -99,6 +116,15 @@
 			}
 			switch ($key) {
 				case TRUE:
+					$verifNBUtil = cptAPImax($_GET['key']);
+					if ($verifNBUtil == FALSE) {
+						$json = file_get_contents("../admin/errorAPI.json");
+						$jsonERROR = json_decode($json, TRUE);
+						$jsonERROR = json_encode($jsonERROR['errorPERSONNE']);
+						header("Content-type: application/json");
+						echo($jsonERROR);
+						return FALSE;
+					}
 					#KEY trouvee
 					cptKey();
 					$liste = array('Id', 'Nom', 'Prenom', 'Date_de_naissance', 'Email', 'Telephone', 'Adresse', 'Filiere', 'Groupe', 'mdp', 'IMG', 'alea', 'Derniere_connexion', 'Nb_total_de_connexion');
@@ -193,6 +219,21 @@
 			header("Content-type: application/json");
 			echo($json);
 			return FALSE;
+		}
+	}
+
+	function cptAPImax($key){
+		$file = fopen("../admin/keys.csv", "r");
+		while (!feof($file)) {
+			$ligne = fgetcsv($file);
+			if ($ligne[1] == $key) {
+				$nbUtil = $ligne[3];
+			}
+		}
+		if ($nbUtil > 30) {
+			return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 ?>

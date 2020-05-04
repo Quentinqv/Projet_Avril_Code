@@ -7,10 +7,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
-		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -19,23 +19,16 @@
 		<div class="bg_commodi">
 			<div id="header">
 				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
+					<a href="index.php"><img src="assets/img/logo.PNG" alt="ERROR"/></a>
 				</div>
 				<nav>
 					<ul id="navigation">
-						<div class="menunav">
-							<button class="navbtn">Outils</button>
-							<div class="contentnav">
-								<a href="visualisation.php">Visualisation</a>
-								<a href="documentation.php">Documentation</a>
-							</div>
-						</div>
-						<div class="menunav" id="admin">
-							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
-						</div>
+						<li><a href="visualisation.php">Visualisation</a></li>
+						<li><a href="documentation.php">Documentation</a></li>
+						<li><a href="demandeCLE.php">Demander sa clé</a></li>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
+						<a href="profil.php"><img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="PP"/></a>
 					</div>
 				</nav>
 			</div>
@@ -56,7 +49,7 @@
 				<h1>Outils disponibles</h1>
 				<div id="box_quis">
 					<div class="autem">
-						<img src="assets\img\visualisation.jpg" alt="ERROR">
+						<img src="assets/img/visualisation.jpg" alt="ERROR"/>
 						<p>Visualiser</p>
 						<div class="bas_autem">
 							<h3>Aperçu de l'API disponible</h3>
@@ -64,7 +57,7 @@
 						</div>
 					</div>	
 					<div class="autem">
-						<img src="assets\img\key_img.png" alt="ERROR">
+						<img src="assets/img/key_img.png" alt="ERROR"/>
 						<p>S'inscrire</p>
 						<div class="bas_autem">
 							<h3>Demander sa clé d'API</h3>
@@ -72,7 +65,7 @@
 						</div>
 					</div>
 					<div class="autem">
-						<img src="assets\img\documentation.jpg" alt="ERROR">
+						<img src="assets/img/documentation.jpg" alt="ERROR"/>
 						<p>Documentation</p>
 						<div class="bas_autem">
 							<h3>Voir la documentation de l'API et son utilisation</h3>

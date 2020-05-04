@@ -12,10 +12,10 @@
 	<head>
 		<title>Accueil Administration</title>
 		<meta charset="utf-8"/>
-		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		<link rel="stylesheet" href="https://use.typekit.net/aeb7isn.css">
-		<script src="script.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+		<link rel="stylesheet" href="https://use.typekit.net/aeb7isn.css"/>
+		<script src="script.js"></script>
 	</head>
 	<body>
 		<?php
@@ -34,7 +34,7 @@
 		?>
 	<header>
 		<div id="imgHeader">
-			<a href="index.php"><img src="assets/img/logodepinfo.png"></a>
+			<a href="index.php"><img src="assets/img/logodepinfo.png" alt="ERROR"/></a>
 		</div>
 		<ul>
 			<li><a href="trombinoscope.php">Trombinoscope</a></li>
@@ -105,7 +105,7 @@
 			<form action="trombinoscope.php?create=try" method="post" id="formulaire">
 				<div id="form-haut">
 					<div id="form-gauche">
-						<input type="text" name="nom" placeholder="Nom" class="champs-inscription" id="nom-inscription" required="required">
+						<input type="text" name="nom" placeholder="Nom" class="champs-inscription" id="nom-inscription" required="required"/>
 						<select name="filiere" id="filiere-select">
 							<option value="filiere">Filière Principale</option>
 							<?php
@@ -114,18 +114,18 @@
 						</select>
 					</div>
 					<div id="form-droite">
-						<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription" required="required" id="prenom-inscription">
-						<input type="text" name="tel" placeholder="Numéro de téléphone" class="champs-inscription" required="required" id="tel-inscription">
+						<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription" required="required" id="prenom-inscription"/>
+						<input type="text" name="tel" placeholder="Numéro de téléphone" class="champs-inscription" required="required" id="tel-inscription"/>
 					</div>
 				</div>
 				<div id="form-bas">
-					<input type="email" name="email" placeholder="Email @u-cergy.fr" class="champs-inscription" required="required" pattern=".+@u-cergy.fr" id="email-inscription">
+					<input type="email" name="email" placeholder="Email @u-cergy.fr" class="champs-inscription" required="required" pattern=".+@u-cergy.fr" id="email-inscription"/>
 					<div class="inscription-mdp">
-						<input type="password" name="mdp" placeholder="Mot de passe" id="mdp1" required="required" minlength="6">
+						<input type="password" name="mdp" placeholder="Mot de passe" id="mdp1" required="required" minlength="6"/>
 						<button type="button" onclick="mdpcache('mdp1')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp1IMG" /></button>
 					</div>
 					<div class="inscription-mdp">
-						<input type="password" name="mdpverif" placeholder="Confirmation Mot de passe" id="mdp2" required="required" minlength="6">
+						<input type="password" name="mdpverif" placeholder="Confirmation Mot de passe" id="mdp2" required="required" minlength="6"/>
 						<button type="button" onclick="mdpcache('mdp2')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp2IMG" /></button>
 					</div>
 				</div>
@@ -135,9 +135,9 @@
 	</main>
 	<footer>
 		<div id="logo-rs-footer">
-			<a href="https://www.u-cergy.fr/" target="blank"><img src="assets/img/globe.png"></a>
-			<a href="https://www.linkedin.com/edu/school?id=12494" target="blank"><img src="assets/img/LinkedIn.png"></a>
-			<a href="https://twitter.com/UniversiteCergy" target="blank"><img src="assets/img/twitter.png"></a>
+			<a href="https://www.u-cergy.fr/" target="blank"><img src="assets/img/globe.png" alt="ERROR"/></a>
+			<a href="https://www.linkedin.com/edu/school?id=12494" target="blank"><img src="assets/img/LinkedIn.png" alt="ERROR"/></a>
+			<a href="https://twitter.com/UniversiteCergy" target="blank"><img src="assets/img/twitter.png" alt="ERROR"/></a>
 		</div>
 		<div id="liens-footer">
 			<a>Université de Cergy-Pontoise</a>

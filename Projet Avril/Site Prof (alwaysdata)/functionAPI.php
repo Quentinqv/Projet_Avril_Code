@@ -165,6 +165,10 @@
 	}
 
 	function AfficherJson($arrayJson){
+		if (array_key_exists('errorCPTKEY', $arrayJson[0])) {
+			echo('<h2>Nombre d\'utilisation maximum de l\'API atteint, demandez un reset ou attendez la prochaine heure.</h2>');
+			return FALSE;
+		}
 		switch ($arrayJson[1]) {
 			case 'all':
 				ListeFiliere($arrayJson[0]);

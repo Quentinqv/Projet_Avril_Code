@@ -12,11 +12,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
-		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
-		<script src="script.js" type="text/javascript"></script>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+		<script src="script.js"></script>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -34,7 +34,7 @@
 
 			$liste = json_decode(TrierFiliere());
 		?>
-		<script type="text/javascript">
+		<script>
 			var json = <?php echo(TrierFiliere()) ?>;
 		</script>
 		<header>
@@ -42,23 +42,16 @@
 		<div class="bg_commodi">
 			<div id="header">
 				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
+					<a href="index.php"><img src="assets/img/logo.PNG" alt="ERROR"/></a>
 				</div>
 				<nav>
 					<ul id="navigation">
-						<div class="menunav">
-							<button class="navbtn">Outils</button>
-							<div class="contentnav">
-								<a href="visualisation.php">Visualisation</a>
-								<a href="documentation.php">Documentation</a>
-							</div>
-						</div>
-						<div class="menunav" id="admin">
-							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
-						</div>
+						<li><a href="visualisation.php">Visualisation</a></li>
+						<li><a href="documentation.php">Documentation</a></li>
+						<li><a href="demandeCLE.php">Demander sa clé</a></li>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
+						<a href="profil.php"><img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="PP"/></a>
 					</div>
 				</nav>
 			</div>
@@ -69,16 +62,16 @@
 					<h1>Inscription</h1>
 						<form action="inscription.php?submit=FALSE" method="post" id="inscription-1">
 							<div class="champs-alignes">
-								<input type="text" name="nom" placeholder="Nom" class="champs-inscription" required="required" id="nom-inscription">
-								<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription" required="required" id="prenom-inscription">
-								<input type="date" name="date" class="champs-inscription" required="required" aria-required="true">
+								<input type="text" name="nom" placeholder="Nom" class="champs-inscription" required="required" id="nom-inscription"/>
+								<input type="text" name="prenom" placeholder="Prénom" class="champs-inscription" required="required" id="prenom-inscription"/>
+								<input type="date" name="date" class="champs-inscription" required="required"/>
 							</div>
 							<div id="adressePostale">
-								<input type="text" name="adresse" placeholder="Adresse Postale" class="champs-inscription" required="required" id="adresse-inscription">
+								<input type="text" name="adresse" placeholder="Adresse Postale" class="champs-inscription" required="required" id="adresse-inscription"/>
 							</div>
 							<div class="champs-alignes">
-								<input type="email" name="email" placeholder="Email @u-cergy.fr" class="champs-inscription" pattern=".+@u-cergy.fr" required="required" id="email-inscription">
-								<input type="tel" name="tel" placeholder="Téléphone 0612345678" class="champs-inscription" required="required" id="tel-inscription" minlength="10" maxlength="10" pattern="[0]{1}[0-9]{9}">
+								<input type="email" name="email" placeholder="Email @u-cergy.fr" class="champs-inscription" pattern=".+@u-cergy.fr" required="required" id="email-inscription"/>
+								<input type="tel" name="tel" placeholder="Téléphone 0612345678" class="champs-inscription" required="required" id="tel-inscription" minlength="10" maxlength="10" pattern="[0]{1}[0-9]{9}"/>
 							</div>
 							<div class="champs-alignes">
 								<select name="filiere" id="filiere-select" onchange="AfficherFiliere(this,json,'groupe-select')">
@@ -93,21 +86,21 @@
 							</div>
 							<div id="mots-de-passe">
 								<div class="inscription-mdp">
-									<input type="password" name="mdp" placeholder="Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp1" required="required" minlength="6">
+									<input type="password" name="mdp" placeholder="Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp1" required="required" minlength="6"/>
 									<button type="button" onclick="mdpcache('mdp1')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp1IMG" /></button>
 								</div>
 								<div class="inscription-mdp">
-									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp2" required="required" minlength="6">
+									<input type="password" name="mdpverif" placeholder="Confirmation de Mot de passe" onchange="document.getElementsByClassName('ErrorMDP')[0].style.display = 'none'" id="mdp2" required="required" minlength="6"/>
 									<button type="button" onclick="mdpcache('mdp2')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdp2IMG" /></button>
 								</div>
 							</div>
 							<p class="ErrorMDP">Les mots de passe ne correspondent pas.</p>
 							<div class="captcha">
-								<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription" required="required"><label for="checkbox-inscription">Je ne suis pas un robot</label>
+								<input type="checkbox" name="checkbox-inscription" id="checkbox-inscription" required="required"/><label for="checkbox-inscription">Je ne suis pas un robot</label>
 							</div>
-							<button type="submit" onclick="VerifForm('inscription')" id="button-inscrire">S'INSCRIRE</button>
+							<button type="submit" onclick="VerifForm('inscription')" class="button-inscrire">S'INSCRIRE</button>
 						</form>
-					<div id="separation"></div>
+					<div class="separation"></div>
 					<h3 onclick="AllerConnexion()">J'ai déjà un compte</h3>
 				</div>
 				<div class="inscription-image"></div>
@@ -116,18 +109,17 @@
 				<div class="inscription-image"></div>
 				<form action="profil.php?login=try" method="post" id="connexion-droite">
 					<h1>Connexion</h1>
-					<input type="text" name="email" placeholder="Email" id="email-connexion">
+					<input type="text" name="email" placeholder="Email" id="email-connexion"/>
 					<div class="inscription-mdp">
-						<input type="password" name="mdp" placeholder="Mot de passe" id="mdpConnexion">
+						<input type="password" name="mdp" placeholder="Mot de passe" id="mdpConnexion"/>
 						<button type="button" onclick="mdpcache('mdpConnexion')"><img src="assets/img/oeil2.png" alt="ERROR" id="mdpConnexionIMG" /></button>
 					</div>
 					<p class="ErrorMDP">Mot de passe incorect.</p>
 					<div class="captcha">
-						<input type="checkbox" name="checkbox-inscription" id="checkbox-connexion"><label for="checkbox-connexion">Je ne suis pas un robot</label>
+						<input type="checkbox" name="checkbox-inscription" id="checkbox-connexion"/><label for="checkbox-connexion">Je ne suis pas un robot</label>
 					</div>
-					<button type="button" onclick="VerifForm('connexion')" id="button-inscrire">SE CONNECTER</button>
-					<h4 onclick="MDPOublie()">Mot de passe oublié ?</h4>
-					<div id="separation"></div>
+					<button type="button" onclick="VerifForm('connexion')" class="button-inscrire">SE CONNECTER</button>
+					<div class="separation"></div>
 					<h3 onclick="AllerInscription()">S'inscrire</h3>
 				</form>
 			</div>

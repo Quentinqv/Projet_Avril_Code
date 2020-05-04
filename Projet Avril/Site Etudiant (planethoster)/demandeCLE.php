@@ -14,7 +14,7 @@
 			$key = uniqid();
 			fputs($file, $key.",");
 			fputs($file, date("Y-m-d à H:i:s").",");
-			fputs($file, "0\n");
+			fputs($file, "0/n");
 			AddLog('addkey');
 		} else {
 			fclose($file);
@@ -54,8 +54,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
-		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -64,23 +64,16 @@
 		<div id="DivIntroVisu">
 			<div id="header">
 				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
+					<a href="index.php"><img src="assets/img/logo.PNG" alt="ERROR"/></a>
 				</div>
 				<nav>
 					<ul id="navigation">
-						<div class="menunav">
-							<button class="navbtn">Outils</button>
-							<div class="contentnav">
-								<a href="visualisation.php">Visualisation</a>
-								<a href="documentation.php">Documentation</a>
-							</div>
-						</div>
-						<div class="menunav" id="admin">
-							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
-						</div>
+						<li><a href="visualisation.php">Visualisation</a></li>
+						<li><a href="documentation.php">Documentation</a></li>
+						<li><a href="demandeCLE.php">Demander sa clé</a></li>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
+						<a href="profil.php"><img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="PP"/></a>
 					</div>
 				</nav>
 			</div>

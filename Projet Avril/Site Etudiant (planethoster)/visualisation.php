@@ -10,10 +10,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
-		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -21,27 +21,20 @@
 	</header>
 	<div id="DivIntroVisu">
 		<div id="header">
-				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
-				</div>
-				<nav>
-					<ul id="navigation">
-						<div class="menunav">
-							<button class="navbtn">Outils</button>
-							<div class="contentnav">
-								<a href="visualisation.php">Visualisation</a>
-								<a href="documentation.php">Documentation</a>
-							</div>
-						</div>
-						<div class="menunav" id="admin">
-							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
-						</div>
-					</ul>
-					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
-					</div>
-				</nav>
+			<div class="logo">
+				<a href="index.php"><img src="assets/img/logo.PNG" alt="ERROR"/></a>
 			</div>
+			<nav>
+				<ul id="navigation">
+					<li><a href="visualisation.php">Visualisation</a></li>
+					<li><a href="documentation.php">Documentation</a></li>
+					<li><a href="demandeCLE.php">Demander sa clé</a></li>
+				</ul>
+				<div class="imgtop">
+					<a href="profil.php"><img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="PP"/></a>
+				</div>
+			</nav>
+		</div>
 		<div id="IntroVisualisation">
 			<h2>VISUALISATION</h2>
 			<h1>Aperçu de l'API</h1>
@@ -57,8 +50,8 @@
 					$json = file_get_contents($link);
 					$json = json_decode($json, true);
 					$lstInfos = array();
+					echo("<h1>$link</h1>");
 					echo("<pre id='affjson'>");
-					echo("<h1 onclick='document.location.href = \"index.php\"'>$link</h1>");
 					foreach ($json as $key => $value) {
 						if (is_array($value)) {
 							foreach ($value as $key2 => $value2) {
@@ -67,21 +60,21 @@
 										if (is_array($value2)) {
 											if (is_array($value3)) {
 												foreach ($value3 as $key4 => $value4) {
-													$value2[$key3]['<span class="link4" id="'.$key4.'" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key4.'</span>'] = $value3[$key4];
+													$value2[$key3]['<span class="link4" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key4.'</span>'] = $value3[$key4];
 													array_push($lstInfos, $key4);
 													unset($value2[$key3][$key4]);
 												}
 											}
 										}
-										$value[$key2]['<span class="link3" id="'.$key3.'" title=\'Voir la doc\'>'.$key3.'</span>'] = $value2[$key3];
+										$value[$key2]['<span class="link3" title=\'Voir la doc\'>'.$key3.'</span>'] = $value2[$key3];
 										unset($value[$key2][$key3]);
 									}
 								}
-								$json[$key]['<span class="link" id="'.$key.'" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key2.'</span>'] = $value[$key2];
+								$json[$key]['<span class="link" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key2.'</span>'] = $value[$key2];
 								unset($json[$key][$key2]);
 							}
 						}
-						$json['<span class="link2" id="'.$key.'" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key.'</span>'] = $json[$key];
+						$json['<span class="link2" onclick="Redirig(this)" title=\'Voir la doc\'>'.$key.'</span>'] = $json[$key];
 						array_push($lstInfos, $key);
 						unset($json[$key]);
 					}
@@ -152,7 +145,7 @@
 	</footer>
 	<script>
 		function Redirig(elt){
-			texte = elt.id;
+			texte = elt.innerHTML;
 			document.location.href = "documentation.php#"+texte;
 		}
 	</script>

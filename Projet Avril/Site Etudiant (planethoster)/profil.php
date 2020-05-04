@@ -3,7 +3,7 @@
 	include 'signupInscription.php';
 	if (isset($_GET['modif'])) {
 		if ($_GET['modif'] == 'change' && $_GET['submit'] == 'TRUE') {
-			ModifInfos($_SESSION['id'],array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img","alea"));
+			$etatimg = ModifInfos($_SESSION['id'],array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img","alea"));
 		}
 	}
 	if (isset($_GET['login'])) {
@@ -21,11 +21,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
-		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
-		<script src="script.js" type="text/javascript"></script>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+		<script src="script.js"></script>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -43,7 +43,7 @@
 
 			$liste = json_decode(TrierFiliere());
 		?>
-		<script type="text/javascript">
+		<script>
 			var json = <?php echo(TrierFiliere()) ?>;
 		</script>
 		<header>
@@ -51,23 +51,16 @@
 		<div class="bg_commodi">
 			<div id="header">
 				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
+					<a href="index.php"><img src="assets/img/logo.PNG" alt="ERROR"/></a>
 				</div>
 				<nav>
 					<ul id="navigation">
-						<div class="menunav">
-							<button class="navbtn">Outils</button>
-							<div class="contentnav">
-								<a href="visualisation.php">Visualisation</a>
-								<a href="documentation.php">Documentation</a>
-							</div>
-						</div>
-						<div class="menunav" id="admin">
-							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
-						</div>
+						<li><a href="visualisation.php">Visualisation</a></li>
+						<li><a href="documentation.php">Documentation</a></li>
+						<li><a href="demandeCLE.php">Demander sa clé</a></li>
 					</ul>
 					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
+						<a href="profil.php"><img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="PP"/></a>
 					</div>
 				</nav>
 			</div>
@@ -77,27 +70,27 @@
 			<form action="profil.php?modif=change&submit=FALSE" method="post" id="profil-form" enctype="multipart/form-data">
 				<div id="profil-image">
 					<img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="ERROR"/>
-					<input type="file" name="img_import" id="img_import">
+					<input type="file" name="img_import" id="img_import"/>
 					<p id="ErrorUpload">L'image n'a pas pu s'uploader.</p>
 				</div>
 				<div id="profil-informations">
 					<div class="infos">
-						<p><span>Nom :</span> <span class="infos-php" id="span_nom"><?php echo($_SESSION['nom']); ?></span><input type="text" name="nom" id="input_nom" placeholder="Nouveau Nom" value="<?php echo($_SESSION['nom']); ?>"></p><button type="button" onclick="ChangeProfil('nom')"><img src="assets/img/edit.png"></button>
+						<p><span>Nom :</span> <span class="infos-php" id="span_nom"><?php echo($_SESSION['nom']); ?></span><input type="text" name="nom" id="input_nom" placeholder="Nouveau Nom" value="<?php echo($_SESSION['nom']); ?>"/></p><button type="button" onclick="ChangeProfil('nom')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div class="infos">
-						<p><span>Prénom :</span> <span class="infos-php" id="span_prenom"> <?php echo($_SESSION['prenom']); ?></span><input type="text" name="prenom" id="input_prenom" placeholder="Nouveau Prénom" value="<?php echo($_SESSION['prenom']); ?>"></p><button type="button" onclick="ChangeProfil('prenom')"><img src="assets/img/edit.png"></button>
+						<p><span>Prénom :</span> <span class="infos-php" id="span_prenom"> <?php echo($_SESSION['prenom']); ?></span><input type="text" name="prenom" id="input_prenom" placeholder="Nouveau Prénom" value="<?php echo($_SESSION['prenom']); ?>"/></p><button type="button" onclick="ChangeProfil('prenom')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div class="infos">
-						<p><span>Date de naissance :</span class="infos-php"> <span id="span_date"><?php echo($_SESSION['date']); ?></span><input type="date" name="date" id="input_date" value="<?php echo($_SESSION['date']); ?>"></p><button type="button" onclick="ChangeProfil('date')"><img src="assets/img/edit.png"></button>
+						<p><span>Date de naissance :</span> <span id="span_date"><?php echo($_SESSION['date']); ?></span><input type="date" name="date" id="input_date" value="<?php echo($_SESSION['date']); ?>"/></p><button type="button" onclick="ChangeProfil('date')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div class="infos">
-						<p><span>Email :</span> <span class="infos-php" id="span_email"><?php echo($_SESSION['email']); ?></span><input type="email" name="email" id="input_email" placeholder="Nouveau Email @u-cergy.fr"  pattern=".+@u-cergy.fr" value="<?php echo($_SESSION['email']); ?>"></p><button type="button" onclick="ChangeProfil('email')"><img src="assets/img/edit.png"></button>
+						<p><span>Email :</span> <span class="infos-php" id="span_email"><?php echo($_SESSION['email']); ?></span><input type="email" name="email" id="input_email" placeholder="Nouveau Email @u-cergy.fr"  pattern=".+@u-cergy.fr" value="<?php echo($_SESSION['email']); ?>"/></p><button type="button" onclick="ChangeProfil('email')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div class="infos">
-						<p><span>Téléphone :</span> <span class="infos-php" id="span_tel"><?php echo($_SESSION['tel']); ?></span><input type="tel" name="tel" id="input_tel" placeholder="Nouveau Numéro" value="<?php echo($_SESSION['tel']); ?>" minlength="10" maxlength="10" pattern="[0]{1}[0-9]{9}"></p><button type="button" onclick="ChangeProfil('tel')"><img src="assets/img/edit.png"></button>
+						<p><span>Téléphone :</span> <span class="infos-php" id="span_tel"><?php echo($_SESSION['tel']); ?></span><input type="tel" name="tel" id="input_tel" placeholder="Nouveau Numéro" value="<?php echo($_SESSION['tel']); ?>" minlength="10" maxlength="10" pattern="[0]{1}[0-9]{9}"/></p><button type="button" onclick="ChangeProfil('tel')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div class="infos">
-						<p><span>Adresse :</span> <span class="infos-php" id="span_adresse"><?php echo($_SESSION['adresse']); ?></span><input type="text" name="adresse" id="input_adresse" placeholder="Nouvelle Adresse" value="<?php echo($_SESSION['adresse']); ?>"></p><button type="button" onclick="ChangeProfil('adresse')"><img src="assets/img/edit.png"></button>
+						<p><span>Adresse :</span> <span class="infos-php" id="span_adresse"><?php echo($_SESSION['adresse']); ?></span><input type="text" name="adresse" id="input_adresse" placeholder="Nouvelle Adresse" value="<?php echo($_SESSION['adresse']); ?>"/></p><button type="button" onclick="ChangeProfil('adresse')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div class="infos">
 						<p><span>Filière :</span> <span class="infos-php" id="span_filiere"><?php echo($_SESSION['filiere']); ?></span>
@@ -107,7 +100,7 @@
 										AfficherFiliere($liste);
 									?>
 								</select>
-							</p><button type="button" onclick="ChangeProfil('filiere')"><img src="assets/img/edit.png"></button>
+							</p><button type="button" onclick="ChangeProfil('filiere')"><img src="assets/img/edit.png" alt="ERROR"></button>
 					</div>
 					<div class="infos">
 						<p><span>Groupe :</span> <span class="infos-php" id="span_groupe"><?php echo($_SESSION['groupe']); ?></span>
@@ -117,7 +110,7 @@
 						</p>
 					</div>
 					<div class="infos">
-						<p><span>Mot de Passe :</span> <span class="infos-php" id="span_mdp">*****</span><input type="password" name="mdp" id="input_mdp" placeholder="Nouveau Mot de Passe"></p><button type="button" onclick="ChangeProfil('mdp')"><img src="assets/img/edit.png"></button>
+						<p><span>Mot de Passe :</span> <span class="infos-php" id="span_mdp">*****</span><input type="password" name="mdp" id="input_mdp" placeholder="Nouveau Mot de Passe"/></p><button type="button" onclick="ChangeProfil('mdp')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div id="bouton-profil">
 						<button id="Enregistrer-button" type="submit" onclick="ValiderModif(['nom','prenom','date','email','tel','adresse','filiere','groupe','mdp'])">Enregistrer</button>
@@ -164,9 +157,11 @@
 		</div>
 	</footer>
 	<?php
-		if (isset($_GET['upload'])) {
-			if ($_GET['upload'] == 'failed') {
-				echo("<script>document.getElementById('ErrorUpload').style.display = 'block';</script>");
+		if (isset($_GET['modif'])) {
+			if ($_GET['modif'] == 'change' && $_GET['submit'] == 'TRUE') {
+				if ($etatimg == FALSE) {
+					echo("<script>document.getElementById('ErrorUpload').style.display = 'block';</script>");
+				}
 			}
 		}
 	?>

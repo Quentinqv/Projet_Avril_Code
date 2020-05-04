@@ -187,17 +187,21 @@
 			rename('API/img/'.$ligne[0].'_'.$nom.'.png', 'API/img/'.$ligne[10].'.png');
 		}
 		#Si il ajoute une image
-		$TailleIMG = TRUE;
+		$ERRORIMG = TRUE;
 		if (!empty($_FILES['img_import']['name'])) {
 			if ($_FILES['img_import']['size'] > 1000000) {
-				$TailleIMG = FALSE;
+				$ERRORIMG = FALSE;
 			} else {
-				$type = explode('/',$_FILES['img_import']['type']);
-				if ($type[0] != 'image' && $type[1] != 'jpeg' || 'jpg' || 'png') {
-					$TailleIMG = FALSE;
+				if (!empty($_FILES['img_import']['type'])) {
+					$type = explode('/',$_FILES['img_import']['type']);
+					if ($type[0] == 'image' && $type[1] == 'jpeg' || $type[1] == 'jpg' || $type[1] == 'png') {
+						$ligne[10] = $ligne[0].'_'.$ligne[1];
+						$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');
+					} else {
+						$ERRORIMG = FALSE;
+					}
 				} else {
-					$ligne[10] = $ligne[0].'_'.$ligne[1];
-					$CheckUpload = move_uploaded_file($_FILES['img_import']['tmp_name'], "API/img/".$ligne[10].'.png');
+					$ERRORIMG = FALSE;
 				}
 			}
 		}
@@ -217,6 +221,7 @@
 			$_SESSION["$value"] = $ligne[$k];
 			$k++;
 		}
+		return $ERRORIMG;
 	}
 
 	function AddLog($event,$id = 0){

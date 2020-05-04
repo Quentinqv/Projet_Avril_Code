@@ -86,6 +86,12 @@ function VerifForm(but){
 				etat = false;
 			}
 		}
+		if (verfiCaract(['nom-inscription','prenom-inscription','adresse-inscription','tel-inscription'], ",?;:.@/!§ù%*µ$£&") == false) {
+			etat = false;
+		}
+		if (verfiCaract(['email-inscription'], ",?;:/!§ù%*µ$£&") == false) {
+			etat = false;
+		}
 		if (document.getElementById('filiere-select').value === 'filiere') {
 			etat = false;
 		}
@@ -241,6 +247,7 @@ function MettreListe(){
 	document.getElementById('btn-liste').style.display = 'none';
 	document.getElementById('btn-mosaique').style.display = 'block';
 	document.getElementById('infos-btn').style.display = 'none';
+	document.getElementById('print-btn').style.display = 'none';
 	let divGrp = document.getElementsByClassName('mosaiqueGroupe')[0];
 	divGrp.style.flexDirection = "column";
 	let Etudiant = document.getElementsByClassName('EachStudent');
@@ -278,6 +285,7 @@ function MettreMosaique(){
 	document.getElementById('btn-liste').style.display = 'block';
 	document.getElementById('btn-mosaique').style.display = 'none';
 	document.getElementById('infos-btn').style.display = 'block';
+	document.getElementById('print-btn').style.display = 'block';
 	let divGrp = document.getElementsByClassName('mosaiqueGroupe')[0];
 	divGrp.style.flexDirection = "row";
 	let Etudiant = document.getElementsByClassName('EachStudent');

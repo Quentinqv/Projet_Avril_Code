@@ -12,8 +12,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="assets\css\reset.css">
-		<link rel="stylesheet" type="text/css" href="assets\css\style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
 		<title>API Projet</title>
 	</head>
 	<body>
@@ -21,27 +21,20 @@
 	</header>
 	<div id="DivIntroVisu">
 		<div id="header">
-				<div class="logo">
-					<a href="index.php"><img src="assets\img\logo.PNG" alt="ERROR"/></a>
-				</div>
-				<nav>
-					<ul id="navigation">
-						<div class="menunav">
-							<button class="navbtn">Outils</button>
-							<div class="contentnav">
-								<a href="visualisation.php">Visualisation</a>
-								<a href="documentation.php">Documentation</a>
-							</div>
-						</div>
-						<div class="menunav" id="admin">
-							<button class="navbtn btndirect" onclick="document.location.href = 'statistiques.php'">Statistiques</button>
-						</div>
-					</ul>
-					<div class="imgtop">
-						<a href="profil.php"><img src="API\img\<?php echo($_SESSION['img']); ?>.png" alt="PP"></a>
-					</div>
-				</nav>
+			<div class="logo">
+				<a href="index.php"><img src="assets/img/logo.PNG" alt="ERROR"/></a>
 			</div>
+			<nav>
+				<ul id="navigation">
+					<li><a href="visualisation.php">Visualisation</a></li>
+					<li><a href="documentation.php">Documentation</a></li>
+					<li><a href="demandeCLE.php">Demander sa clé</a></li>
+				</ul>
+				<div class="imgtop">
+					<a href="profil.php"><img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="PP"/></a>
+				</div>
+			</nav>
+		</div>
 		<div id="IntroVisualisation">
 			<h2>DOCUMENTATION</h2>
 			<h1>Documentation de l'API</h1>
@@ -109,7 +102,7 @@
 				<li id="A3"><code>A3</code> Contient les étudiants du groupe A3</li>
 			</ul>
 			<ul class="infos3">
-				<li id="0"><code>0</code> Parametre de la météo</li>
+				<li id="0"><code>0</code> Numéro de l'étudiant</li>
 			</ul>
 			<ul class="infos4">
 				<li id="Id"><code>Id</code> Id unique de l'étudiant</li>
