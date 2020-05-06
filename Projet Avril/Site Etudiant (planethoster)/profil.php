@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include 'signupInscription.php';
+	include 'functionLog.inc.php';
 	if (isset($_GET['modif'])) {
 		if ($_GET['modif'] == 'change' && $_GET['submit'] == 'TRUE') {
 			$etatimg = ModifInfos($_SESSION['id'],array("id","nom","prenom","date","email","tel","adresse","filiere","groupe","mdp","img","alea"));
@@ -67,7 +67,7 @@
 		</div>
 		<div id="profil">
 			<h1>Profil</h1>
-			<form action="profil.php?modif=change&submit=FALSE" method="post" id="profil-form" enctype="multipart/form-data">
+			<form action="profil.php?modif=change&amp;submit=FALSE" method="post" id="profil-form" enctype="multipart/form-data">
 				<div id="profil-image">
 					<img src="API/img/<?php echo($_SESSION['img']); ?>.png" alt="ERROR"/>
 					<input type="file" name="img_import" id="img_import"/>
@@ -100,7 +100,7 @@
 										AfficherFiliere($liste);
 									?>
 								</select>
-							</p><button type="button" onclick="ChangeProfil('filiere')"><img src="assets/img/edit.png" alt="ERROR"></button>
+							</p><button type="button" onclick="ChangeProfil('filiere')"><img src="assets/img/edit.png" alt="ERROR"/></button>
 					</div>
 					<div class="infos">
 						<p><span>Groupe :</span> <span class="infos-php" id="span_groupe"><?php echo($_SESSION['groupe']); ?></span>

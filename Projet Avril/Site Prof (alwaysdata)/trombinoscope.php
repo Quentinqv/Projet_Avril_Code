@@ -5,20 +5,20 @@
 	}
 	if (isset($_GET['create'])) {
 		if ($_GET['create'] == 'try') {
-			include 'signupInscription.php';
+			include 'functionLog.inc.php';
 			Inscription(array('nom','prenom','filiere','tel','email'),FALSE);
 		}
 	}
 	if (isset($_GET['login'])) {
 		if ($_GET['login'] == 'try') {
-			include 'signupInscription.php';
+			include 'functionLog.inc.php';
 			Connexion(array('email','mdp'),array('id', 'nom', 'prenom', 'email', 'tel', 'filiere'),'NONE');
 		}
 	}
 
 	#PARTIE API
 	function GoAPI(){
-		include 'functionAPI.php';
+		include 'functionAPI.inc.php';
 		if (isset($_GET['lastSearch'])) {
 			if ($_GET['lastSearch'] == 'go') {
 				$arrayjson = AffJsonCookie($_COOKIE['LastSearch']);

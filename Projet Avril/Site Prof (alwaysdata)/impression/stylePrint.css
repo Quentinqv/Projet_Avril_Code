@@ -1,3 +1,5 @@
+@page { size:landscape; }
+
 header, footer, #choix-trombi, .MoreInfo {
 	display: none;
 }
@@ -6,7 +8,7 @@ header, footer, #choix-trombi, .MoreInfo {
 	width: 100%;
 }
 
-.mosaiqueGroupe, .EachStudent, .EachStudent img {
+.mosaiqueGroupe, .EachStudent, .EachStudent img, .MoreInfo {
 	width: 120px;
 	text-align: center;
 	word-break: break-all;
@@ -18,7 +20,8 @@ header, footer, #choix-trombi, .MoreInfo {
 }
 
 .EachStudent {
-	margin-right: 15px;
+	margin-right: 10px;
+	height: 228px;
 }
 
 .mosaiqueGroupe {
@@ -63,4 +66,19 @@ h1 {
 	width: 100px;
 	word-break: break-all;
 	font-size: 10px;
+	text-align: center;
 }
+
+.MoreInfo {
+	height: 52px;
+}
+
+.MoreInfo p {
+	width: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*.EachStudent h3, .EachStudent h4 {
+	height: 38px;
+}*/

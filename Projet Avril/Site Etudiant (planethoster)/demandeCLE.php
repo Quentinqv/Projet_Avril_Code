@@ -1,5 +1,5 @@
 <?php
-	include 'signupInscription.php';
+	include 'functionLog.inc.php';
 	function generateKey(){
 		$file = fopen("admin/keys.csv", "a+");
 		$double = TRUE;
@@ -52,8 +52,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
 		<title>API Projet</title>
@@ -89,7 +89,7 @@
 				<form action="demandeCLE.php?key=created" method="post">
 					<h2>Demandez votre clé</h2>
 					<h3>Rentrez votre email pour recevoir votre clé</h3>
-					<input type="text" name="email" placeholder="Entrez votre email">
+					<input type="text" name="email" placeholder="Entrez votre email"/>
 					<button type="submit">Générer</button>
 					<?php
 						if (isset($_GET['key'])) {
@@ -109,7 +109,7 @@
 					<h2>Retrouvez votre clé</h2>
 					<h3>Rentrez votre email pour retrouver votre clé</h3>
 					<button type="submit">Retrouver</button>
-					<input type="text" name="emailRecup" placeholder="Entrez votre email">
+					<input type="text" name="emailRecup" placeholder="Entrez votre email"/>
 					<?php
 						if (isset($_GET['key'])) {
 							if ($_GET['key'] == 'recup') {

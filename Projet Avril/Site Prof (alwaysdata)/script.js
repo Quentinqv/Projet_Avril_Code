@@ -223,13 +223,14 @@ function AffMoreInfos(affall, selection, action = 1){
 			for (var i = 0; i < listesChamps.length; i++) {
 				listesChamps[i].style.display = "none";
 			}
+			document.getElementById('infos-btn').innerHTML = 'PLUS D\'INFOS';
 		} else {
 			selection.setAttribute('onclick','AffMoreInfos(false, this, false)');
+			document.getElementById('infos-btn').innerHTML = 'MOINS D\'INFOS';
 			for (var i = 0; i < listesChamps.length; i++) {
 				listesChamps[i].style.display = "block";
 			}
 		}
-		
 		return true;
 	}
 	if (affall == true) {

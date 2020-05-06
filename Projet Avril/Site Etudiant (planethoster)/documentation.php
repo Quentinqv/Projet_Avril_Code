@@ -1,5 +1,5 @@
 <?php
-	include 'API/functionAPI.php';
+	include 'API/functionAPI.inc.php';
 	$json = TrierFiliere('API/');
 	genereJSON($json, array('Id', 'Nom', 'Prenom', 'Date_de_naissance', 'Email', 'Telephone', 'Adresse', 'Filiere', 'Groupe', 'mdp', 'IMG', 'alea', 'Derniere_connexion', 'Nb_total_de_connexion'),'./');
 	session_start();
@@ -10,8 +10,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
 		<title>API Projet</title>
@@ -65,7 +65,7 @@
 				</ol>
 			<p>Cette methode permet de récupérer les données sous forme d'objet. Ajouter TRUE comme deuxième paramètre à <span class="aff_donnees_code">json_decode($json, true)</span> permet de le transformer en tableau associatif.</p>
 			<p class="chemin_json">CHEMIN_JSON correspond à :</p>
-			<a class="lien" href="https://vitoux-quentin.yo.fr/API/API/API.php">https://vitoux-quentin.yo.fr/API/API/API.php?key=[YOURKEY]&Nom=[NAME]</a>
+			<a class="lien" href="https://vitoux-quentin.yo.fr/API/API/API.php">https://vitoux-quentin.yo.fr/API/API/API.php?key=[YOURKEY]&amp;Nom=[NAME]</a>
 			<p id="intro-param">Plusieurs paramètres peuvent être donnés afin d'avoir une meilleure visibilité ou des informations plus précises.</p>
 			<ul class="liste-param">
 				<li>Id</li>

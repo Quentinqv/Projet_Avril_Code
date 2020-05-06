@@ -3,7 +3,7 @@
 	if (!isset($_SESSION['nom'])) {
 		$_SESSION['img'] = "account";
 	}
-	include 'signupInscription.php';
+	include 'functionLog.inc.php';
 	if (!empty($_POST['nom']) && $_GET['submit'] == 'TRUE') {
 		$lst = array('nom', 'prenom', 'date', 'email', 'tel', 'adresse', 'filiere', 'groupe', 'mdp');
 		Inscription($lst, TRUE);

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include 'signupInscription.php';
+	include 'functionLog.inc.php';
 	if (isset($_GET['login'])) {
 		if ($_GET['login'] == 'logout') {
 			deconnexion(array('id','nom', 'prenom', 'email', 'tel', 'filiere'));
